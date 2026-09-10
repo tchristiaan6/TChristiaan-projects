@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://tchristiaan.com/sitemap.xml
+Sitemap: https://www.tchristiaan.com/sitemap.xml
