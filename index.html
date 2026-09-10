@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas Bouwman · I drink, and I build things</title>
+<meta name="description" content="Everything Thomas Bouwman has built: a running list of side projects, experiments, failures, and lessons learned, most recent first.">
+<link rel="canonical" href="https://tchristiaan.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thomas Bouwman · I drink, and I build things">
+<meta property="og:description" content="A running list of side projects, experiments, failures, and lessons learned, most recent first.">
+<meta property="og:url" content="https://tchristiaan.com/">
+<meta property="og:image" content="https://tchristiaan.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6;
+    --paper-2:#EAE4D6;
+    --ink:#161412;
+    --ink-2:#4A453D;
+    --muted:#7A7468;
+    --line:#D8D1C2;
+    --accent:#D9532B;
+    --live:#2E8B57;
+    --card:#FBF9F4;
+    --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+    --font-body:"Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .wrap{position:relative;z-index:1}
+  .container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+  .nav a{text-decoration:none;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  @media (max-width:640px){.nav{display:none}}
+
+  /* hero */
+  .hero{background:var(--ink);color:var(--paper);padding:88px 0 72px;position:relative;overflow:hidden}
+  .hero .container{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+  @media (max-width:860px){.hero .container{grid-template-columns:1fr}.hero{padding:64px 0 56px}}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero .kicker{color:#A39C8E}
+  .hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,7.2vw,92px);line-height:.98;letter-spacing:-.025em;margin:18px 0 26px}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+  .hero p{font-size:17px;line-height:1.65;color:#CFC8B9;max-width:600px;margin:0 0 18px;text-wrap:pretty}
+  .hero p:last-of-type{margin-bottom:30px}
+  .hero p strong{color:var(--paper);font-weight:600}
+  .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid #33302B;padding-top:22px;max-width:560px}
+  .stat b{font-family:var(--font-display);font-size:30px;font-weight:500;display:block;line-height:1;letter-spacing:-.02em}
+  .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#A39C8E}
+  .portrait{justify-self:end;position:relative;width:min(100%,380px)}
+  .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:32px 32px 32px 160px}
+  .portrait .tag{position:absolute;left:-14px;bottom:26px;background:var(--paper);color:var(--ink);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  @media (max-width:860px){.portrait{justify-self:start;width:260px}}
+
+  /* toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:34px 0 8px}
+  .toolbar h2{font-family:var(--font-display);font-weight:400;font-size:34px;letter-spacing:-.02em;margin:0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:999px;padding:8px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip .n{opacity:.55;font-weight:500;margin-left:6px}
+
+  /* timeline groups */
+  .group{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:40px 0 8px;border-top:1px solid var(--line)}
+  @media (max-width:860px){.group{grid-template-columns:1fr;gap:12px}}
+  .rail{position:sticky;top:84px;align-self:start}
+  .rail .year{font-family:var(--font-display);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;margin:0}
+  .rail .era{margin:10px 0 0;font-size:13px;color:var(--muted);line-height:1.5;max-width:180px}
+  @media (max-width:860px){.rail{position:static}.rail .year{font-size:44px}.rail .era{max-width:none}}
+  .list{display:flex;flex-direction:column;gap:14px}
+  .group.hidden{display:none}
+
+  /* card */
+  .card{display:grid;grid-template-columns:168px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+  .card:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 18px 40px -22px rgba(22,20,18,.35)}
+  .card.hidden{display:none}
+  .tile{background:#fff;display:flex;align-items:center;justify-content:center;padding:18px;border-right:1px solid var(--line);min-height:168px;position:relative}
+  .tile img{width:100%;height:100%;max-height:132px;object-fit:contain}
+  .tile.dark{background:#111}
+  .tile.photo{padding:0}
+  .tile.photo img{max-height:none;height:100%;width:100%;object-fit:cover;position:absolute;inset:0}
+  .tile.mono{font-family:var(--font-display);font-size:54px;font-weight:300;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(135deg,var(--t1),var(--t2))}
+  .tile.mono small{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--font-body);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,20,18,.55)}
+  .body{padding:20px 24px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .meta .act{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+  .status.live{color:var(--live);border-color:rgba(46,139,87,.35)}
+  .status.live i{background:var(--live);box-shadow:0 0 0 3px rgba(46,139,87,.18)}
+  .status.paused{color:#9A6A00;border-color:rgba(154,106,0,.35)}
+  .status.paused i{background:#C98A00}
+  .status.wip{color:#1F4FBF;border-color:rgba(31,79,191,.35)}
+  .status.wip i{background:#1F4FBF}
+  .status.dead{color:var(--muted)}
+  .name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .name h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+  .title-link{color:inherit;font:inherit;text-decoration:none;background-image:linear-gradient(var(--accent),var(--accent));background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s}
+  .card:hover .title-link{background-size:100% 2px}
+  a.tile{text-decoration:none;color:inherit}
+  .name > a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+  .name > a:hover{border-bottom-color:var(--accent)}
+  .name .num{font-family:var(--font-display);font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
+  .blurb{margin:0;color:var(--ink-2);font-size:15.5px;max-width:64ch}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  .tags span{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);padding:4px 9px;border-radius:6px}
+  details{margin-top:4px}
+  summary{cursor:pointer;list-style:none;font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+  details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+  .story{margin:10px 0 0;padding:14px 16px;border-left:2px solid var(--accent);background:rgba(217,83,43,.05);color:var(--ink-2);font-size:14.5px;max-width:66ch}
+  .story em{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+  @media (max-width:640px){
+    .card{grid-template-columns:1fr}
+    .tile{border-right:0;border-bottom:1px solid var(--line);min-height:150px}
+    .body{padding:16px 18px}
+    .name h3{font-size:24px}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.card{transition:none}}
+
+  /* about + footer */
+  .about{padding:80px 0 40px}
+  .about .container{display:grid;grid-template-columns:200px 1fr;gap:32px}
+  @media (max-width:860px){.about .container{grid-template-columns:1fr}}
+  .about h2{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0 0 18px;line-height:1.05}
+  .about p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 16px}
+  .about p b{color:var(--ink)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);transition:all .2s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{filter:brightness(1.08)}
+  footer{background:var(--ink);color:#A39C8E;padding:56px 0;margin-top:40px}
+  footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:end}
+  footer .big{font-family:var(--font-display);color:var(--paper);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.1;font-weight:300;max-width:16ch}
+  footer .big em{color:var(--accent);font-style:italic}
+  footer small{font-size:13px}
+
+  /* review banner (preview only) */
+  .review{background:#FFF4D6;border-bottom:1px solid #F0D48A;color:#5A4200;font-size:13px;padding:10px 0}
+  .review .container{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .review b{font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+<header class="top">
+  <div class="container">
+    <a class="brand" href="#top"><i></i>Thomas Bouwman</a>
+    <nav class="nav">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div>
+      <p class="kicker">Bouwman · Dutch · <span style="font-style:italic;text-transform:none;letter-spacing:0">to build, to cultivate</span></p>
+      <h1>I drink, and<br><em>I build things.</em></h1>
+      <p>When I was a kid I wanted to be a ninja, an architect, and a pilot, in that order. So I split my time between Tae Kwon Do, flight simulators, and elaborate Lego builds. The ninja dreams died somewhere along the way, but the Lego passion lives on, just with different bricks.</p>
+      <p>The projects below are a creative outlet, built in my spare time: <strong>some for fun, some to make money, some because they're useful, and some to teach myself something new.</strong> Think of it as a running list of side projects, experiments, failures, and lessons learned, kept so I can look back and laugh at all the crazy ideas.</p>
+      <p>As for the pilot dream, stay tuned.</p>
+      <div class="stats">
+        <div class="stat"><b id="s-all">–</b><span>projects</span></div>
+        <div class="stat"><b id="s-live">–</b><span>active</span></div>
+        <div class="stat"><b id="s-dead">–</b><span>retired</span></div>
+        <div class="stat"><b id="s-years">–</b><span>years</span></div>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="assets/tom_nature.jpg" alt="Thomas Bouwman">
+      <div class="tag">Denver, CO</div>
+    </div>
+  </div>
+</section>
+
+<main class="container" id="projects">
+  <div class="toolbar">
+    <h2>The projects</h2>
+    <div class="filters" id="filters">
+      <button class="chip on" data-f="all">All<span class="n" id="n-all"></span></button>
+      <button class="chip" data-f="live">Active<span class="n" id="n-live"></span></button>
+      <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
+    </div>
+  </div>
+  <div id="timeline"></div>
+</main>
+
+<section class="about" id="about">
+  <div class="container">
+    <div><p class="kicker">About</p></div>
+    <div>
+      <h2>Ideas are a dime a dozen. Execution is the whole game.</h2>
+      <p>I spent nearly two decades in enterprise IT as a solutions architect, working with everyone from small businesses to Fortune 100 companies. In 2023 I started building on my own: e-commerce stores, automated content pipelines, physical products, newsletters, mobile apps, AI agents and consulting.</p>
+      <p>Most of these projects are retired. Each one taught me something I couldn't have learned any other way: <b>own the product, distribution beats product, and passion is not the same as credibility.</b> The ones still running are the ones where those lessons finally stuck.</p>
+      <p>I keep this page as a running record. If something here is useful to you, or you want to talk about building things, I'm easy to find.</p>
+      <div class="links">
+        <a class="btn solid" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">Find me on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="big">There will always be <em>problems to solve</em>, and work to be done.</div>
+    <small>© 2026 Thomas Bouwman · tchristiaan.com</small>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const YEARS_ACTIVE = "3+";
+const PROJECTS = [
+  // ---------- 2026 ----------
+  {y:"2026", act:"XII", name:"FDATrack.com", url:"https://fdatrack.com", date:"Aug 2026", status:"live",
+   img:"fdatrack_mark.png", tags:["Next.js","openFDA","Vercel"],
+   blurb:"Type any drug and see every signal FDA publishes about it: shortages, discontinuations and recalls, with sources you can check yourself.",
+   story:"<em>Built for my brother.</em> He's a CRNA, and when a drug he needs is constrained he finds out from an empty shelf. I asked him what actually goes short in his OR, then checked every drug he named against all 1,628 records in FDA's shortage database. Eleven of twenty-two core anesthesia drugs returned zero records. FDA isn't silent about them, it's silent in that one database. So the tool reports every signal across endpoints, and when FDA has nothing it says so plainly. Silence is a finding, not a failure."},
+  {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:"live",
+   img:"abtme.png", tags:["Next.js","Supabase","MCP server","Claude"],
+   blurb:"Your life story, ready for any AI. One private place for everything about you, connected to Claude, ChatGPT or Gemini so every conversation already has your context.",
+   story:"You build your profile through a guided walkthrough or by just talking to a chat, organized into editable cards: work history, places lived, people, passions, goals. Then you connect it to any model through a secure MCP server. Private by default, every row locked to you. Early access."},
+  {y:"2026", act:"XII", name:"Movemnt.ai", url:"https://movemnt.ai", date:"Jul 2026 · relaunch", status:"live",
+   img:"movemnt.png", tags:["Next.js","Stripe","Resend","Vercel"],
+   blurb:"AI enablement, readiness assessments and fractional AI support for small teams. Someone has to own AI. Right now, that's you.",
+   story:"<em>Same name, different business.</em> The 2025 Movemnt was a health-and-fitness consultancy (see the 2025 entry). This one is rebuilt from the ground up around a different offer: enablement programs, readiness assessments and fractional support for any small team that has been handed AI and told to figure it out. Three engagement tiers, a members area behind Stripe, and a site that says what it does in one sentence."},
+  {y:"2026", act:"XII", name:"RegBrief.ai", url:"https://regbrief.ai", date:"Jul 2026", status:"live",
+   img:"regbrief_icon.png", dark:true, tags:["Next.js","Resend","Vercel"],
+   blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
+   story:"RegBrief watches state legislatures, the Federal Register, the FTC and the EU AI Act every day and turns it into summaries, compliance action items and deadline alerts. Enterprise tools charge $1,000 to $2,000 a month and make you sit through a sales call. Same information, free while it's in early access."},
+  {y:"2026", act:"XII", name:"DIYAgent.co", url:"https://diyagent.co", date:"2026", status:"live",
+   img:"diyagent.png", tags:["Agents","No-code"],
+   blurb:"Build AI agents visually: connect models, memory, storage and tools. No code required.",
+   story:"A no-code way to build agents, born from doing the same wiring by hand for clients one too many times."},
+  {y:"2026", act:"XII", name:"CEOTracker", url:"", date:"Aug 2026", status:"wip",
+   mono:"CT", label:"Instagram", tags:["Python","SEC EDGAR","XBRL"],
+   blurb:"An automated research pipeline behind a faceless Instagram page about CEO and executive pay.",
+   story:"Pulls proxy statements from EDGAR, reconciles pay-ratio disclosures against XBRL, and builds a post queue with the brands you already buy from. 478 of 502 S&P 500 companies auto-reconciled on the first full run."},
+  {y:"2026", act:"XII", name:"Pillar Six", url:"https://pillarsix.com", date:"Aug 2026", status:"wip",
+   img:"pillarsix_favicon.svg", tags:["Astro","Tailwind","Vercel"],
+   blurb:"Six programs for a well-run life, one per pillar. Career and finances is the first.",
+   story:"Same stack as Lumio. Outline stage."},
+  {y:"2026", act:"XI", name:"TripBud.co", url:"https://tripbud.co", date:"May 2026", status:"live",
+   img:"tripbud_p2.png", tags:["Astro","DeepL","Open-Meteo"],
+   blurb:"Every tool I want while traveling in one place: translator, currency, ten-day weather and a home-time clock. Built for no one but me.",
+   story:"<em>Three hours, one early morning in South Korea.</em> On a trip with my sister I woke up early and built this in Antigravity. A small, lightweight web app that runs in the browser. It has quirks. I use it anyway."},
+  {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"live",
+   img:"velay.png", tags:["Retell","Claude","Vercel"],
+   blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
+   story:"<em>Built in a day.</em> I wanted a working agent that takes calls, books meetings and emails me questions, and I wanted to see how fast I could build it. A Retell voice agent built with Claude, shipped on Vercel. It's gotten exactly zero traction. But if you call and book an appointment, I'll happily set you up with an AI receptionist."},
+  {y:"2026", act:"X", name:"Lumio Consulting", url:"https://lumioconsulting.com", date:"2025 · present", status:"live",
+   img:"lumio.png", tags:["Consulting","AI agents","Automation","Training"],
+   blurb:"AI and automation consulting for Denver non-profits and small businesses. Agent design, automation building, adoption strategy and hands-on training.",
+   story:"After three years of building with AI and automation, this is where the lessons landed: working directly with small teams on agent design, workflow automation and adoption. AI agents run a large part of Lumio's own operations, from outreach to client follow-up."},
+
+  // ---------- 2025 ----------
+  {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · paused", status:"paused",
+   img:"griddown_wordmark_light.png", tags:["React Native","PMTiles","Local LLM","iOS · Android"],
+   blurb:"An offline emergency-preparedness app: real offline maps plus a local language model that runs with zero connectivity.",
+   story:"<em>A monster of a project.</em> I bought a Mac Mini and spent four months in Cursor and Claude Code on iOS and Android. The ambition was almost absurd: offline Google Maps with PMTiles and vector tiles, combined with a small Llama model so that when the power is out for weeks you can still ask where the nearest hospital is or how to make a tourniquet. The maps work great. But when lives depend on an AI's answers the knowledge base is the hard part, not the model. It's paused, not buried. I still have a working version on my phone. Refer to me as Oz."},
+  {y:"2025", act:"VII", name:"GuysGoals.com", url:"", date:"Nov 2025", status:"dead",
+   img:"guysgoals.png", tags:["White-label","Supplements","Shopify"],
+   blurb:"A men's supplement brand for me and my friends: protein, creatine, pre-workout and a greens mix.",
+   story:"The draw was margin. Supplements are wildly overpriced, and buying through my own company nearly covered what I was already spending. Almost a break-even hobby that funds itself. But creatine isn't just creatine. Sourcing and purity are everything, and with white-label I couldn't prove quality or earn the trust the whole category runs on."},
+  {y:"2025", act:"VII", name:"MushroomKick.com", url:"", date:"2025", status:"dead",
+   img:"mushroomkick.png", tags:["White-label","Functional coffee","Shopify"],
+   blurb:"Functional mushroom coffee, Lion's Mane and Chaga, plus a couple of supplements. All white-labeled.",
+   story:"I liked the category but not the coffee taste, and I wanted to make my own green-tea blends. A Colorado Springs manufacturer said sure, about $1,000 to taste-test and set up, right as my experimentation budget ran dry. Sometimes a project doesn't die from a bad idea. It dies because you run out of runway."},
+  {y:"2025", act:"IX", name:"Movemnt.AI", url:"", date:"Jul 2025", status:"dead",
+   img:"movemnt_v1.png", tags:["Consulting","Health & fitness","Cold outreach"],
+   blurb:"A solo consultancy helping gyms, studios, clinics and trainers adopt AI across their operations.",
+   story:"<em>The health consulting era.</em> I did all the things: built the website, defined services, learned cold outreach, figured out Apollo and Clay, set up sequences, and personally wrote my first ~50 outbound emails. I landed a few client meetings. Then the credibility issue came back. I went to a gym. I tracked everything. I ate healthy. None of that matters when you're sitting across from a clinic explaining their back office. Same lesson as education, and I should have known better. Shut it down. The name got a second life in 2026."},
+  {y:"2025", act:"VI", name:"AIEDUExperts.com", url:"", date:"2025", status:"dead",
+   mono:"AE", label:"Education", tags:["Consulting","K-12"],
+   blurb:"A service to help teachers and administrators adopt AI, built with a DPS math teacher and a retired principal.",
+   story:"Website, services, positioning, pricing. All real and live for about two months. Then reality: I had no background in education, no idea how districts buy, and no answer to the question underneath it all. Why would a school district trust me on education? Passion is not the same as credibility."},
+  {y:"2025", act:"VI", name:"AiforEDU.co", url:"https://aiforedu.beehiiv.com/", date:"2025", status:"dead",
+   mono:"Ai", label:"Newsletter", tags:["Beehiiv","Newsletter"],
+   blurb:"A newsletter helping teachers understand AI in the classroom. 42 drafts, 23 published, a few organic followers.",
+   story:"AI helped source the content but I did the writing. The same gap showed up: without real classroom experience, what could I add to the headlines? How could I judge a tool I wasn't using? I couldn't, so I didn't."},
+  {y:"2025", act:"VI", name:"Imersiv.io", url:"", date:"2025", status:"dead",
+   mono:"Im", label:"Newsletter", tags:["VR · AR","Newsletter"],
+   blurb:"A scoped newsletter for VR and AR news, plus a robotics one I toyed with.",
+   story:"Until I realized The Rundown was already doing all of it, and I wasn't about to dethrone the king of newsletters."},
+
+  // ---------- 2024 ----------
+  {y:"2024", act:"V", name:"RioHarbor.com", url:"", date:"2024", status:"dead",
+   img:"rioharbor.png", tags:["Automation","AI content","Travel"],
+   blurb:"A travel blog that wrote itself. Pick a random place in the world, research it, generate images, write the post.",
+   story:"<em>One of my favorites.</em> Everyone writes about Paris and Bali. Who's writing a gorgeous piece about some random spot in Africa nobody's heard of? It was meant to be inspirational, and it was. But travel writing, actually all writing, needs to be beautiful, personal and real. AI couldn't do any of that."},
+  {y:"2024", act:"V", name:"OneBagFAQs", url:"", date:"2024", status:"dead",
+   mono:"1B", label:"Blog", tags:["SEO","Automation"],
+   blurb:"A simple site about one-bag travel, driving traffic to ULT Gear.",
+   story:"Running quietly under every store was an audience problem: how do people find this? So every store got an automated blog bolted on, plus a few dedicated one-off sites like this one."},
+  {y:"2024", act:"V", name:"CandleFAQs", url:"", date:"2024", status:"dead",
+   mono:"CF", label:"Blog", tags:["SEO","Automation"],
+   blurb:"Same idea, for the candle store.",
+   story:"These blogs were a lesson in content generation, trust, authenticity and accuracy. AI can do a lot, but it can't mimic the human experience."},
+  {y:"2024", act:"V", name:"Tether Lite", url:"", date:"2024", status:"dead",
+   mono:"TL", label:"Blog", tags:["AI content"],
+   blurb:"A domain bought for a product name that never materialized, turned into a blog.",
+   story:"My first exposure to AI slop, two years before it had a name."},
+  {y:"2024", act:"IV", name:"ULTGear.co", url:"", date:"2024", status:"dead",
+   img:"ultgear.png", tags:["Packable clothing","Packable packs","Security belt","Drying rack","Wash basin","Tech packs","Prototypes"],
+   blurb:"Ultralight travel gear for remote workers and digital nomads. Think Sea to Summit, for one-bag travelers.",
+   story:"<em>About 30 products I wished existed.</em> Packable hoodies, shirts and pants with built-in stuff pockets. Packable day packs and fanny packs. A stretchy security belt with hidden zippered pockets. A drying rack that collapses into a kaleidoscope-shaped tube. A foldable wash basin for laundry on the road. I worked with clothing designers on tech packs, had fabric samples shipped in, used a 3D-print shop for hardware and a product-design firm for the technical ideas. Real prototypes, some of which I still use. Then the math: $15k to $25k to produce one size of a single product."},
+  {y:"2024", act:"IV", name:"SwitchKicks", url:"", date:"2024", status:"dead",
+   mono:"SK", label:"Footwear", tags:["Product design","Prototype"],
+   blurb:"Modular, layered shoes: a sandal base inside a thin minimalist shell, with swappable outer shells for summer, winter and hiking.",
+   story:"Hence the name. A single shoe mold costs about $10k and a usable prototype would have been $20k minimum. Maybe people learn this in business school. I learned it in the real world."},
+  {y:"2024", act:"III", name:"ArtVista Prints", url:"", date:"2024", status:"dead",
+   mono:"AV", label:"Etsy", tags:["Etsy","AI art","Printify"],
+   blurb:"AI-generated artwork sold as canvas prints on Etsy.",
+   story:"By this point I had a whole image-generation engine built for basically any Printify product, so I tried a few Etsy stores to see if they'd gain traction."},
+  {y:"2024", act:"III", name:"Dirty Candle Company", url:"", date:"2024", status:"dead",
+   img:"dirtycandle.png", tags:["Etsy","Printify"],
+   blurb:"Highly offensive candles. On Etsy.",
+   story:"Short-lived, like all three Etsy stores. Etsy hates Printify, so I shut them all down."},
+  {y:"2024", act:"III", name:"IMAKEULAF", url:"", date:"2024", status:"dead",
+   mono:"LOL", label:"Etsy", tags:["Etsy","T-shirts","Printify"],
+   blurb:"Funny t-shirt designs, on Etsy.",
+   story:"Partly because I genuinely loved making AI images and wanted excuses to make more, partly because Etsy was low overhead."},
+  {y:"2024", act:"II", name:"Vioula.com", url:"", date:"Aug 2024", status:"dead",
+   img:"vioula.png", tags:["Print-on-demand","Shopify","Printify"],
+   blurb:"Women's totes and canvas bags in colorful designs and patterns.",
+   story:"I realize this is the third woman-focused store. In my defense, there aren't many guy-focused products on Printify."},
+  {y:"2024", act:"II", name:"DuffelPro.com", url:"", date:"Aug 2024", status:"dead",
+   img:"duffelpro.png", tags:["Print-on-demand","Single product"],
+   blurb:"A single-product store, to see whether focus drove more organic traffic. I loved the duffel bags.",
+   story:"Ran it for a few months. By now I could build a fully functioning Shopify store with hundreds of products in about two days: buy a domain, make a logo in Canva, deploy a template, fire up the automations. Building was easy. It still is."},
+  {y:"2024", act:"II", name:"Peatsy Paws", url:"", date:"2024", status:"dead",
+   img:"peatsy_paws.png", tags:["Print-on-demand","Pets"],
+   blurb:"The Peatsy domain, dusted off a second time. Pet bandanas.",
+   story:"Unique designs, but I couldn't change the size. That was the print-on-demand problem in one sentence: I didn't control the product."},
+  {y:"2024", act:"II", name:"Taigora Activewear", url:"", date:"2024", status:"dead",
+   img:"taigora_activewear.png", tags:["Print-on-demand","Activewear"],
+   blurb:"The Taigora domain, dusted off a third time. Women's leggings and workout shorts.",
+   story:"Comfortable, but I couldn't add pockets. Under the ill-fated Taigora banner."},
+  {y:"2024", act:"II", name:"MTNDrip.com", url:"", date:"2024", status:"dead",
+   img:"mtndrip.png", tags:["Print-on-demand","Snow"],
+   blurb:"Mountain Drip: colorful winter gaiters and snowboarding fanny packs.",
+   story:"I'm proud to say I still have friends who rock my custom-designed snowboarding packs. They looked cool. I couldn't make them waterproof."},
+  {y:"2024", act:"II", name:"Acid Daddy", url:"", date:"Dec 2023 · 2024", status:"dead",
+   img:"aciddaddy_sq.png", tags:["Print-on-demand","Festival wear"],
+   blurb:"AI-generated psychedelic designs on hats and clothes for festival lovers. Stay weird.",
+   story:"I'm not proud of the name, an inside joke that escaped containment. Ran about eight months in parallel with the puzzles, and taught me it's brutally hard to drive traffic to a themed store."},
+  {y:"2024", act:"II", name:"Peatsy Puzzles", url:"", date:"2023 · 2024", status:"dead",
+   img:"peatsy_puzzles.png", tags:["Print-on-demand","AI art"],
+   blurb:"AI-generated images on jigsaw puzzles. The first fully automated, one-person company.",
+   story:"<em>The fantasy kicked in here.</em> Shopify storefront, Printify on the back end, AI generating designs, product descriptions, blog posts, ad copy and SEO. I ran it about six months and it worked beautifully. I sold a handful before realizing I was making about $2 per puzzle. Not a great business model."},
+
+  // ---------- 2023 ----------
+  {y:"2023", act:"I", name:"Taigora Lingerie", url:"", date:"2023", status:"dead",
+   img:"taigora.png", tags:["Drop-shipping"],
+   blurb:"For about two weeks I sold lingerie under the Taigora name, because the margins were absurd.",
+   story:"Manufacturing cost of 20 to 50 cents, sold in the US for 30 to 50 dollars. I changed the logo and the products, then started to feel genuinely uncomfortable selling something I knew nothing about. Great margins are not a good reason to start a business."},
+  {y:"2023", act:"I", name:"Taigora.com", url:"", date:"2023", status:"dead",
+   img:"taigora_outdoor.png", tags:["Drop-shipping","Outdoor gear"],
+   blurb:"Outdoor and camping gear, built for my brother, who I thought might get into it.",
+   story:"I'm still proud of the name: a play on Canada's taiga and tundra, the vast northern biomes covering much of the subarctic. And yes, I was trying to copy Amazon's naming convention. When he didn't bite, I shut it down."},
+  {y:"2023", act:"I", name:"HostelGear.co", url:"", date:"2023", status:"dead",
+   img:"hostelgear_clean.png", tags:["Drop-shipping","Travel gear"],
+   blurb:"The first store. Lightweight travel gear, drop-shipped from overseas suppliers.",
+   story:"I actually sold a number of things, and quickly learned two lessons: stuff from China is often cheap, and it takes way too long to ship. No matter how good your pricing or product, no one wants to wait two weeks for anything."},
+
+  // ---------- before ----------
+  {y:"2011", act:"0", name:"Mr. Minimalist", url:"https://tombouwman.wixsite.com/mr-minimalist", date:"2011 · revived 2023", status:"live",
+   img:"mrminimalist.jpg", photo:true, tags:["Travel blog","One-bag travel","Wix"],
+   blurb:"Packing tips, how-to guides and gear for one-bag and minimalist travel. The blog that started it all, and still alive on Wix.",
+   story:"<em>Where the itch started.</em> Long before any of the stores or apps, I was a minimalist traveler writing about it: what to pack, what never to pack, how to choose shoes for one-bag travel, and fifty-odd tips for first-time international travelers. Started in 2011, picked back up properly in 2023. No affiliate links, no sponsored gear, just things I bought and used. The domain lapsed, the blog didn't."},
+];
+
+const ERAS = {
+  "2026":"AI tools, web apps and voice agents. Mostly shipped on Vercel, mostly still running.",
+  "2025":"A mobile app, white-label supplements, newsletters and consulting.",
+  "2024":"Automated blogs, travel gear prototypes, Etsy and print-on-demand stores.",
+  "2023":"Drop-shipping stores. Where the building started.",
+  "2011":"The first side project, a decade before the rest."
+};
+const STATUS = {live:["Active","live"], paused:["Paused","paused"], wip:["In progress","wip"], dead:["Retired","dead"]};
+
+function tint(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;const hue=h%360;return [`hsl(${hue} 38% 90%)`,`hsl(${(hue+40)%360} 45% 80%)`];}
+
+function card(p, i){
+  const st=STATUS[p.status];
+  const tileInner = p.img
+    ? `<img src="assets/${p.img}" alt="${p.name}">`
+    : `${p.mono}<small>${p.label||''}</small>`;
+  const tileCls = p.img ? `tile${p.dark?' dark':''}${p.photo?' photo':''}` : 'tile mono';
+  const tileStyle = p.img ? '' : (()=>{const [a,b]=tint(p.name);return ` style="--t1:${a};--t2:${b}"`})();
+  const tile = p.url
+    ? `<a class="${tileCls}"${tileStyle} href="${p.url}" target="_blank" rel="noopener" aria-label="Open ${p.name}">${tileInner}</a>`
+    : `<div class="${tileCls}"${tileStyle}>${tileInner}</div>`;
+  const title = p.url ? `<a class="title-link" href="${p.url}" target="_blank" rel="noopener">${p.name}</a>` : p.name;
+  const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>` : '';
+  const story = p.story ? `<details><summary>The story</summary><p class="story">${p.story}</p></details>` : '';
+  const isLive = p.status!=='dead';
+  return `<article class="card reveal" data-live="${isLive}">
+    ${tile}
+    <div class="body">
+      <div class="meta"><span class="act">${p.date||''}</span><span class="status ${st[1]}"><i></i>${st[0]}</span></div>
+      <div class="name"><h3>${title}</h3>${link}<span class="num">No. ${String(i).padStart(2,'0')}</span></div>
+      <p class="blurb">${p.blurb}</p>
+      <div class="tags">${(p.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
+      ${story}
+    </div></article>`;
+}
+
+function render(){
+  const el=document.getElementById('timeline');
+  const total=PROJECTS.length;
+  const groups=[];
+  PROJECTS.forEach((p,idx)=>{const n=total-idx; let g=groups.find(g=>g.y===p.y); if(!g){g={y:p.y,items:[]};groups.push(g);} g.items.push(card(p,n));});
+  el.innerHTML=groups.map(g=>`<section class="group" data-year="${g.y}">
+    <div class="rail"><p class="year">${g.y}</p><p class="era">${ERAS[g.y]||''}</p></div>
+    <div class="list">${g.items.join('')}</div></section>`).join('');
+  const live=PROJECTS.filter(p=>p.status!=='dead').length, dead=total-live;
+  document.getElementById('n-all').textContent=total;
+  document.getElementById('n-live').textContent=live;
+  document.getElementById('n-dead').textContent=dead;
+  document.getElementById('s-all').textContent=total;
+  document.getElementById('s-live').textContent=live;
+  document.getElementById('s-dead').textContent=dead;
+  document.getElementById('s-years').textContent=YEARS_ACTIVE;
+  reveal();
+}
+
+function filter(f){
+  document.querySelectorAll('.card').forEach(c=>{
+    const live=c.dataset.live==='true';
+    c.classList.toggle('hidden', f==='live'?!live : f==='dead'?live : false);
+  });
+  document.querySelectorAll('.group').forEach(g=>{
+    g.classList.toggle('hidden', !g.querySelector('.card:not(.hidden)'));
+  });
+}
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
+  filter(b.dataset.f);
+});
+
+function reveal(){
+  const els=[...document.querySelectorAll('.reveal')];
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>{ if(e.getBoundingClientRect().top<innerHeight) e.classList.add('in'); else io.observe(e); });
+}
+render();
+</script>
+</body>
+</html>
