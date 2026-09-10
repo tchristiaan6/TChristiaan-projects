@@ -147,8 +147,11 @@
 
   /* about + footer */
   .about{padding:80px 0 40px}
-  .about .container{display:grid;grid-template-columns:200px 1fr;gap:32px}
-  @media (max-width:860px){.about .container{grid-template-columns:1fr}}
+  .about .container{display:grid;grid-template-columns:200px 1fr 300px;gap:32px;align-items:start}
+  .about .photo{justify-self:end;width:100%;max-width:300px}
+  .about .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:120px 24px 24px 24px}
+  @media (max-width:1000px){.about .container{grid-template-columns:200px 1fr}.about .photo{grid-column:2;justify-self:start;max-width:240px}}
+  @media (max-width:860px){.about .container{grid-template-columns:1fr}.about .photo{grid-column:1}}
   .about h2{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0 0 18px;line-height:1.05}
   .about p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 16px}
   .about p b{color:var(--ink)}
@@ -231,6 +234,7 @@
         <a class="btn" href="https://www.instagram.com/tchristiaan6/" target="_blank" rel="noopener">Find me on Instagram</a>
       </div>
     </div>
+    <div class="photo"><img src="assets/tom-mountain.jpg" alt="Thomas Bouwman in the mountains" loading="lazy"></div>
   </div>
 </section>
 
