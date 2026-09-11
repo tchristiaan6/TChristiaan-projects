@@ -224,7 +224,9 @@
     <div class="filters" id="filters">
       <button class="chip on" data-f="all">All<span class="n" id="n-all"></span></button>
       <button class="chip" data-f="live">Active<span class="n" id="n-live"></span></button>
+      <button class="chip" data-f="paused">Paused<span class="n" id="n-paused"></span></button>
       <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
+      <button class="chip" data-f="wip">In Progress<span class="n" id="n-wip"></span></button>
     </div>
   </div>
   <div id="timeline"></div>
@@ -430,8 +432,7 @@ function card(p, i){
   const title = p.url ? `<a class="title-link" href="${p.url}" target="_blank" rel="noopener">${p.name}</a>` : p.name;
   const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>` : '';
   const story = p.story ? `<details><summary>The story</summary><p class="story">${p.story}</p></details>` : '';
-  const isLive = p.status!=='dead';
-  return `<article class="card reveal" data-live="${isLive}">
+  return `<article class="card reveal" data-status="${p.status}">
     ${tile}
     <div class="body">
       <div class="meta"><span class="act">${p.date||''}</span><span class="status ${st[1]}"><i></i>${st[0]}</span></div>
@@ -450,21 +451,19 @@ function render(){
   el.innerHTML=groups.map(g=>`<section class="group" data-year="${g.y}">
     <div class="rail"><p class="year">${g.y}</p><p class="era">${ERAS[g.y]||''}</p></div>
     <div class="list">${g.items.join('')}</div></section>`).join('');
-  const live=PROJECTS.filter(p=>p.status!=='dead').length, dead=total-live;
+  const count=st=>PROJECTS.filter(p=>p.status===st).length;
   document.getElementById('n-all').textContent=total;
-  document.getElementById('n-live').textContent=live;
-  document.getElementById('n-dead').textContent=dead;
+  for(const st of ['live','paused','dead','wip']) document.getElementById('n-'+st).textContent=count(st);
   document.getElementById('s-all').textContent=total;
-  document.getElementById('s-live').textContent=live;
-  document.getElementById('s-dead').textContent=dead;
+  document.getElementById('s-live').textContent=count('live');
+  document.getElementById('s-dead').textContent=count('dead');
   document.getElementById('s-years').textContent=YEARS_ACTIVE;
   reveal();
 }
 
 function filter(f){
   document.querySelectorAll('.card').forEach(c=>{
-    const live=c.dataset.live==='true';
-    c.classList.toggle('hidden', f==='live'?!live : f==='dead'?live : false);
+    c.classList.toggle('hidden', f!=='all' && c.dataset.status!==f);
   });
   document.querySelectorAll('.group').forEach(g=>{
     g.classList.toggle('hidden', !g.querySelector('.card:not(.hidden)'));
