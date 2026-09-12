@@ -102,15 +102,15 @@
   .group.hidden{display:none}
 
   /* card */
-  .card{display:grid;grid-template-columns:168px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+  .card{display:grid;grid-template-columns:240px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
   .card:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 18px 40px -22px rgba(22,20,18,.35)}
   .card.hidden{display:none}
-  .tile{background:#fff;display:flex;align-items:center;justify-content:center;padding:18px;border-right:1px solid var(--line);min-height:168px;position:relative}
-  .tile img{width:100%;height:100%;max-height:132px;object-fit:contain}
+  .tile{background:#fff;display:flex;align-items:center;justify-content:center;padding:16px;border-right:1px solid var(--line);min-height:240px;position:relative}
+  .tile img{width:100%;height:100%;max-height:208px;object-fit:contain}
   .tile.dark{background:#111}
   .tile.photo{padding:0}
   .tile.photo img{max-height:none;height:100%;width:100%;object-fit:cover;position:absolute;inset:0}
-  .tile.mono{font-family:var(--font-display);font-size:54px;font-weight:300;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(135deg,var(--t1),var(--t2))}
+  .tile.mono{font-family:var(--font-display);font-size:72px;font-weight:300;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(135deg,var(--t1),var(--t2))}
   .tile.mono small{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--font-body);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,20,18,.55)}
   .body{padding:20px 24px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
   .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -144,7 +144,7 @@
   .story em{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
   @media (max-width:640px){
     .card{grid-template-columns:1fr}
-    .tile{border-right:0;border-bottom:1px solid var(--line);min-height:150px}
+    .tile{border-right:0;border-bottom:1px solid var(--line);min-height:240px}
     .body{padding:16px 18px}
     .name h3{font-size:24px}
   }
@@ -251,7 +251,7 @@
 
 <footer>
   <div class="container">
-    <div class="big">There will always be <em>problems to solve</em>, and work to be done.</div>
+    <div class="big">There will always be <em>problems to solve</em>, improvements to be made, and work to be done.</div>
     <small>© 2026 Thomas Bouwman · tchristiaan.com</small>
   </div>
 </footer>
@@ -282,14 +282,6 @@ const PROJECTS = [
    img:"regbrief_icon.png", dark:true, tags:["Next.js","Resend","Vercel"],
    blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
    story:"RegBrief watches state legislatures, the Federal Register, the FTC and the EU AI Act every day and turns it into summaries, compliance action items and deadline alerts. Enterprise tools charge $1,000 to $2,000 a month and make you sit through a sales call. Same information, free while it's in early access."},
-  {y:"2026", act:"XII", name:"CEOTracker", url:"", date:"Aug 2026", status:"wip",
-   mono:"CT", label:"Instagram", tags:["Python","SEC EDGAR","XBRL"],
-   blurb:"An automated research pipeline behind a faceless Instagram page about CEO and executive pay.",
-   story:"Pulls proxy statements from EDGAR, reconciles pay-ratio disclosures against XBRL, and builds a post queue with the brands you already buy from. 478 of 502 S&P 500 companies auto-reconciled on the first full run."},
-  {y:"2026", act:"XII", name:"Pillar Six", url:"https://pillarsix.com", date:"Aug 2026", status:"wip",
-   img:"pillarsix_favicon.svg", tags:["Astro","Tailwind","Vercel"],
-   blurb:"Six programs for a well-run life, one per pillar. Career and finances is the first.",
-   story:"Same stack as Lumio. Outline stage."},
   {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"live",
    img:"velay.png", tags:["Retell","Claude","Vercel"],
    blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
@@ -316,7 +308,7 @@ const PROJECTS = [
    img:"mushroomkick.png", tags:["White-label","Functional coffee","Shopify","Archived site"],
    blurb:"Functional mushroom coffee, Lion's Mane and Chaga, plus a couple of supplements. All white-labeled.",
    story:"I liked the category but not the coffee taste, and I wanted to make my own green-tea blends. A Colorado Springs manufacturer said sure, about $1,000 to taste-test and set up, right as my experimentation budget ran dry. Sometimes a project doesn't die from a bad idea. It dies because you run out of runway."},
-  {y:"2025", act:"IX", name:"Movemnt.AI", url:"", date:"Jul 2025", status:"dead",
+  {y:"2025", act:"IX", name:"Movemnt AI Consulting", url:"", date:"Jul 2025", status:"dead",
    img:"movemnt_v1.png", tags:["Consulting","Health & fitness","Cold outreach"],
    blurb:"A solo consultancy helping gyms, studios, clinics and trainers adopt AI across their operations.",
    story:"<em>The health consulting era.</em> I did all the things: built the website, defined services, learned cold outreach, figured out Apollo and Clay, set up sequences, and personally wrote my first ~50 outbound emails. I landed a few client meetings. Then the credibility issue came back. I went to a gym. I tracked everything. I ate healthy. None of that matters when you're sitting across from a clinic explaining their back office. Same lesson as education, and I should have known better. Shut it down. The name got a second life in 2026."},
@@ -342,22 +334,10 @@ const PROJECTS = [
    img:"ultgear.png", tags:["Packable clothing","Packable packs","Security belt","Drying rack","Wash basin","Tech packs","Prototypes"],
    blurb:"Ultralight travel gear for remote workers and digital nomads. Think Sea to Summit, for one-bag travelers.",
    story:"<em>About 30 products I wished existed.</em> Packable hoodies, shirts and pants with built-in stuff pockets. Packable day packs and fanny packs. A stretchy security belt with hidden zippered pockets. A drying rack that collapses into a kaleidoscope-shaped tube. A foldable wash basin for laundry on the road. I worked with clothing designers on tech packs, had fabric samples shipped in, used a 3D-print shop for hardware and a product-design firm for the technical ideas. Real prototypes, some of which I still use. Then the math: $15k to $25k to produce one size of a single product."},
-  {y:"2024", act:"IV", name:"SwitchKicks", url:"", date:"2024", status:"dead",
-   mono:"SK", label:"Footwear", tags:["Product design","Prototype"],
-   blurb:"Modular, layered shoes: a sandal base inside a thin minimalist shell, with swappable outer shells for summer, winter and hiking.",
-   story:"Hence the name. A single shoe mold costs about $10k and a usable prototype would have been $20k minimum. Maybe people learn this in business school. I learned it in the real world."},
   {y:"2024", act:"III", name:"ArtVista Prints", url:"", date:"2024", status:"dead",
    mono:"AV", label:"Etsy", tags:["Etsy","AI art","Printify"],
    blurb:"AI-generated artwork sold as canvas prints on Etsy.",
    story:"ArtVista Prints was the first of three Etsy experiments. AI image generation was making rapid progress at the time, and I loved working with the tools, so I took my image-generation experience and, instead of puzzles, tried canvas prints. Really, I just enjoyed the process of coming up with new concepts and trying to get the models to create an image with depth, meaning, and style, at a time when people didn't associate AI with any of those things."},
-  {y:"2024", act:"III", name:"Dirty Candle Company", url:"", date:"2024", status:"dead",
-   img:"dirtycandle.png", tags:["Etsy","Printify"],
-   blurb:"Highly offensive candles. On Etsy.",
-   story:"Dirty Candle Company was my creative side coming out: funny, offensive candles, published to Etsy. I was still doing the designs myself, but by now I had a process, so pushing products to the website was easy, and so was the Etsy store. A fun little side project."},
-  {y:"2024", act:"III", name:"IMAKEULAF", url:"", date:"2024", status:"dead",
-   mono:"LOL", label:"Etsy", tags:["Etsy","T-shirts","Printify"],
-   blurb:"Funny t-shirt designs, on Etsy.",
-   story:"IMAKEULAF was the same idea as Dirty Candle Company, just for fun. I did the designs myself and used what I'd learned about website building and brand building to put it out into the world. The last of the three Etsy experiments."},
   {y:"2024", act:"II", name:"Vioula.com", url:"", date:"Aug 2024", status:"dead",
    img:"vioula.png", tags:["Print-on-demand","Shopify","Printify"],
    blurb:"Women's totes and canvas bags in colorful designs and patterns.",
@@ -413,7 +393,7 @@ const ERAS = {
   "2025":"A mobile app, white-label supplements, newsletters and consulting.",
   "2024":"Automated blogs, travel gear prototypes, Etsy and print-on-demand stores.",
   "2023":"Drop-shipping stores. Where the building started.",
-  "2016":"The first side project, years before the rest."
+  "2016":"The first side project, the one that started it all."
 };
 const STATUS = {live:["Active","live"], paused:["Paused","paused"], wip:["In progress","wip"], dead:["Retired","dead"]};
 
