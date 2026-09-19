@@ -61,7 +61,9 @@
   .nav{display:flex;gap:26px;font-size:14px;font-weight:500}
   .nav a{text-decoration:none;color:var(--ink-2)}
   .nav a:hover{color:var(--ink)}
-  @media (max-width:640px){.nav{display:none}}
+  .nav a.on{color:var(--ink);box-shadow:0 2px 0 var(--accent)}
+  @media (max-width:640px){.top .container{height:56px}.brand{font-size:15px;gap:7px;white-space:nowrap}.nav{gap:13px;font-size:13px}.nav .ext{display:none}}
+  @media (max-width:360px){.brand span{display:none}}
 
   /* hero */
   .hero{background:var(--ink);color:var(--paper);padding:88px 0 72px;position:relative;overflow:hidden}
@@ -187,11 +189,12 @@
 
 <header class="top">
   <div class="container">
-    <a class="brand" href="#top"><i></i>Thomas Bouwman</a>
+    <a class="brand" href="#top"><i></i><span>Thomas Bouwman</span></a>
     <nav class="nav">
       <a href="#projects">Projects</a>
+      <a href="/lessons/">Lessons</a>
       <a href="#about">About</a>
-      <a href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="ext" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </div>
 </header>
@@ -243,6 +246,7 @@
       <div class="links">
         <a class="btn solid" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">Find me on LinkedIn</a>
         <a class="btn" href="https://www.instagram.com/tchristiaan6/" target="_blank" rel="noopener">Find me on Instagram</a>
+        <a class="btn" href="/lessons/">Read the lessons learned</a>
       </div>
     </div>
     <div class="photo"><img src="assets/tom-mountain.jpg" alt="Thomas Bouwman in the mountains" loading="lazy"></div>
