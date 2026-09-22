@@ -99,7 +99,7 @@
   .rail .year{font-family:var(--font-display);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;margin:0}
   .rail .era{margin:10px 0 0;font-size:13px;color:var(--muted);line-height:1.5;max-width:180px}
   @media (max-width:860px){.rail{position:static}.rail .year{font-size:44px}.rail .era{max-width:none}}
-  .list{display:flex;flex-direction:column;gap:14px}
+  .list{display:flex;flex-direction:column;gap:0}
   .group.hidden{display:none}
 
   /* card */
@@ -187,23 +187,14 @@
   .hero.slim h1{font-size:clamp(40px,6.4vw,80px)}
   .hero .jump{display:inline-flex;align-items:center;gap:8px;color:var(--paper);font-weight:600;font-size:14px;text-decoration:none;border:1px solid #4A453D;border-radius:999px;padding:11px 18px;margin-bottom:30px;transition:all .2s}
   .hero .jump:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-  .lesson{display:grid;grid-template-columns:132px 1fr;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;scroll-margin-top:84px}
-  .lesson:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 18px 40px -22px rgba(22,20,18,.35)}
-  .lesson .no{background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:18px 10px}
-  .lesson .no b{font-family:var(--font-display);font-weight:300;font-size:60px;line-height:1;letter-spacing:-.04em;color:var(--accent)}
-  .lesson .no span{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .lesson h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:26px;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
-  .lesson .line{margin:0;font-family:var(--font-display);font-style:italic;font-size:18px;line-height:1.4;color:var(--ink-2);max-width:60ch}
-  .lesson .from{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:2px}
-  .lesson .from em{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px}
-  .lesson .from span{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);padding:4px 9px;border-radius:6px}
-  @media (max-width:640px){
-    .lesson{grid-template-columns:1fr}
-    .lesson .no{flex-direction:row;justify-content:flex-start;align-items:baseline;gap:10px;border-right:0;border-bottom:1px solid var(--line);padding:12px 18px}
-    .lesson .no b{font-size:34px}
-    .lesson h3{font-size:22px}
-    .lesson .line{font-size:16.5px}
-  }
+  .lesson{padding:26px 0 30px;border-bottom:1px solid var(--line);max-width:68ch;scroll-margin-top:84px}
+  .list .lesson:last-child{border-bottom:0}
+  .lesson .kicker{margin:0 0 8px}
+  .lesson h3{margin:0 0 10px;font-family:var(--font-display);font-weight:500;font-size:27px;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+  .lesson .text{margin:0;color:var(--ink-2);font-size:16.5px;line-height:1.65;text-wrap:pretty}
+  .lesson .from{margin:10px 0 0;font-size:12.5px;color:var(--muted)}
+  .lesson .from::before{content:"From ";}
+  @media (max-width:640px){.lesson{padding:20px 0 24px}.lesson h3{font-size:23px}.lesson .text{font-size:16px}}
   .endnote{padding:48px 0 8px;text-align:center;color:var(--muted);font-size:14px}
   .endnote a{color:var(--ink);font-weight:600}
 </style>
@@ -261,122 +252,76 @@ const YEARS_ACTIVE = "3+";
 const LESSONS = [
   // ---------- 2026 (newest first) ----------
   {y:"2026", when:"2026", title:"There's no better time to build.",
-   line:"You've got the world's greatest tutor sitting at your fingertips.",
-   body:"If you've got the itch, there's never been a better time to scratch it. And maybe this pile of failures will give you the courage to go out and fail yourself.",
+   text:"You've got the world's greatest tutor sitting at your fingertips. If you've got the itch, there's never been a better time to scratch it. And maybe this pile of failures will give you the courage to go out and fail yourself.",
    from:["Everything on this site"]},
   {y:"2026", when:"2026", title:"Building got easy. Maybe too easy.",
-   line:"You can build something in days. Everything around what you build is what counts.",
-   body:"For years I kept a running list of unsorted ideas, hundreds of them, and for most of that time they stayed just that: ideas. What's different now is that it's easier than ever to build. TripBud took three hours one morning in South Korea. Velay took a day, and has gotten exactly zero traction. Ideas truly are a dime a dozen. It's the execution that matters, and the reason you build matters more than ever.",
+   text:"For years I kept a running list of unsorted ideas, hundreds of them, and for most of that time they stayed just that: ideas. Now it's easier than ever to build. TripBud took three hours one morning in South Korea. Velay took a day, and has gotten exactly zero traction. You can build something in days, but everything around what you build is what counts, and the reason you build matters more than ever.",
    from:["TripBud.co","Velay.io"]},
 
   // ---------- 2025 ----------
   {y:"2025", when:"2025", title:"Put the technology where it actually helps.",
-   line:"For the first time in a while, it doesn't feel like an experiment.",
-   body:"After three years of building with AI and automation, I knew this was the field I wanted to be in. I just had to find the right place to put it to use, somewhere I could actually help. Learning from my failures and using technology to genuinely help people is what I was looking for all along.",
+   text:"After three years of building with AI and automation, I knew this was the field I wanted to be in. I just had to find the right place to put it to use, somewhere I could actually help. Learning from my failures and using technology to genuinely help people is what I was looking for all along. For the first time in a while, it doesn't feel like an experiment.",
    from:["Lumio Consulting"]},
   {y:"2025", when:"2025", title:"I missed people.",
-   line:"The biggest lesson was the simplest.",
-   body:"I missed being on a team, having coworkers and clients, building alongside others instead of alone in a room. Building alone was exciting at first, but over time it felt isolating. Too much freedom led to paralysis, as the illusion of choice pulled me in multiple directions. And more than anything, I wanted the work to matter.",
+   text:"The biggest lesson was the simplest. I missed being on a team, having coworkers and clients, building alongside others instead of alone in a room. Building alone was exciting at first, but over time it felt isolating. Too much freedom led to paralysis, as the illusion of choice pulled me in multiple directions. And more than anything, I wanted the work to matter.",
    from:["Three years of building alone"]},
   {y:"2025", when:"Dec 2025", title:"The language model is the easy part.",
-   line:"When lives depend on an AI's answers, the knowledge base is the hard one.",
-   body:"GridDown pairs real offline maps with a local LLM that runs with zero connectivity. The maps worked great. But when lives depend on the answers, you have to be very, very careful: you need a carefully curated, trustworthy knowledge base, with the model constrained to answer only from what it finds. It's paused, not buried. I'm not going to ship something people can't trust.",
+   text:"GridDown pairs real offline maps with a local LLM that runs with zero connectivity. The maps worked great. But when lives depend on an AI's answers, you have to be very, very careful: you need a carefully curated, trustworthy knowledge base, with the model constrained to answer only from what it finds. The knowledge base is the hard part. It's paused, not buried. I'm not going to ship something people can't trust.",
    from:["GridDown"]},
-  {y:"2025", when:"2025", title:"Passion isn't credibility. I learned it twice.",
-   line:"Passion doesn't equate to experience or credibility.",
-   body:"I built a solo consultancy helping gyms, studios, clinics and trainers adopt AI. I went to a gym, I tracked everything, I ate healthy food, but none of that matters when you're sitting down with a health clinic explaining how they could automate their back office. It's the same issue I ran into with education, and I should have known better.",
-   from:["Movemnt AI Consulting"]},
   {y:"2025", when:"2025", title:"Some categories run entirely on trust.",
-   line:"With white-label, I couldn't prove quality.",
-   body:"On the surface, creatine is creatine and protein is protein, right? In reality, sourcing and purity are everything, and with white-label supplements I couldn't prove quality or earn the trust the whole category runs on.",
+   text:"On the surface, creatine is creatine and protein is protein, right? In reality, sourcing and purity are everything, and with white-label supplements I couldn't prove quality or earn the trust the whole category runs on.",
    from:["GuysGoals.com","MushroomKick.com"]},
-  {y:"2025", when:"2025", title:"Sometimes it's just runway.",
-   line:"A project doesn't always end because of a bad idea.",
-   body:"I liked the mushroom coffee category but not the taste, and I wanted to make my own green-tea blends. A Colorado Springs manufacturer said sure, about $1,000 to taste-test and set up, right as my experimentation budget ran dry. Sometimes a project ends because you run out of runway.",
-   from:["MushroomKick.com"]},
   {y:"2025", when:"2025", title:"If you're not using the tool, you can't judge it.",
-   line:"Without real experience, what could I really add to the headlines?",
-   body:"I wrote an AI newsletter for teachers: about 42 drafts, 23 published, a few organic followers. AI helped source the content, but I did the writing. Without real classroom or institutional experience, I couldn't judge the tools I was covering. I also scoped newsletters on VR and robotics, until I realized The Rundown was already doing all of it.",
+   text:"I wrote an AI newsletter for teachers: about 42 drafts, 23 published, a few organic followers. AI helped source the content, but I did the writing. Without real classroom or institutional experience, what could I add to the headlines? I couldn't judge a tool I wasn't using, so I didn't.",
    from:["AiforEDU.co","Imersiv.io"]},
   {y:"2025", when:"2025", title:"Passion is not the same as credibility.",
-   line:"Why would a school district trust me on education?",
-   body:"I teamed up with a Denver Public Schools math teacher and a retired principal to help teachers and administrators adopt AI. It was all real and live, for about two months. I had no background in education, no connections, and no idea how schools funded projects or bought from vendors. Getting on an approved-vendor list can take months to years.",
-   from:["AIEDUExperts.com"]},
+   text:"I teamed up with a Denver Public Schools math teacher and a retired principal to help teachers and administrators adopt AI. It was all real and live, for about two months. But I had no background in education, no connections, and no idea how schools funded projects or bought from vendors. Why would a school district trust me on education? The same thing happened later with health consulting: I went to a gym and ate healthy food, but none of that matters when you're sitting across from a clinic. Passion doesn't equate to experience or credibility.",
+   from:["AIEDUExperts.com","Movemnt AI Consulting"]},
 
   // ---------- 2024 ----------
-  {y:"2024", when:"Looking back on year one", title:"Respect for enterprise businesses.",
-   line:"Scale, trust and resilience are built slowly and deliberately.",
-   body:"Trusted brands, established customer bases, employee camaraderie, winning products. The sheer amount of effort it takes to build a lasting business is enormous, and it's something I never could have learned while still working for a big company.",
-   from:["The first year"]},
-  {y:"2024", when:"Looking back on year one", title:"Respect for entrepreneurs.",
-   line:"The grind is real. Anyone who survives it has earned my respect.",
-   body:"It's a grind, it's frustrating, it's expensive. For six months I swore off social contact and worked 8 to 10 hours a day, 7 days a week, buried in training, troubleshooting, building, brainstorming and automations. It was the definition of working harder, not smarter, but it was fun, educational and (oddly) energizing.",
-   from:["The first year"]},
   {y:"2024", when:"Looking back on year one", title:"Motivation requires meaning.",
-   line:"Without a clear why, novelty fades and businesses stall.",
-   body:"I once read Simon Sinek's Start With Why. I believed it then and still do, wholeheartedly, but during this year of exploration I ignored it. I got caught up in the novelty of the building process. Who are you helping? Why is it important? If you don't know the why of your business, you'll struggle and likely fail.",
-   from:["The first year"]},
-  {y:"2024", when:"Looking back on year one", title:"Building vs. running.",
-   line:"Loving the build is different from sustaining the day-to-day.",
-   body:"My real passion lies in brainstorming, designing, building and implementing solutions. I thrive in the creative and technical phases: shaping ideas, turning them into working systems, and seeing them deliver value. Running a business, with its ongoing maintenance and operational overhead, never inspired me the same way.",
+   text:"I once read Simon Sinek's Start With Why. I believed it then and still do, wholeheartedly, but during my year of exploration I ignored it. I got caught up in the novelty of the building process. Who are you helping? Why is it important? If you don't know the why of your business, you'll struggle and likely fail.",
    from:["The first year"]},
   {y:"2024", when:"Looking back on year one", title:"Focus wins.",
-   line:"Scattering effort creates noise. Sustained focus builds value.",
-   body:"If you truly want something to work, you have to dedicate yourself to a single project, sometimes for years, before the results show up. My throw-spaghetti-at-the-wall approach was fun and engaging, but because my heart and mind weren't committed to one path, every project suffered.",
+   text:"If you truly want something to work, you have to dedicate yourself to a single project, sometimes for years, before the results show up. My throw-spaghetti-at-the-wall approach was fun and engaging, but because my heart and mind weren't committed to one path, every project suffered. Scattering effort creates noise. Sustained focus builds value.",
    from:["The first year"]},
   {y:"2024", when:"2024", title:"AI can't mimic the human experience.",
-   line:"All writing needs to be beautiful, personal and real.",
-   body:"RioHarbor was a travel blog that wrote itself: pick a random place in the world, research the top locations, generate images, write a post. I loved the randomness. But travel writing needs to be beautiful, personal and real, and AI couldn't do any of that. The automated blogs were my first exposure to AI slop, two years before it had a name.",
+   text:"RioHarbor was a travel blog that wrote itself: pick a random place in the world, research the top locations, generate images, write a post. I loved the randomness. But travel writing, all writing really, needs to be beautiful, personal and real, and AI couldn't do any of that. The automated blogs were my first exposure to AI slop, two years before it had a name.",
    from:["RioHarbor.com","The automated blogs"]},
   {y:"2024", when:"2024", title:"In person beats remote.",
-   line:"Some collaboration works better face to face.",
-   body:"I worked with designers in the Midwest, product developers in Atlanta and San Jose, marketers in Indonesia, manufacturers in China, website builders in Turkey and automation engineers in Germany. What took months of back-and-forth remotely could have been done in 4 hours in person.",
+   text:"I worked with designers in the Midwest, product developers in Atlanta and San Jose, marketers in Indonesia, manufacturers in China, website builders in Turkey and automation engineers in Germany. What took months of back-and-forth remotely could have been done in four hours in person. I'm a fan of remote work, but when it comes to getting things done quickly and correctly, nothing beats sitting down together.",
    from:["ULTGear.co"]},
   {y:"2024", when:"2024", title:"Execution is harder than ideation.",
-   line:"Ideas are cheap. Execution takes time, money and effort.",
-   body:"I had about 30 travel products I wanted to exist, and took many of them well past the design phase. A single shoe mold costs around $10k. Custom 3D-printed parts were in the thousands just to design. Specialty fabrics were a nightmare to source, and manufacturers had minimum order quantities in the thousands. I was staring down $15 to 25k just to produce one size of a single product. Maybe people learn this in business school. I learned it in the real world.",
+   text:"I had about 30 travel products I wanted to exist, and took many of them well past the design phase. A single shoe mold costs around $10k. Custom 3D-printed parts were in the thousands just to design. Specialty fabrics were a nightmare to source, and manufacturers had minimum order quantities in the thousands. I was staring down $15 to 25k just to produce one size of a single product. Ideas are cheap. Execution takes time, money and effort.",
    from:["ULTGear.co","SwitchKicks"]},
   {y:"2024", when:"2024", title:"Tech doesn't replace fundamentals.",
-   line:"AI tools accelerate building, but they don't replace value, pricing or demand.",
-   body:"What used to take hundreds of hours or a full team can now be built in days. But you still need to deliver real value, at a price people will pay. If you aren't already selling what people want, no amount of automation or AI magic will change the fortunes of a bad business.",
+   text:"What used to take hundreds of hours or a full team can now be built in days. But language models don't change the fundamentals of business: you still need to deliver real value, at a price people will pay. If you aren't already selling what people want, no amount of automation or AI magic will change the fortunes of a bad business.",
    from:["The print-on-demand stores"]},
-  {y:"2024", when:"2024", title:"Brand doesn't equal logo.",
-   line:"Logos and colors don't build trust. Consistency and story do.",
-   body:"I knew this going in, but like many people just starting out, I spent way too much time on logos and brand identity. On the other hand, it is worthwhile to invest in professional logos, brand colors and websites. And Canva is one of the few tools I've used repeatedly in every business.",
-   from:["Every store"]},
   {y:"2024", when:"2024", title:"Community matters.",
-   line:"If you don't belong in the community, your brand won't stick.",
-   body:"Sure, I could sell pet products, jigsaw puzzles, or even (hilariously) women's workout clothes. But could I really be the face of those brands? No. I picked them to see if I could do it, and I couldn't, because at the end of the day, you are your brand.",
+   text:"Sure, I could sell pet products, jigsaw puzzles, or even (hilariously) women's workout clothes. But could I really be the face of those brands? No. I picked them to see if I could do it, and I couldn't, because at the end of the day, you are your brand. If you don't belong in the community, your brand won't stick.",
    from:["Peatsy Paws","Peatsy Puzzles","Taigora Activewear"]},
   {y:"2024", when:"2024", title:"Set it and forget it is a pipe dream.",
-   line:"Every system drifts. Autopilot businesses still require a pilot.",
-   body:"Supplier pricing changes. Winning products stop winning. Automations break and need updating. Every automation I built required continuous updates, sometimes because the underlying LLM changed, sometimes because my needs changed, sometimes because I learned something new that needed to be applied.",
+   text:"Supplier pricing changes. Winning products stop winning. Automations break and need updating. Every automation I built required continuous updates, sometimes because the underlying LLM changed, sometimes because my needs changed, sometimes because I learned something new that needed to be applied. Autopilot businesses still require a pilot.",
    from:["The print-on-demand stores"]},
   {y:"2024", when:"2024", title:"Don't automate what doesn't matter.",
-   line:"Automating the wrong things wastes time. Growth comes from visibility and traction.",
-   body:"At one point, automation made it so easy that I could create 100 designs across 25+ products, 2,500 SKUs, in 10 minutes. It created analysis paralysis for customers, diluted my brand, and filled my stores with products nobody wanted or needed. What I should have been automating were the things that generate traffic and visibility: marketing content, SEO and social media.",
+   text:"At one point, automation made it so easy that I could create 100 designs across 25+ products, 2,500 SKUs, in 10 minutes. It created analysis paralysis for customers, diluted my brand, and filled my stores with products nobody wanted. What I should have been automating were the things that generate traffic and visibility: marketing content, SEO and social media. Automation only matters if you're applying it to the right things.",
    from:["The print-on-demand stores"]},
   {y:"2024", when:"2024", title:"You must own your product.",
-   line:"Without control over the product, you can't differentiate or improve.",
-   body:"Print-on-demand promised zero overhead and on-demand delivery. What they don't tell you is that you have zero control over the underlying products. My snowboarding fanny packs looked cool, but I couldn't make them waterproof. The pet bandanas were unique, but I couldn't change the size. My leggings and shorts were comfortable, but I couldn't add pockets.",
+   text:"Print-on-demand promised zero overhead and on-demand delivery. What they don't tell you is that you have zero control over the underlying products. My snowboarding fanny packs looked cool, but I couldn't make them waterproof. The pet bandanas were unique, but I couldn't change the size. My leggings were comfortable, but I couldn't add pockets. Without control over the product, you can't differentiate or improve.",
    from:["MTNDrip.com","Peatsy Paws","Taigora Activewear"]},
   {y:"2024", when:"2024", title:"Distribution beats product.",
-   line:"Even great products fail without reach and audience.",
-   body:"It's brutally hard to drive traffic to a themed store. Building a brand almost always requires paid advertising, influencers or SEO, and those aren't just strategies, they're ongoing costs that add up quickly. If you build it, they won't come. At least, not without $$.",
+   text:"It's brutally hard to drive traffic to a themed store. Building a brand almost always requires paid advertising, influencers or SEO, and those aren't just strategies, they're ongoing costs that add up quickly. Even great products fail without reach and an audience. If you build it, they won't come. At least, not without $$.",
    from:["Acid Daddy","The print-on-demand stores"]},
   {y:"2024", when:"2023 · 2024", title:"Check the margin first.",
-   line:"I was making about $2 per puzzle.",
-   body:"AI-generated images on jigsaw puzzles. I ran it for about six months and it worked beautifully. I sold a handful before realizing I was making about $2 per puzzle. Not a great business model.",
+   text:"AI-generated images on jigsaw puzzles. I ran it for about six months and it worked beautifully. I sold a handful before realizing I was making about $2 per puzzle. Not a great business model.",
    from:["Peatsy Puzzles"]},
 
   // ---------- 2023 ----------
   {y:"2023", when:"2023", title:"Great margins are not a good reason to start a business.",
-   line:"I felt genuinely uncomfortable selling something I knew nothing about.",
-   body:"I noticed that the margins on lingerie were absurd: manufacturing costs of 20 to 50 cents, sold in the US for 30 to 50 dollars. So for about two weeks I changed the store logo and products, before I started to feel genuinely uncomfortable selling something I knew nothing about.",
+   text:"I noticed that the margins on lingerie were absurd: manufacturing costs of 20 to 50 cents, sold in the US for 30 to 50 dollars. So for about two weeks I changed the store logo and products, before I started to feel genuinely uncomfortable selling something I knew nothing about.",
    from:["Taigora Lingerie"]},
   {y:"2023", when:"2023", title:"No one wants to wait two weeks for anything.",
-   line:"No matter how good your pricing or product is.",
-   body:"My first store sold lightweight travel gear, drop-shipped from overseas suppliers. I actually sold a number of things, but I couldn't trust the quality, and even if I could, I was never going to get around the shipping time.",
+   text:"My first store sold lightweight travel gear, drop-shipped from overseas suppliers. I actually sold a number of things, but I couldn't trust the quality, and even if I could, I was never going to get around the shipping time. No matter how good your pricing or product is.",
    from:["HostelGear.co","Taigora.com"]},
 ];
 
@@ -389,14 +334,11 @@ const ERAS = {
 function lesson(l, n){
   const num=String(n).padStart(2,'0');
   return `<article class="lesson reveal" id="lesson-${num}">
-    <div class="no"><b>${num}</b><span>Lesson</span></div>
-    <div class="body">
-      <div class="meta"><span class="act">${l.when}</span></div>
-      <h3>${l.title}</h3>
-      <p class="line">${l.line}</p>
-      <div class="from"><em>Learned from</em>${l.from.map(f=>`<span>${f}</span>`).join('')}</div>
-      <details><summary>The longer version</summary><p class="story">${l.body}</p></details>
-    </div></article>`;
+    <p class="kicker">Lesson ${num} · ${l.when}</p>
+    <h3>${l.title}</h3>
+    <p class="text">${l.text}</p>
+    <p class="from">${l.from.join(' · ')}</p>
+  </article>`;
 }
 function render(){
   const total=LESSONS.length, groups=[];
