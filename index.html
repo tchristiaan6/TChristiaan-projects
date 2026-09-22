@@ -57,13 +57,14 @@
   .top{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .top .container{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .short{display:none}
   .brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
   .nav{display:flex;gap:26px;font-size:14px;font-weight:500}
   .nav a{text-decoration:none;color:var(--ink-2)}
   .nav a:hover{color:var(--ink)}
   .nav a.on{color:var(--ink);box-shadow:0 2px 0 var(--accent)}
-  @media (max-width:640px){.top .container{height:56px}.brand{font-size:15px;gap:7px;white-space:nowrap}.nav{gap:13px;font-size:13px}.nav .ext{display:none}}
-  @media (max-width:360px){.brand span{display:none}}
+  @media (max-width:640px){.top .container{height:56px}.brand{font-size:16px;gap:7px;white-space:nowrap}.brand .full{display:none}.brand .short{display:inline}.nav{gap:14px;font-size:13px;white-space:nowrap}.nav .ext{display:none}}
+  @media (max-width:330px){.brand span{display:none}}
 
   /* hero */
   .hero{background:var(--ink);color:var(--paper);padding:88px 0 72px;position:relative;overflow:hidden}
@@ -189,10 +190,10 @@
 
 <header class="top">
   <div class="container">
-    <a class="brand" href="#top"><i></i><span>Thomas Bouwman</span></a>
+    <a class="brand" href="#top"><i></i><span class="full">Thomas Bouwman</span><span class="short">T. Bouwman</span></a>
     <nav class="nav">
       <a href="#projects">Projects</a>
-      <a href="/lessons/">Lessons</a>
+      <a href="/lessons/">Lessons Learned</a>
       <a href="#about">About</a>
       <a class="ext" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
