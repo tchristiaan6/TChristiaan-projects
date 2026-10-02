@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acid Daddy · Thomas Bouwman</title>
+<meta name="description" content="Acid Daddy: AI-generated psychedelic designs on hats and clothes for festival lovers. A print-on-demand project by Thomas Bouwman, December 2023 to 2024.">
+<link rel="canonical" href="https://tchristiaan.com/acid-daddy/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Acid Daddy · Thomas Bouwman">
+<meta property="og:description" content="AI-generated psychedelic designs on hats and clothes for festival lovers. Stay weird.">
+<meta property="og:url" content="https://tchristiaan.com/acid-daddy/">
+<meta property="og:image" content="https://tchristiaan.com/assets/aciddaddy_logo.png">
+<meta property="og:site_name" content="Thomas Bouwman">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6;
+    --paper-2:#EAE4D6;
+    --ink:#161412;
+    --ink-2:#4A453D;
+    --muted:#7A7468;
+    --line:#D8D1C2;
+    --accent:#D9532B;
+    --live:#2E8B57;
+    --card:#FBF9F4;
+    --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+    --font-body:"Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .wrap{position:relative;z-index:1}
+  .container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .short{display:none}
+  .brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+  .nav a{text-decoration:none;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  .nav a.on{color:var(--ink);box-shadow:0 2px 0 var(--accent)}
+  @media (max-width:640px){.top .container{height:56px}.brand{font-size:16px;gap:7px;white-space:nowrap}.brand .full{display:none}.brand .short{display:inline}.nav{gap:14px;font-size:13px;white-space:nowrap}.nav .ext{display:none}}
+  @media (max-width:330px){.brand span{display:none}}
+
+  /* hero */
+  .hero{background:var(--ink);color:var(--paper);padding:88px 0 72px;position:relative;overflow:hidden}
+  .hero .container{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+  @media (max-width:860px){.hero .container{grid-template-columns:1fr}.hero{padding:64px 0 56px}}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero .kicker{color:#A39C8E}
+  .hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,7.2vw,92px);line-height:.98;letter-spacing:-.025em;margin:18px 0 26px}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+  .hero p{font-size:17px;line-height:1.65;color:#CFC8B9;max-width:600px;margin:0 0 18px;text-wrap:pretty}
+  .hero p:last-of-type{margin-bottom:30px}
+  .hero p strong{color:var(--paper);font-weight:600}
+  .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid #33302B;padding-top:22px;max-width:560px}
+  .stat b{font-family:var(--font-display);font-size:30px;font-weight:500;display:block;line-height:1;letter-spacing:-.02em}
+  .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#A39C8E}
+  .portrait{justify-self:end;position:relative;width:min(100%,380px)}
+  .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:32px 32px 32px 160px}
+  .portrait .tag{position:absolute;left:-14px;bottom:26px;background:var(--paper);color:var(--ink);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  @media (max-width:860px){.portrait{justify-self:start;width:260px}}
+
+  /* toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:34px 0 8px}
+  .toolbar h2{font-family:var(--font-display);font-weight:400;font-size:34px;letter-spacing:-.02em;margin:0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:999px;padding:8px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip .n{opacity:.55;font-weight:500;margin-left:6px}
+
+  /* timeline groups */
+  .group{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:40px 0 8px;border-top:1px solid var(--line)}
+  @media (max-width:860px){.group{grid-template-columns:1fr;gap:12px}}
+  .rail{position:sticky;top:84px;align-self:start}
+  .rail .year{font-family:var(--font-display);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;margin:0}
+  .rail .era{margin:10px 0 0;font-size:13px;color:var(--muted);line-height:1.5;max-width:180px}
+  @media (max-width:860px){.rail{position:static}.rail .year{font-size:44px}.rail .era{max-width:none}}
+  .list{display:flex;flex-direction:column;gap:14px}
+  .group.hidden{display:none}
+
+  /* card */
+  .card{display:grid;grid-template-columns:240px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+  .card:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 18px 40px -22px rgba(22,20,18,.35)}
+  .card.hidden{display:none}
+  .tile{background:#fff;display:flex;align-items:center;justify-content:center;padding:16px;border-right:1px solid var(--line);min-height:240px;position:relative}
+  .tile img{width:100%;height:100%;max-height:208px;object-fit:contain}
+  .tile.dark{background:#111}
+  .tile.photo{padding:0}
+  .tile.photo img{max-height:none;height:100%;width:100%;object-fit:cover;position:absolute;inset:0}
+  .tile.mono{font-family:var(--font-display);font-size:72px;font-weight:300;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(135deg,var(--t1),var(--t2))}
+  .tile.mono small{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--font-body);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,20,18,.55)}
+  .body{padding:20px 24px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .meta .act{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+  .status.live{color:var(--live);border-color:rgba(46,139,87,.35)}
+  .status.live i{background:var(--live);box-shadow:0 0 0 3px rgba(46,139,87,.18)}
+  .status.paused{color:#9A6A00;border-color:rgba(154,106,0,.35)}
+  .status.paused i{background:#C98A00}
+  .status.wip{color:#1F4FBF;border-color:rgba(31,79,191,.35)}
+  .status.wip i{background:#1F4FBF}
+  .status.dead{color:var(--muted)}
+  .name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .name h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+  .title-link{color:inherit;font:inherit;text-decoration:none;background-image:linear-gradient(var(--accent),var(--accent));background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s}
+  .card:hover .title-link{background-size:100% 2px}
+  a.tile{text-decoration:none;color:inherit}
+  .name > a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+  .name > a:hover{border-bottom-color:var(--accent)}
+  .name .num{font-family:var(--font-display);font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
+  .blurb{margin:0;color:var(--ink-2);font-size:15.5px;max-width:64ch}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  .tags span{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);padding:4px 9px;border-radius:6px}
+  details{margin-top:4px}
+  summary{cursor:pointer;list-style:none;font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+  details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+  .story{margin:10px 0 0;padding:14px 16px;border-left:2px solid var(--accent);background:rgba(217,83,43,.05);color:var(--ink-2);font-size:14.5px;max-width:66ch}
+  .story em{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+  @media (max-width:640px){
+    .card{grid-template-columns:1fr}
+    .tile{border-right:0;border-bottom:1px solid var(--line);min-height:240px}
+    .body{padding:16px 18px}
+    .name h3{font-size:24px}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.card{transition:none}}
+
+  /* about + footer */
+  .about{padding:80px 0 40px}
+  .about .container{display:grid;grid-template-columns:200px 1fr 300px;gap:32px;align-items:start}
+  .about .photo{justify-self:end;width:100%;max-width:300px}
+  .about .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:120px 24px 24px 24px}
+  @media (max-width:1000px){.about .container{grid-template-columns:200px 1fr}.about .photo{grid-column:2;justify-self:start;max-width:240px}}
+  @media (max-width:860px){.about .container{grid-template-columns:1fr}.about .photo{grid-column:1}}
+  .about h2{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0 0 18px;line-height:1.05}
+  .about p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 16px}
+  .about p b{color:var(--ink)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);transition:all .2s}
+  .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(22,20,18,.5)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#C2451F;border-color:#C2451F;color:#fff;box-shadow:0 10px 24px -8px rgba(217,83,43,.6)}
+  footer{background:var(--ink);color:#A39C8E;padding:56px 0;margin-top:40px}
+  footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:end}
+  footer .big{font-family:var(--font-display);color:var(--paper);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.1;font-weight:300;max-width:16ch}
+  footer .big em{color:var(--accent);font-style:italic}
+  footer small{font-size:13px}
+
+  /* review banner (preview only) */
+  .review{background:#FFF4D6;border-bottom:1px solid #F0D48A;color:#5A4200;font-size:13px;padding:10px 0}
+  .review .container{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .review b{font-weight:700}
+
+  /* project page */
+  .hero.slim{padding:72px 0 56px}
+  .hero.slim .container{grid-template-columns:1.25fr .75fr}
+  @media (max-width:860px){.hero.slim .container{grid-template-columns:1fr}}
+  .hero.slim h1{font-size:clamp(40px,6.4vw,80px)}
+  .hero .logo{justify-self:end;width:min(100%,340px);background:#fff;border-radius:28px;padding:22px}
+  @media (max-width:860px){.hero .logo{justify-self:start;width:220px}}
+  .back{display:inline-flex;align-items:center;gap:8px;color:#CFC8B9;font-weight:600;font-size:13px;text-decoration:none;margin-bottom:22px}
+  .back:hover{color:var(--accent)}
+  .prose{max-width:68ch;padding:44px 0 8px}
+  .prose p{font-size:17px;line-height:1.7;color:var(--ink-2);margin:0 0 16px;text-wrap:pretty}
+  .dump{columns:4 150px;column-gap:12px;padding:8px 0 24px}
+  .dump a,.dump video{display:block;break-inside:avoid;margin:0 0 12px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+  .dump img{width:100%;height:auto;display:block;transition:transform .35s ease}
+  .dump a:hover img{transform:scale(1.03)}
+  .dump video{width:100%;background:#000}
+  .endnote{padding:32px 0 8px;text-align:center;color:var(--muted);font-size:14px}
+  .endnote a{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="container">
+    <a class="brand" href="/"><i></i><span class="full">Thomas Bouwman</span><span class="short">T. Bouwman</span></a>
+    <nav class="nav">
+      <a class="on" href="/#projects">Projects</a>
+      <a href="/lessons/">Lessons Learned</a>
+      <a href="/#about">About</a>
+      <a class="ext" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero slim" id="top">
+  <div class="container">
+    <div>
+      <a class="back" href="/#projects">← All projects</a>
+      <p class="kicker">Project · Dec 2023 to 2024 · Retired</p>
+      <h1>Acid Daddy.<br><em>Stay weird.</em></h1>
+      <p>AI-generated psychedelic designs on hats and clothes for festival lovers. A fully automated, one-person store built on Shopify, Printify and a lot of image generation.</p>
+      <div class="stats">
+        <div class="stat"><b>8</b><span>months</span></div>
+        <div class="stat"><b>167</b><span>images below</span></div>
+        <div class="stat"><b>1</b><span>person</span></div>
+      </div>
+    </div>
+    <div class="logo"><img src="/assets/aciddaddy_logo.png" alt="Acid Daddy logo"></div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="prose">
+    <p>Acid Daddy was my next attempt at a fully automated one-person business, using Printify, Shopify, and AI-generated designs. The concept was simple: let AI generate funky, psychedelic images, put them on hats and clothes, and sell them to festival lovers. I'm not proud of the name. It was an inside joke that escaped containment.</p>
+    <p>I spent a good eight months on this project, and I built some incredible things. I got to the point where I could generate images, automatically pump them through a pipeline, put the designs on various products, and publish them to my website.</p>
+    <p>It was an incredibly fun project. I learned a lot about product design, automation, website design, SEO, GEO, all the things that go into a successful e-commerce store. It was one of the few projects that actually made money. But I eventually shut it down because, while it was fun, psychedelic festival gear isn't exactly a passion of mine.</p>
+  </div>
+
+  <div class="toolbar"><h2>The photo dump</h2></div>
+  <div class="dump">
+    <a href="img/acid-daddy-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-1.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-about-us-1200x1000px.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-about-us-1200x1000px.jpg" alt="Acid Daddy" width="1200" height="1000" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-about-us.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-about-us.jpg" alt="Acid Daddy" width="1400" height="700" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-770x1650px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-770x1650px-1.jpg" alt="Acid Daddy" width="653" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-770x1650px-3.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-770x1650px-3.jpg" alt="Acid Daddy" width="653" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-770x1650px-4.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-770x1650px-4.jpg" alt="Acid Daddy" width="653" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-770x1650px-5.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-770x1650px-5.jpg" alt="Acid Daddy" width="653" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-1.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-2.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-2.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-3.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-3.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-4.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-4.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-5.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-5.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-6.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-6.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-7.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-7.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-8.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-8.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-9.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-9.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-ad-780x1040px-10.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-ad-780x1040px-10.jpg" alt="Acid Daddy" width="780" height="1040" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-10.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-10.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-12.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-12.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-13.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-13.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-14.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-14.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-15.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-15.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-16.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-16.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-17.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-17.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-18.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-18.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-20.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-20.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-21.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-21.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-22.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-22.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-23.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-23.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-24.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-24.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-26.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-26.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-1200x628px-28.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-1200x628px-28.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-logo-1200x300px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-logo-1200x300px-1.jpg" alt="Acid Daddy" width="1200" height="300" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-landscape-logo-1200x300px-2.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-landscape-logo-1200x300px-2.jpg" alt="Acid Daddy" width="1200" height="300" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-logo-file-4000x1000px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-logo-file-4000x1000px-1.jpg" alt="Acid Daddy" width="1400" height="350" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-logo-file-4000x1000px-2.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-logo-file-4000x1000px-2.jpg" alt="Acid Daddy" width="1400" height="350" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-logo-file-4000x1000px-3.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-logo-file-4000x1000px-3.jpg" alt="Acid Daddy" width="1400" height="350" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-google-logo-file-4000x1000px-4.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-google-logo-file-4000x1000px-4.jpg" alt="Acid Daddy" width="1400" height="350" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-shopify-checkout-banner-1000x400px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-shopify-checkout-banner-1000x400px-1.jpg" alt="Acid Daddy" width="1000" height="400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-shopify-checkout-banner-1000x400px-2.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-shopify-checkout-banner-1000x400px-2.jpg" alt="Acid Daddy" width="1000" height="400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-shopify-checkout-banner-1000x400px-3.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-shopify-checkout-banner-1000x400px-3.jpg" alt="Acid Daddy" width="1000" height="400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-1.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-1.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-2.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-2.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-3.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-3.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-4.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-4.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-5.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-5.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-6.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-6.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-website-2048x2048px-8.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-website-2048x2048px-8.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/ad-ad-creatives-4096x4096.jpg" target="_blank" rel="noopener"><img src="img/ad-ad-creatives-4096x4096.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/bucket-hats-2.jpg" target="_blank" rel="noopener"><img src="img/bucket-hats-2.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/crop-top-tees-1.jpg" target="_blank" rel="noopener"><img src="img/crop-top-tees-1.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/est-2021-1.jpg" target="_blank" rel="noopener"><img src="img/est-2021-1.jpg" alt="Acid Daddy" width="1400" height="700" loading="lazy" decoding="async"></a>
+    <a href="img/fanny-packs.jpg" target="_blank" rel="noopener"><img src="img/fanny-packs.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/fb-reels.jpg" target="_blank" rel="noopener"><img src="img/fb-reels.jpg" alt="Acid Daddy" width="500" height="888" loading="lazy" decoding="async"></a>
+    <a href="img/festival-accessories.jpg" target="_blank" rel="noopener"><img src="img/festival-accessories.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/google-ad-1.jpg" target="_blank" rel="noopener"><img src="img/google-ad-1.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/google-ad-2.jpg" target="_blank" rel="noopener"><img src="img/google-ad-2.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/google-ad-3.jpg" target="_blank" rel="noopener"><img src="img/google-ad-3.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/google-ads-portrait-960x1200px-1.jpg" target="_blank" rel="noopener"><img src="img/google-ads-portrait-960x1200px-1.jpg" alt="Acid Daddy" width="960" height="1200" loading="lazy" decoding="async"></a>
+    <a href="img/google-ads-portrait-960x1200px-2.jpg" target="_blank" rel="noopener"><img src="img/google-ads-portrait-960x1200px-2.jpg" alt="Acid Daddy" width="960" height="1200" loading="lazy" decoding="async"></a>
+    <a href="img/google-ads-portrait-960x1200px-3.jpg" target="_blank" rel="noopener"><img src="img/google-ads-portrait-960x1200px-3.jpg" alt="Acid Daddy" width="960" height="1200" loading="lazy" decoding="async"></a>
+    <a href="img/google-ads-portrait-960x1200px-4.jpg" target="_blank" rel="noopener"><img src="img/google-ads-portrait-960x1200px-4.jpg" alt="Acid Daddy" width="960" height="1200" loading="lazy" decoding="async"></a>
+    <a href="img/google-ads-portrait-960x1200px-5.jpg" target="_blank" rel="noopener"><img src="img/google-ads-portrait-960x1200px-5.jpg" alt="Acid Daddy" width="960" height="1200" loading="lazy" decoding="async"></a>
+    <a href="img/hawaiian-shirts.jpg" target="_blank" rel="noopener"><img src="img/hawaiian-shirts.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/ig-reels.jpg" target="_blank" rel="noopener"><img src="img/ig-reels.jpg" alt="Acid Daddy" width="500" height="888" loading="lazy" decoding="async"></a>
+    <a href="img/ig-fb-reels.jpg" target="_blank" rel="noopener"><img src="img/ig-fb-reels.jpg" alt="Acid Daddy" width="500" height="888" loading="lazy" decoding="async"></a>
+    <a href="img/ig-fb-stories.jpg" target="_blank" rel="noopener"><img src="img/ig-fb-stories.jpg" alt="Acid Daddy" width="500" height="888" loading="lazy" decoding="async"></a>
+    <a href="img/neck-gaiters-2.jpg" target="_blank" rel="noopener"><img src="img/neck-gaiters-2.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/t-shirt-dresses-2.jpg" target="_blank" rel="noopener"><img src="img/t-shirt-dresses-2.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/t-shirt-dresses-2-2.jpg" target="_blank" rel="noopener"><img src="img/t-shirt-dresses-2-2.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/t-shirt-dresses-3.jpg" target="_blank" rel="noopener"><img src="img/t-shirt-dresses-3.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/t-shirt-dresses.jpg" target="_blank" rel="noopener"><img src="img/t-shirt-dresses.jpg" alt="Acid Daddy" width="1200" height="628" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-1920-x-1080-px-1.jpg" target="_blank" rel="noopener"><img src="img/untitled-1920-x-1080-px-1.jpg" alt="Acid Daddy" width="1400" height="788" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-1-4.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-1-4.jpg" alt="Acid Daddy" width="1400" height="700" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-1.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-1.jpg" alt="Acid Daddy" width="933" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2-1.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2-1.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2-2.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2-2.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2-3.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2-3.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2-4.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2-4.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-1.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-1.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-2.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-2.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-3.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-3.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-4.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-4.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-5.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-5.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-6.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-6.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-8.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-8.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-9.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-9.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-10.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-10.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-11.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-11.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-13.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-13.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-14.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-14.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-15.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-15.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-16.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-16.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-17.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-17.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-18.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-18.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3-19.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3-19.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-4-1.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-4-1.jpg" alt="Acid Daddy" width="400" height="400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-4-2.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-4-2.jpg" alt="Acid Daddy" width="400" height="400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-1-2.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-1-2.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-2-5.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-2-5.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-3.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-3.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-4.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-4.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design-5.jpg" target="_blank" rel="noopener"><img src="img/untitled-design-5.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/untitled-design.jpg" target="_blank" rel="noopener"><img src="img/untitled-design.jpg" alt="Acid Daddy" width="1400" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/acid-daddy-no-background.jpg" target="_blank" rel="noopener"><img src="img/acid-daddy-no-background.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/dall-e-2023-12-23-12-51-25-a-psychedelic-version-of-the-colorado-state-flag-using-only-variations-of-the-colors-found-in-the-original-flag-this-design-features-abstract-swirl.jpg" target="_blank" rel="noopener"><img src="img/dall-e-2023-12-23-12-51-25-a-psychedelic-version-of-the-colorado-state-flag-using-only-variations-of-the-colors-found-in-the-original-flag-this-design-features-abstract-swirl.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/72677446405-46568f7e-68f1-4019-9d34-c27e3caecbb6.jpg" target="_blank" rel="noopener"><img src="img/72677446405-46568f7e-68f1-4019-9d34-c27e3caecbb6.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0118.jpg" target="_blank" rel="noopener"><img src="img/img-0118.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0208.jpg" target="_blank" rel="noopener"><img src="img/img-0208.jpg" alt="Acid Daddy" width="1400" height="1050" loading="lazy" decoding="async"></a>
+    <a href="img/img-1293.jpg" target="_blank" rel="noopener"><img src="img/img-1293.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-6456.jpg" target="_blank" rel="noopener"><img src="img/img-6456.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-7479.jpg" target="_blank" rel="noopener"><img src="img/img-7479.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-7520.jpg" target="_blank" rel="noopener"><img src="img/img-7520.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-7528.jpg" target="_blank" rel="noopener"><img src="img/img-7528.jpg" alt="Acid Daddy" width="1400" height="1050" loading="lazy" decoding="async"></a>
+    <a href="img/img-7833.jpg" target="_blank" rel="noopener"><img src="img/img-7833.jpg" alt="Acid Daddy" width="1186" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-7862.jpg" target="_blank" rel="noopener"><img src="img/img-7862.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7868.jpg" target="_blank" rel="noopener"><img src="img/img-7868.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7869.jpg" target="_blank" rel="noopener"><img src="img/img-7869.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7871.jpg" target="_blank" rel="noopener"><img src="img/img-7871.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7873.jpg" target="_blank" rel="noopener"><img src="img/img-7873.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7874.jpg" target="_blank" rel="noopener"><img src="img/img-7874.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7875.jpg" target="_blank" rel="noopener"><img src="img/img-7875.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7877.jpg" target="_blank" rel="noopener"><img src="img/img-7877.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7879.jpg" target="_blank" rel="noopener"><img src="img/img-7879.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7880.jpg" target="_blank" rel="noopener"><img src="img/img-7880.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7881.jpg" target="_blank" rel="noopener"><img src="img/img-7881.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7885.jpg" target="_blank" rel="noopener"><img src="img/img-7885.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7887.jpg" target="_blank" rel="noopener"><img src="img/img-7887.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7889.jpg" target="_blank" rel="noopener"><img src="img/img-7889.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7890.jpg" target="_blank" rel="noopener"><img src="img/img-7890.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7895.jpg" target="_blank" rel="noopener"><img src="img/img-7895.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7897.jpg" target="_blank" rel="noopener"><img src="img/img-7897.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7898.jpg" target="_blank" rel="noopener"><img src="img/img-7898.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7899.jpg" target="_blank" rel="noopener"><img src="img/img-7899.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7901.jpg" target="_blank" rel="noopener"><img src="img/img-7901.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7902.jpg" target="_blank" rel="noopener"><img src="img/img-7902.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-7903.jpg" target="_blank" rel="noopener"><img src="img/img-7903.jpg" alt="Acid Daddy" width="1024" height="1024" loading="lazy" decoding="async"></a>
+    <a href="img/img-8271.jpg" target="_blank" rel="noopener"><img src="img/img-8271.jpg" alt="Acid Daddy" width="1050" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0213.jpg" target="_blank" rel="noopener"><img src="img/img-0213.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0214.jpg" target="_blank" rel="noopener"><img src="img/img-0214.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0959.jpg" target="_blank" rel="noopener"><img src="img/img-0959.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0960.jpg" target="_blank" rel="noopener"><img src="img/img-0960.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0961.jpg" target="_blank" rel="noopener"><img src="img/img-0961.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0972.jpg" target="_blank" rel="noopener"><img src="img/img-0972.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0975.jpg" target="_blank" rel="noopener"><img src="img/img-0975.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0976.jpg" target="_blank" rel="noopener"><img src="img/img-0976.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0977.jpg" target="_blank" rel="noopener"><img src="img/img-0977.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0981.jpg" target="_blank" rel="noopener"><img src="img/img-0981.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0982.jpg" target="_blank" rel="noopener"><img src="img/img-0982.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0983.jpg" target="_blank" rel="noopener"><img src="img/img-0983.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0984.jpg" target="_blank" rel="noopener"><img src="img/img-0984.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0985.jpg" target="_blank" rel="noopener"><img src="img/img-0985.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-0986.jpg" target="_blank" rel="noopener"><img src="img/img-0986.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-1516.jpg" target="_blank" rel="noopener"><img src="img/img-1516.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-1517.jpg" target="_blank" rel="noopener"><img src="img/img-1517.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-7192.jpg" target="_blank" rel="noopener"><img src="img/img-7192.jpg" alt="Acid Daddy" width="1012" height="1000" loading="lazy" decoding="async"></a>
+    <a href="img/img-7194.jpg" target="_blank" rel="noopener"><img src="img/img-7194.jpg" alt="Acid Daddy" width="1012" height="1000" loading="lazy" decoding="async"></a>
+    <a href="img/img-7195.jpg" target="_blank" rel="noopener"><img src="img/img-7195.jpg" alt="Acid Daddy" width="1012" height="1000" loading="lazy" decoding="async"></a>
+    <a href="img/img-7726.jpg" target="_blank" rel="noopener"><img src="img/img-7726.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8131.jpg" target="_blank" rel="noopener"><img src="img/img-8131.jpg" alt="Acid Daddy" width="300" height="168" loading="lazy" decoding="async"></a>
+    <a href="img/img-8306.jpg" target="_blank" rel="noopener"><img src="img/img-8306.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8307.jpg" target="_blank" rel="noopener"><img src="img/img-8307.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8308.jpg" target="_blank" rel="noopener"><img src="img/img-8308.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8309.jpg" target="_blank" rel="noopener"><img src="img/img-8309.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8530.jpg" target="_blank" rel="noopener"><img src="img/img-8530.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <a href="img/img-8774.jpg" target="_blank" rel="noopener"><img src="img/img-8774.jpg" alt="Acid Daddy" width="646" height="1400" loading="lazy" decoding="async"></a>
+    <video controls preload="metadata" playsinline src="video/t-shirt-dress-ad.mp4"></video>
+    <video controls preload="metadata" playsinline src="video/video-2.mp4"></video>
+  </div>
+  <p class="endnote"><a href="#top">Back to top ↑</a> · <a href="/#projects">See all projects</a></p>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="big">There will always be <em>problems to solve</em>, improvements to be made, and work to be done.</div>
+    <small>© 2026 Thomas Bouwman · tchristiaan.com</small>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

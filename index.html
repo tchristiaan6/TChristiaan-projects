@@ -355,8 +355,8 @@ const PROJECTS = [
    img:"mtndrip.png", tags:["Print-on-demand","Snow"],
    blurb:"Mountain Drip: colorful winter gaiters and snowboarding fanny packs.",
    story:"MTN Drip kicked off a run of one-off experiments around the same concept as Acid Daddy and Peatsy Puzzles: could I build a store dedicated to one product, or one to three, with a very focused goal for each? By this point I had the website design down and the fully automated AI image-generation pipelines already built, so it wasn't crazy to spin up a store. I could build a site in a couple of days and publish hundreds or even thousands of products at the push of a button, which was super cool. MTN Drip, short for Mountain Drip, sold Colorado snowboarding accessories. Along the way I learned a ton about web design, design in general, SEO, and product-market fit. But all in all, these were one-off experiments to toy with different ideas I had."},
-  {y:"2024", act:"II", name:"Acid Daddy", url:"", date:"Dec 2023 · 2024", status:"dead",
-   img:"aciddaddy_logo.png", tags:["Print-on-demand","Festival wear"],
+  {y:"2024", act:"II", name:"Acid Daddy", url:"", page:"/acid-daddy/", date:"Dec 2023 · 2024", status:"dead",
+   img:"aciddaddy_logo.png", tags:["Print-on-demand","Festival wear","Photo dump"],
    blurb:"AI-generated psychedelic designs on hats and clothes for festival lovers. Stay weird.",
    story:"Acid Daddy was my next attempt at a fully automated one-person business, using Printify, Shopify, and AI-generated designs. I spent a good eight months on this project, and I built some incredible things. I got to the point where I could generate images, automatically pump them through a pipeline, put the designs on various products, and publish them to my website. It was an incredibly fun project. I learned a lot about product design, automation, website design, SEO, GEO, all the things that go into a successful e-commerce store. It was one of the few projects that actually made money. But I eventually shut it down because, while it was fun, psychedelic festival gear isn't exactly a passion of mine."},
   {y:"2024", act:"II", name:"Peatsy Puzzles", url:"", date:"2023 · 2024", status:"dead",
@@ -403,11 +403,14 @@ function card(p, i){
     : `${p.mono}<small>${p.label||''}</small>`;
   const tileCls = p.img ? `tile${p.dark?' dark':''}${p.photo?' photo':''}` : 'tile mono';
   const tileStyle = p.img ? '' : (()=>{const [a,b]=tint(p.name);return ` style="--t1:${a};--t2:${b}"`})();
-  const tile = p.url
-    ? `<a class="${tileCls}"${tileStyle} href="${p.url}" target="_blank" rel="noopener" aria-label="Open ${p.name}">${tileInner}</a>`
+  const href = p.url || p.page || '';
+  const ext = p.url ? ' target="_blank" rel="noopener"' : '';
+  const tile = href
+    ? `<a class="${tileCls}"${tileStyle} href="${href}"${ext} aria-label="Open ${p.name}">${tileInner}</a>`
     : `<div class="${tileCls}"${tileStyle}>${tileInner}</div>`;
-  const title = p.url ? `<a class="title-link" href="${p.url}" target="_blank" rel="noopener">${p.name}</a>` : p.name;
-  const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>` : '';
+  const title = href ? `<a class="title-link" href="${href}"${ext}>${p.name}</a>` : p.name;
+  const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>`
+    : p.page ? `<a href="${p.page}">See the project →</a>` : '';
   const story = p.story ? `<details><summary>The story</summary><p class="story">${p.story}</p></details>` : '';
   return `<article class="card reveal" data-status="${p.status}">
     ${tile}
