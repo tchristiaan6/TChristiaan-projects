@@ -228,9 +228,9 @@
     <div class="filters" id="filters">
       <button class="chip on" data-f="all">All<span class="n" id="n-all"></span></button>
       <button class="chip" data-f="live">Active<span class="n" id="n-live"></span></button>
+      <button class="chip" data-f="wip">Under Construction<span class="n" id="n-wip"></span></button>
       <button class="chip" data-f="paused">Paused<span class="n" id="n-paused"></span></button>
       <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
-      <button class="chip" data-f="wip">In Progress<span class="n" id="n-wip"></span></button>
     </div>
   </div>
   <div id="timeline"></div>
@@ -392,7 +392,7 @@ const ERAS = {
   "2023":"Drop-shipping stores. Where the building started.",
   "2016":"The first side project, the one that started it all."
 };
-const STATUS = {live:["Active","live"], paused:["Paused","paused"], wip:["In progress","wip"], dead:["Retired","dead"]};
+const STATUS = {live:["Active","live"], paused:["Paused","paused"], wip:["Under construction","wip"], dead:["Retired","dead"]};
 
 function tint(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;const hue=h%360;return [`hsl(${hue} 38% 90%)`,`hsl(${(hue+40)%360} 45% 80%)`];}
 
