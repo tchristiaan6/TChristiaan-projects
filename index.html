@@ -167,6 +167,8 @@
   .about h2{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0 0 18px;line-height:1.05}
   .about p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 16px}
   .about p b{color:var(--ink)}
+  .about p a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+  .about p a:hover{border-bottom-color:var(--accent)}
   .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
   .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);transition:all .2s}
   .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(22,20,18,.5)}
@@ -240,14 +242,13 @@
   <div class="container">
     <div><p class="kicker">About</p></div>
     <div>
-      <h2>Ideas are a dime a dozen. Execution is the whole game.</h2>
-      <p>I spent nearly two decades in enterprise IT as a solutions architect, working with everyone from small businesses to Fortune 100 companies. In 2023 I started building on my own: e-commerce stores, automated content pipelines, physical products, newsletters, mobile apps, AI agents and consulting.</p>
-      <p>Most of these projects are retired. Each one taught me something I couldn't have learned any other way: <b>own the product, distribution beats product, and passion is not the same as credibility.</b> The ones still running are the ones where those lessons finally stuck.</p>
-      <p>I keep this page as a running record. If something here is useful to you, or you want to talk about building things, I'm easy to find.</p>
+      <h2>To build or not to build.</h2>
+      <p>In 2023 I started building on my own: e-commerce stores, automated content pipelines, physical products, newsletters, mobile apps, AI agents and consulting.</p>
+      <p>Most of these projects are retired. Each one taught me something I couldn't have learned any other way: <b>own the product, distribution beats product, and the why matters most.</b> Check out my <a href="/lessons/">lessons learned</a> page for a running list.</p>
+      <p>I keep this page as a running record. If something here looks interesting or useful to you, or if you want to talk about building, don't hesitate to reach out!</p>
       <div class="links">
         <a class="btn solid" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">Find me on LinkedIn</a>
         <a class="btn" href="https://www.instagram.com/tchristiaan6/" target="_blank" rel="noopener">Find me on Instagram</a>
-        <a class="btn" href="/lessons/">Read the lessons learned</a>
       </div>
     </div>
     <div class="photo"><img src="assets/tom-mountain.jpg" alt="Thomas Bouwman in the mountains" loading="lazy"></div>
