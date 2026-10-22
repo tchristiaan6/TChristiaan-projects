@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thomas Bouwman · I drink, and I build things</title>
-<meta name="description" content="Everything Thomas Bouwman has built: a running list of side projects, experiments, failures, and lessons learned, most recent first.">
+<title>Thomas Bouwman · AI agents, automation and the projects behind them</title>
+<meta name="description" content="Everything Thomas Bouwman has built: AI agents, voice agents, automation, web apps and consulting, plus the e-commerce and product experiments that came before. A running list, most recent first.">
 <link rel="canonical" href="https://tchristiaan.com/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Thomas Bouwman · I drink, and I build things">
-<meta property="og:description" content="A running list of side projects, experiments, failures, and lessons learned, most recent first.">
+<meta property="og:title" content="Thomas Bouwman · bouw·man: to cultivate, farm, or build.">
+<meta property="og:description" content="AI agents, voice agents, automation, web apps and consulting, plus the experiments that came before. A running list, most recent first.">
 <meta property="og:url" content="https://tchristiaan.com/">
 <meta property="og:image" content="https://tchristiaan.com/og.png">
 <meta property="og:image:secure_url" content="https://tchristiaan.com/og.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="I drink, and I build things. Thomas Bouwman's project portfolio.">
+<meta property="og:image:alt" content="bouw·man, noun: to cultivate, farm, or build. Thomas Bouwman's project portfolio.">
 <meta property="og:site_name" content="Thomas Bouwman">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Thomas Bouwman · I drink, and I build things">
-<meta name="twitter:description" content="A running list of side projects, experiments, failures, and lessons learned, most recent first.">
+<meta name="twitter:title" content="Thomas Bouwman · bouw·man: to cultivate, farm, or build.">
+<meta name="twitter:description" content="AI agents, voice agents, automation, web apps and consulting, plus the experiments that came before. A running list, most recent first.">
 <meta name="twitter:image" content="https://tchristiaan.com/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,22 +70,33 @@
   @media (max-width:330px){.brand span{display:none}}
 
   /* hero */
-  .hero{background:var(--ink);color:var(--paper);padding:88px 0 72px;position:relative;overflow:hidden}
+  .hero{background:var(--card);color:var(--ink);padding:88px 0 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
   .hero .container{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
   @media (max-width:860px){.hero .container{grid-template-columns:1fr}.hero{padding:64px 0 56px}}
   .kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .hero .kicker{color:#A39C8E}
+  .hero .kicker{color:var(--muted)}
   .hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,7.2vw,92px);line-height:.98;letter-spacing:-.025em;margin:18px 0 26px}
   .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
-  .hero p{font-size:17px;line-height:1.65;color:#CFC8B9;max-width:600px;margin:0 0 18px;text-wrap:pretty}
+  .hero h1.def{margin:14px 0 6px;font-size:clamp(48px,7.6vw,96px)}
+  .hero h1.def .mid{color:var(--accent);margin:0 .04em}
+  .hero .pron{font-size:15px;color:var(--muted);margin:0 0 14px;max-width:none}
+  .hero .pron .ipa{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:14px;background:var(--paper-2);padding:3px 8px;border-radius:6px;margin-right:6px;color:var(--ink-2)}
+  .hero .pron i{font-style:italic}
+  .hero .senses{margin:0 0 26px;font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);line-height:1.3;color:var(--ink);max-width:none}
+  .hero .senses em{font-style:italic;color:var(--accent)}
+  .hero p{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:600px;margin:0 0 18px;text-wrap:pretty}
   .hero p:last-of-type{margin-bottom:30px}
-  .hero p strong{color:var(--paper);font-weight:600}
-  .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid #33302B;padding-top:22px;max-width:560px}
+  .hero p strong{color:var(--ink);font-weight:600}
+  .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid var(--line);padding-top:22px;max-width:560px}
   .stat b{font-family:var(--font-display);font-size:30px;font-weight:500;display:block;line-height:1;letter-spacing:-.02em}
-  .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#A39C8E}
+  .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .portrait{justify-self:end;position:relative;width:min(100%,380px)}
   .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:32px 32px 32px 160px}
-  .portrait .tag{position:absolute;left:-14px;bottom:26px;background:var(--paper);color:var(--ink);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .portrait .plinks{display:flex;justify-content:flex-end;gap:18px;margin-top:18px}
+  .portrait .plink{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .portrait .plink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .portrait .plink svg{width:16px;height:16px;fill:currentColor}
+  .portrait .tag{position:absolute;left:-14px;bottom:26px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 10px 30px rgba(22,20,18,.25)}
   @media (max-width:860px){.portrait{justify-self:start;width:260px}}
 
   /* toolbar */
@@ -96,6 +107,15 @@
   .chip:hover{border-color:var(--ink);color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .chip .n{opacity:.55;font-weight:500;margin-left:6px}
+  .skills{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 0 14px}
+  .skills .lbl{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+  .skills button,.tags button{font:inherit;font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);border:1px solid transparent;padding:4px 9px;border-radius:6px;cursor:pointer;transition:all .15s}
+  .skills button:hover,.tags button:hover{border-color:var(--ink);color:var(--ink)}
+  .skills button.on,.tags button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .skills button .n{opacity:.55;margin-left:4px}
+  .tagnote{font-size:13px;color:var(--muted);margin:0 0 6px}
+  .tagnote b{color:var(--ink)}
+  .tagnote a{color:var(--accent);font-weight:600;text-decoration:none;margin-left:8px}
 
   /* timeline groups */
   .group{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:40px 0 8px;border-top:1px solid var(--line)}
@@ -140,7 +160,6 @@
   .name .num{font-family:var(--font-display);font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
   .blurb{margin:0;color:var(--ink-2);font-size:15.5px;max-width:64ch}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-  .tags span{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);padding:4px 9px;border-radius:6px}
   details{margin-top:4px}
   summary{cursor:pointer;list-style:none;font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;user-select:none}
   summary::-webkit-details-marker{display:none}
@@ -177,9 +196,9 @@
   .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(22,20,18,.5)}
   .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
   .btn.solid:hover{background:#C2451F;border-color:#C2451F;color:#fff;box-shadow:0 10px 24px -8px rgba(217,83,43,.6)}
-  footer{background:var(--ink);color:#A39C8E;padding:56px 0;margin-top:40px}
+  footer{background:var(--paper-2);color:var(--muted);padding:56px 0;margin-top:40px;border-top:1px solid var(--line)}
   footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:end}
-  footer .big{font-family:var(--font-display);color:var(--paper);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.1;font-weight:300;max-width:16ch}
+  footer .big{font-family:var(--font-display);color:var(--ink);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.1;font-weight:300;max-width:16ch}
   footer .big em{color:var(--accent);font-style:italic}
   footer small{font-size:13px}
 
@@ -208,10 +227,12 @@
 <section class="hero" id="top">
   <div class="container">
     <div>
-      <p class="kicker">Bouwman · Dutch · <span style="font-style:italic;text-transform:none;letter-spacing:0">to build, to cultivate</span></p>
-      <h1>I drink, and<br><em>I build things.</em></h1>
+      <p class="kicker">AI agents · Automation · Consulting</p>
+      <h1 class="def">bouw<span class="mid">·</span>man</h1>
+      <p class="pron"><span class="ipa">\ˈbau.man\</span> <i>noun</i> · Dutch, from <i>bouwen</i>, to build</p>
+      <p class="senses">to cultivate, farm, or <em>build</em>.</p>
       <p>When I was a kid I wanted to be a ninja, an architect, and a pilot, in that order. So I split my time between Tae Kwon Do, flight simulators, and elaborate Lego builds. The ninja dreams died somewhere along the way, but the Lego passion lives on, just with different bricks.</p>
-      <p>The projects below are a creative outlet, built in my spare time: <strong>some for fun, some to make money, some because they're useful, and some to teach myself something new.</strong> Think of it as a running list of side projects, experiments, failures, and lessons learned, kept so I can look back and laugh at all the crazy ideas.</p>
+      <p>The projects below are a creative outlet, built in my spare time: <strong>some for fun, some as entrepreneurial experiments, some because they're useful, and some to teach myself something new.</strong> Think of it as a running list of side projects, experiments, failures, and lessons learned, kept so I can look back and laugh at all the crazy ideas.</p>
       <p>As for the pilot dream, stay tuned.</p>
       <div class="stats">
         <div class="stat"><b id="s-all">–</b><span>projects</span></div>
@@ -223,6 +244,7 @@
     <div class="portrait">
       <img src="assets/tom_nature.jpg" alt="Thomas Bouwman">
       <div class="tag">Denver, CO</div>
+      <div class="plinks"><a class="plink" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a><a class="plink" href="https://www.instagram.com/tchristiaan6/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1.6.7 1.3 1.1 2.1 1.4.8.3 1.6.5 2.9.6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6.8-.3 1.5-.7 2.1-1.4.7-.6 1.1-1.3 1.4-2.1.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg>Instagram</a></div>
     </div>
   </div>
 </section>
@@ -238,6 +260,8 @@
       <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
     </div>
   </div>
+  <div class="skills" id="skills"><span class="lbl">Skills and tools</span></div>
+  <p class="tagnote" id="tagnote" hidden></p>
   <div id="timeline"></div>
 </main>
 
@@ -272,119 +296,119 @@ const YEARS_ACTIVE = "3+";
 const PROJECTS = [
   // ---------- 2026 ----------
   {y:"2026", act:"XII", name:"DIYAgent.co", url:"https://diyagent.co", date:"2026", status:"wip",
-   img:"diyagent_logo.png", tags:["Voice agents","Agents"],
+   img:"diyagent_logo.png", tags:["AI agents", "Voice agents", "Agent builder", "LangGraph", "MCP", "LiveKit", "Twilio", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Railway"],
    blurb:"Build voice agents that act on your instructions and call you when they need input.",
    story:"A personal project that's open to anyone who wants to try it. A simplified interface for building AI agents: text-based instructions, with a tag-based approach for reusable components and agent-to-agent communication. Every agent starts with built-in baseline functionality, so you aren't wiring the same pieces by hand each time. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
   {y:"2026", act:"XII", name:"FDATrack.com", url:"https://fdatrack.com", date:"Aug 2026", status:"live",
-   img:"fdatrack_mark.png", tags:["Next.js","openFDA","Vercel"],
+   img:"fdatrack_mark.png", tags:["AI search", "Web app", "openFDA", "Next.js", "Vercel"],
    blurb:"Type any drug and see every signal FDA publishes about it: shortages, discontinuations and recalls, with sources you can check yourself.",
    story:"Built as an interview take-home project, but I wanted something genuinely useful to come out of it. Originally conceived for my brother, a CRNA, who I thought might find it useful. The tool is simple: type in any drug, and the built-in AI searches FDA's databases through their public APIs for shortages, recalls and providers. Multiple checks keep it accurate, every data source is public record, and the references are cited on each run. In practice, the people who track shortages get that data from their suppliers, so this lives on as a working demo more than a tool anyone relies on."},
   {y:"2026", act:"XII", name:"Movemnt.ai", url:"https://movemnt.ai", date:"Jul 2026 · relaunch", status:"live",
-   img:"movemnt.png", tags:["Next.js","Stripe","Resend","Vercel"],
+   img:"movemnt.png", tags:["AI consulting", "AI enablement", "Next.js", "Stripe", "Resend", "Cal.com", "Vercel"],
    blurb:"AI enablement, readiness assessments and fractional AI support for small teams. Someone has to own AI. Right now, that's you.",
    story:"<em>Same name, different business.</em> The 2025 Movemnt was a health-and-fitness consultancy (see the 2025 entry). Recently rebuilt to focus on AI enablement, AI readiness assessments and fractional AI support for mid-sized businesses. I run this in parallel with Lumio Consulting, which is focused on non-profits."},
   {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:"wip",
-   img:"abtme.png", tags:["Next.js","Supabase","MCP server","Claude"],
+   img:"abtme.png", tags:["AI agents", "MCP", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Vercel"],
    blurb:"Your life story, built for the AI-age. A private place for everything about you, connected via MCP to Claude, ChatGPT or Gemini so language models understand who you are.",
    story:"A personal project built to simplify and control what LLMs know about me, and open to anyone who wants the same for themselves. It's a private, tag-based profile of your life history: work, places lived, people, passions, goals. You build it through a guided walkthrough or by just talking to a chat, then connect it through an MCP plug-in built for Claude, OpenAI and Gemini. One place to control your private data, connected to the models you use for personalized life context. Private by default. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
   {y:"2026", act:"XII", name:"RegBrief.ai", url:"https://regbrief.ai", date:"Jul 2026", status:"live",
-   img:"regbrief_icon.png", dark:true, tags:["Next.js","Resend","Vercel"],
+   img:"regbrief_icon.png", dark:true, tags:["Automation", "AI content", "Claude", "Next.js", "Supabase", "Resend", "Vercel"],
    blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
    story:"Built to track AI regulation changes. RegBrief watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. Enterprise tools charge $1,000 to $2,000 a month for the same information and make you sit through a sales call. RegBrief is free while it's in early access."},
   {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"live",
-   img:"velay.png", tags:["Voice agents","Retell","Claude","Vercel"],
+   img:"velay.png", tags:["Voice agents", "AI receptionist", "Retell", "Claude", "Vercel"],
    blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
    story:"<em>Built in a day.</em> I started playing with AI voice agents in 2025, and while the tech is early, I believe they'll be a big part of how we talk to AI day to day. Velay is my demo and test site for AI voice receptionists: a Retell voice agent, built with Claude and shipped on Vercel. It's a real, active business, but the space is crowded, and voice receptionists aren't quite there yet in intelligence or conversation. Still early. As the space evolves, expect to hear a lot more AI agents answering calls and booking appointments."},
   {y:"2026", act:"XI", name:"TripBud.co", url:"https://tripbud.co", date:"May 2026", status:"live",
-   img:"tripbud_p2.png", tags:["Astro","DeepL","Open-Meteo"],
+   img:"tripbud_p2.png", tags:["Web app", "AI assistant", "OpenAI", "DeepL", "Open-Meteo", "Astro", "Vercel"],
    blurb:"A quick splash page for travelers: an AI assistant, translator, currency converter, weather report, and home-time clock.",
    story:"<em>Three hours, one early morning in South Korea.</em> On a trip with my sister I woke up early and built this in Antigravity, partly because the tool was new and I wanted to test it. A small, lightweight web app that runs in the browser: one place for everything I use when I travel. An AI assistant, a voice translator, a currency converter, a weather report and a home-time clock. Instead of bouncing between four sites, it's one simple interface with everything I need."},
 
   // ---------- 2025 ----------
   {y:"2025", act:"X", name:"Lumio Consulting", url:"https://lumioconsulting.com", date:"2025 · present", status:"live",
-   img:"lumio.png", tags:["Consulting","AI agents","Automation","Training"],
+   img:"lumio.png", tags:["AI consulting", "AI enablement", "AI agents", "Automation", "Training", "Make.com", "n8n", "Airtable", "Next.js"],
    blurb:"A solo AI consultancy in Denver. AI adoption and enablement, workflow automation and agentic AI readiness for small and mid-sized teams, non-profit and for-profit.",
    story:"Lumio Consulting is where most of my client work lives today: a solo AI consultancy in Denver. After two years of experimenting with AI and automation, I took what I'd learned and put it to work for small and mid-sized teams. I help them with AI adoption and enablement, workflow automation, and getting ready for agentic AI. Lumio runs on its own advice: AI agents handle research, outreach and follow-ups so I can spend my time with clients. Most of my clients so far have been non-profits, which means I've learned to deliver on lean budgets, and I work with for-profit teams on the same terms. Alongside Lumio I run Movemnt.ai, its for-profit counterpart."},
   {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · present", status:"wip",
-   img:"griddown_logo.png", tags:["React Native","PMTiles","Local LLM","iOS · Android"],
+   img:"griddown_logo.png", tags:["Mobile app", "Local LLM", "RAG", "Llama", "React Native", "Expo", "MapLibre", "PMTiles", "Claude Code", "iOS · Android"],
    blurb:"An offline emergency-preparedness app: real offline maps plus a local language model that runs with zero connectivity.",
    story:"<em>A monster of a project.</em> I go through phases of worrying about long-term power outages, so when I had some time I built the app I'd always wanted as a safety net: an offline language model for basic survival and safety questions, plus downloadable offline maps for the parts of the US that matter to me. I spent four months on it in Claude Code and Cursor, building a React Native app for iOS and Android, with PMTiles and vector tiles for the maps and a small local Llama model for the intelligence layer. The maps worked, and still work, great. The intelligence layer is where I hit the wall. When lives might depend on an AI's answers, the model has to draw only from vetted, trustworthy sources, and sourcing that material is neither cheap nor easy. A RAG pipeline is the easy part. The trusted knowledge base is the hard part. So that's where the next six months went: 40-plus field guides researched from CDC, EPA, FEMA, USGS and military manuals, baked into the on-device model with sources cited. GridDown.us is live with a waitlist, and the app launches on iOS and Android next."},
   {y:"2025", act:"VII", name:"GuysGoals.com", url:"https://guysgoals.com", date:"Nov 2025", status:"dead",
-   img:"guysgoals_logo.png", tags:["White-label","Supplements","Shopify","Archived site"],
+   img:"guysgoals_logo.png", tags:["E-commerce", "White-label", "Supplements", "Shopify", "Astro"],
    blurb:"A men's supplement brand for me and my friends: protein, creatine, pre-workout and a greens mix.",
    story:"Built in parallel with MushroomKick: a site selling white-labeled men's supplements, mostly because supplements are wildly overpriced and I was already buying all of them from different brands. Protein, creatine, pre-workout and a greens mix. It looked like a near break-even hobby that would fund itself. I shut it down because the space is brutally competitive, breaking through would have taken serious marketing spend, and sourcing options were limited."},
   {y:"2025", act:"VII", name:"MushroomKick.com", url:"https://mushroomkick.com", date:"2025", status:"dead",
-   img:"mushroomkick.png", tags:["White-label","Functional coffee","Shopify","Archived site"],
+   img:"mushroomkick.png", tags:["E-commerce", "White-label", "Functional coffee", "Shopify", "Astro"],
    blurb:"Functional mushroom coffee, Lion's Mane and Chaga, plus a couple of supplements. All white-labeled.",
    story:"My first foray into white-labeled supplements. I wanted to test the concept, and functional mushroom coffee seemed like a good place to start: Lion's Mane and Chaga blends, plus a couple of supplements. The ultimate goal was to develop my own coffee and green-tea mushroom blends. A Colorado Springs manufacturer was ready to run a taste test and set up for about $1,000, right as my financial runway ran out. Sometimes a project doesn't die from a bad idea. It dies because you run out of runway."},
   {y:"2025", act:"IX", name:"Movemnt AI Consulting", url:"", date:"Jul 2025", status:"dead",
-   img:"movemnt_v1.png", tags:["Consulting","Health & fitness","Cold outreach"],
+   img:"movemnt_v1.png", tags:["AI consulting", "Health & fitness", "Cold outreach", "Apollo", "Clay"],
    blurb:"A solo consultancy helping gyms, studios, clinics and trainers adopt AI across their operations.",
    story:"<em>The health consulting era.</em> I did all the things: built the website, defined services, learned cold outreach, figured out Apollo and Clay, set up sequences, and personally wrote my first ~50 outbound emails. I landed a few client meetings. Then the credibility issue came back. I went to a gym. I tracked everything. I ate healthy. None of that matters when you're sitting across from a clinic explaining their back office. Same lesson as education, and I should have known better. Shut it down. The name got a second life in 2026."},
   {y:"2025", act:"VI", name:"AIEDUExperts.com", url:"", date:"2025", status:"dead",
-   img:"aieduexperts_logo.png", tags:["Consulting","K-12"],
+   img:"aieduexperts_logo.png", tags:["AI consulting", "Education", "K-12"],
    blurb:"A service to help teachers and administrators adopt AI, built with a DPS math teacher and a retired principal.",
    story:"I'm passionate about education, adult education and continuous learning especially, so why not use what I'd learned about AI to help teachers? I teamed up with a friend who teaches math at Denver Public Schools and a family friend who'd retired as a principal after 20-plus years, and we built AIEDUExperts.com, a service to help teachers and administrators adopt AI tools. Website, services, positioning, pricing. It was all real and live, for about two months. Then reality set in. I had no background in education: no connections, no idea how schools funded projects or bought from vendors (turns out getting on an approved-vendor list can take months to years). And underneath it all sat a question I couldn't answer: why would a school district trust me on education? Passion, it turns out, is not the same as credibility."},
   {y:"2025", act:"VI", name:"AiforEDU.co", url:"https://aiforedu.beehiiv.com/", date:"2025", status:"dead",
-   img:"aiforedu_logo.png", tags:["Beehiiv","Newsletter"],
+   img:"aiforedu_logo.png", tags:["Newsletter", "AI content", "Education", "Beehiiv"],
    blurb:"A newsletter helping teachers understand AI in the classroom. 42 drafts, 23 published, a few organic followers.",
    story:"AI helped source the content but I did the writing. The same gap showed up: without real classroom experience, what could I add to the headlines? How could I judge a tool I wasn't using? I couldn't, so I didn't."},
 
   // ---------- 2024 ----------
   {y:"2024", act:"V", name:"RioHarbor.com", url:"", date:"2024", status:"dead",
-   img:"rioharbor.png", tags:["Automation","AI content","Travel"],
+   img:"rioharbor.png", tags:["Automation", "AI content", "AI image generation", "Travel blog"],
    blurb:"A travel blog that wrote itself. Pick a random place in the world, research it, generate images, write the post.",
    story:"<em>One of my favorites.</em> Everyone writes about Paris and Bali. Who's writing a gorgeous piece about some random spot in Africa nobody's heard of? It was meant to be inspirational, and it was. But travel writing, actually all writing, needs to be beautiful, personal and real. AI couldn't do any of that."},
   {y:"2024", act:"IV", name:"ULTGear.co", url:"https://ultgear.co", date:"2024", status:"dead",
-   img:"ultgear_logo.png", tags:["Showcase site","Packable clothing","Packable packs","Security belt","Drying rack","Wash basin","Tech packs","Prototypes"],
+   img:"ultgear_logo.png", tags:["Product design", "Apparel design", "Tech packs", "Prototypes", "Manufacturing", "Showcase site", "Astro"],
    blurb:"Ultralight travel gear for remote workers and digital nomads. Think Sea to Summit, for one-bag travelers.",
    story:"I've always had ideas for travel products, things I wished existed to make one-bag, minimalist travel easier. So for about a year I went deep on product design, apparel design and manufacturing: tech packs, factory samples, prototypes, patent searches. Around thirty concepts, from packable clothing to a modular shoe system. All of it is chronicled on the old domain, which now lives on as a showcase of the work."},
   {y:"2024", act:"II", name:"Vioula.com", url:"", page:"/vioula/", date:"Aug 2024", status:"dead",
-   img:"vioula.png", tags:["Print-on-demand","Shopify","Printify"],
+   img:"vioula.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
    blurb:"Women's totes and canvas bags in colorful designs and patterns.",
    story:"The last of the one-off store experiments. Vioula sold women's handbags and travel bags. Five stores in, the lesson was the same: the pipeline made building easy, and building was never the hard part."},
   {y:"2024", act:"II", name:"DuffelPro.com", url:"", page:"/duffel-pro/", date:"Aug 2024", status:"dead",
-   img:"duffelpro.png", tags:["Print-on-demand","Single product"],
+   img:"duffelpro.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
    blurb:"A single-product store, to see whether focus drove more organic traffic. I loved the duffel bags.",
    story:"Another one-off experiment in fully automated Shopify stores. DuffelPro sold cool, colorful duffel bags, and nothing else."},
   {y:"2024", act:"II", name:"Peatsy Paws", url:"", page:"/peatsy-paws/", date:"2024", status:"dead",
-   img:"peatsy_paws_logo.png", tags:["Print-on-demand","Pets"],
+   img:"peatsy_paws_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
    blurb:"The Peatsy domain, dusted off a second time. Pet bandanas.",
    story:"Another one-off experiment on the same automated pipeline. I rebranded Peatsy and tried selling colorful, stylish pet bandanas."},
   {y:"2024", act:"II", name:"Taigora Activewear", url:"", page:"/taigora-activewear/", date:"2024", status:"dead",
-   img:"taigora_activewear.png", tags:["Print-on-demand","Activewear"],
+   img:"taigora_activewear.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
    blurb:"The Taigora domain, dusted off a third time. Women's leggings and workout shorts.",
    story:"Another one-off experiment in fully automated, one-person Shopify stores, built on the same pipeline as MTN Drip. I rebranded Taigora a third time, this time selling women's activewear and yoga mats. Same goal as the others: pick a narrow product, spin the store up in a couple of days, see what stuck."},
   {y:"2024", act:"II", name:"MTNDrip.com", url:"", page:"/mtn-drip/", date:"2024", status:"dead",
-   img:"mtndrip.png", tags:["Print-on-demand","Snow"],
+   img:"mtndrip.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO"],
    blurb:"Mountain Drip: colorful winter gaiters and snowboarding fanny packs.",
    story:"MTN Drip kicked off a run of one-off experiments around the same concept as Acid Daddy and Peatsy Puzzles: could I build a store dedicated to one product, or one to three, with a very focused goal for each? By this point I had the website design down and the fully automated AI image-generation pipelines already built, so it wasn't crazy to spin up a store. I could build a site in a couple of days and publish hundreds or even thousands of products at the push of a button, which was super cool. MTN Drip, short for Mountain Drip, sold Colorado snowboarding accessories. Along the way I learned a ton about web design, design in general, SEO, and product-market fit. But all in all, these were one-off experiments to toy with different ideas I had."},
   {y:"2024", act:"II", name:"Acid Daddy", url:"", page:"/acid-daddy/", date:"Dec 2023 · 2024", status:"dead",
-   img:"aciddaddy_logo.png", tags:["Print-on-demand","Festival wear","Photo dump"],
+   img:"aciddaddy_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO", "Photo dump"],
    blurb:"AI-generated psychedelic designs on hats and clothes for festival lovers. Stay weird.",
    story:"Acid Daddy was my next attempt at a fully automated one-person business, using Printify, Shopify, and AI-generated designs. I spent a good eight months on this project, and I built some incredible things. I got to the point where I could generate images, automatically pump them through a pipeline, put the designs on various products, and publish them to my website. It was an incredibly fun project. I learned a lot about product design, automation, website design, SEO, GEO, all the things that go into a successful e-commerce store. It was one of the few projects that actually made money. But I eventually shut it down because, while it was fun, psychedelic festival gear isn't exactly a passion of mine."},
   {y:"2024", act:"II", name:"Peatsy Puzzles", url:"", page:"/peatsy-puzzles/", date:"2023 · 2024", status:"dead",
-   img:"peatsy_puzzles_logo.png", tags:["Print-on-demand","AI art"],
+   img:"peatsy_puzzles_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Make.com", "Printify"],
    blurb:"AI-generated images on jigsaw puzzles. The first fully automated, one-person company.",
    story:"Peatsy started as a domain name. The original idea was a subscription service for everyday home goods, a play on \"repeatable,\" right as Amazon launched Subscribe and Save. The concept went nowhere. The domain stuck around. Peatsy Puzzles came out of two things arriving at once: AI image generation, which I couldn't stop playing with, and Printify, which could put any image on a physical product, puzzles included. So I generated the artwork, put it on puzzles, and automated everything in between. A business that ran itself, and an excuse to learn automation. It was also a crash course in art. Prompting hundreds of puzzle designs meant learning the difference between art nouveau and art deco, impressionism and realism, punk and pop art, and what makes each one hold up as a finished image. The concept worked. I sold a decent number of puzzles, and people loved them. But Peatsy Puzzles had a margins problem: a $45 puzzle netted $1.50 to $2.00 after costs, and no amount of automation changes that math. What it left me with was Make.com, the low-code toolbox, and the automation fundamentals I've used on every project since."},
 
   // ---------- 2023 ----------
   {y:"2023", act:"I", name:"Taigora Lingerie", url:"", date:"2023", status:"dead",
-   img:"taigora_lingerie_logo.png", tags:["Drop-shipping"],
+   img:"taigora_lingerie_logo.png", tags:["E-commerce", "Drop-shipping"],
    blurb:"For about two weeks I sold lingerie under the Taigora name, because the margins were absurd.",
    story:"When my brother passed on the drop-shipping store, I decided to see if I could sell something else. I noticed that the margins on women's lingerie were insane. You could purchase underwear sets for anywhere from twenty-five cents to a dollar and sell them for thirty to forty dollars in the US. So for a very brief time, I rebranded Taigora and had a lingerie shop. This is one of the more embarrassing turns in my experimentation phase, but I learned an important lesson: margins aren't everything, and women's lingerie is surprisingly confusing."},
   {y:"2023", act:"I", name:"Taigora.com", url:"", date:"2023", status:"dead",
-   img:"taigora_outdoor_logo.png", tags:["Drop-shipping","Outdoor gear"],
+   img:"taigora_outdoor_logo.png", tags:["E-commerce", "Drop-shipping", "Outdoor gear"],
    blurb:"Outdoor and camping gear, built for my brother, who I thought might get into it.",
    story:"I built Taigora.com in parallel with HostelGear.co. I actually built it for my brother, thinking he might get into drop-shipping if I could build the platform for him. It sold outdoor and camping gear, given his passion for the outdoors and its usefulness with us living in Colorado. I'm still proud of the name, by the way: a play on Canada's taiga and tundra, the vast northern biomes covering much of the subarctic. And yes, I was trying to copy Amazon's naming convention. My brother ultimately pursued another path. He's now a CRNA at Denver Health (awesome). But the project lived on for a while, and the name, as you might read, lived on even longer."},
   {y:"2023", act:"I", name:"HostelGear.co", url:"", date:"2023", status:"dead",
-   img:"hostelgear_logo.png", tags:["Drop-shipping","Travel gear"],
+   img:"hostelgear_logo.png", tags:["E-commerce", "Drop-shipping", "Travel gear"],
    blurb:"The first store. Lightweight travel gear, drop-shipped from overseas suppliers.",
    story:"HostelGear.co was my first attempt at an online store: drop-shipping lightweight, minimalist travel gear. I thought it aligned nicely with my passion for travel, and it was a good way to try something different and learn the ins and outs of e-commerce. HostelGear was alive for just a handful of months, and I actually sold a number of things. But one of the first things I learned about drop-shipping is that you don't control the product. You don't control quality, and you definitely don't control shipping times. I occasionally still wish this site existed so I could showcase some of my favorite travel products, but e-commerce has run its course for me."},
 
   // ---------- before ----------
   {y:"2016", act:"0", name:"Mr. Minimalist", url:"https://mr-minimalist.com", date:"2016 · rebuilt 2026", status:"live",
-   img:"mrminimalist.jpg", photo:true, tags:["Travel blog","One-bag travel","Vercel"],
+   img:"mrminimalist.jpg", photo:true, tags:["Travel blog", "One-bag travel", "Astro", "Vercel"],
    blurb:"Packing tips, how-to guides and gear recs for one-bag and minimalist travel. The blog that started it all, updated occasionally.",
    story:"Mr. Minimalist was the first side project I spent significant time on. It started as a simple blog about the benefits of minimalist travel, long before Reddit came along, before I'd heard the term nomad or digital nomad, before the concept of one-bag travel. The site still lives. I haven't updated it in a while, but the tips and travel advice still ring true. This is the project that started it all. It also inspired later projects like RioHarbor.com, ULT Gear, Tether Lite and OneBagFAQs, and a hundred physical products, later under the ULT Gear moniker."},
 ];
@@ -416,13 +440,13 @@ function card(p, i){
   const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>`
     : p.page ? `<a href="${p.page}">See the project →</a>` : '';
   const story = p.story ? `<details><summary>The story</summary><p class="story">${p.story}</p></details>` : '';
-  return `<article class="card reveal" data-status="${p.status}">
+  return `<article class="card reveal" data-status="${p.status}" data-tags="${(p.tags||[]).join('|')}">
     ${tile}
     <div class="body">
       <div class="meta"><span class="act">${p.date||''}</span><span class="status ${st[1]}"><i></i>${st[0]}</span></div>
       <div class="name"><h3>${title}</h3>${link}<span class="num">No. ${String(i).padStart(2,'0')}</span></div>
       <p class="blurb">${p.blurb}</p>
-      <div class="tags">${(p.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="tags">${(p.tags||[]).map(t=>`<button type="button" data-tag="${t}">${t}</button>`).join('')}</div>
       ${story}
     </div></article>`;
 }
@@ -445,10 +469,19 @@ function render(){
   reveal();
 }
 
+const SKILLS = ["AI agents","Voice agents","Automation","AI consulting","MCP","Claude","Next.js","React Native","E-commerce","Print-on-demand","Product design"];
+let curStatus='all', curTag='';
 function filter(f){
+  if(f!==undefined) curStatus=f;
   document.querySelectorAll('.card').forEach(c=>{
-    c.classList.toggle('hidden', f!=='all' && c.dataset.status!==f);
+    const okS = curStatus==='all' || c.dataset.status===curStatus;
+    const okT = !curTag || c.dataset.tags.split('|').includes(curTag);
+    c.classList.toggle('hidden', !(okS && okT));
   });
+  document.querySelectorAll('[data-tag]').forEach(b=>b.classList.toggle('on', !!curTag && b.dataset.tag===curTag));
+  const note=document.getElementById('tagnote');
+  if(curTag){const n=document.querySelectorAll('.card:not(.hidden)').length; note.innerHTML=`Showing <b>${n}</b> project${n===1?'':'s'} tagged <b>${curTag}</b><a href="#projects" id="cleartag">Clear</a>`; note.hidden=false;}
+  else note.hidden=true;
   document.querySelectorAll('.group').forEach(g=>{
     g.classList.toggle('hidden', !g.querySelector('.card:not(.hidden)'));
   });
@@ -458,6 +491,16 @@ document.getElementById('filters').addEventListener('click',e=>{
   document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
   filter(b.dataset.f);
 });
+function setTag(t){ curTag = (curTag===t) ? '' : t; filter(); }
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-tag]'); if(b){ e.preventDefault(); setTag(b.dataset.tag); return; }
+  if(e.target.id==='cleartag'){ e.preventDefault(); setTag(curTag); }
+});
+function skills(){
+  const el=document.getElementById('skills');
+  const count=t=>PROJECTS.filter(p=>(p.tags||[]).includes(t)).length;
+  el.insertAdjacentHTML('beforeend', SKILLS.map(t=>`<button type="button" data-tag="${t}">${t}<span class="n">${count(t)}</span></button>`).join(''));
+}
 
 function reveal(){
   const els=[...document.querySelectorAll('.reveal')];
@@ -466,6 +509,7 @@ function reveal(){
   els.forEach(e=>{ if(e.getBoundingClientRect().top<innerHeight) e.classList.add('in'); else io.observe(e); });
 }
 render();
+skills();
 </script>
 </body>
 </html>
