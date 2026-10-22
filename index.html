@@ -236,7 +236,7 @@
       <p>As for the pilot dream, stay tuned.</p>
       <div class="stats">
         <div class="stat"><b id="s-all">–</b><span>projects</span></div>
-        <div class="stat"><b id="s-live">–</b><span>active</span></div>
+        <div class="stat"><b id="s-live">–</b><span>live</span></div>
         <div class="stat"><b id="s-dead">–</b><span>retired</span></div>
         <div class="stat"><b id="s-years">–</b><span>years</span></div>
       </div>
@@ -254,7 +254,7 @@
     <h2>The projects</h2>
     <div class="filters" id="filters">
       <button class="chip on" data-f="all">All<span class="n" id="n-all"></span></button>
-      <button class="chip" data-f="live">Active<span class="n" id="n-live"></span></button>
+      <button class="chip" data-f="live">Live<span class="n" id="n-live"></span></button>
       <button class="chip" data-f="wip">Under Construction<span class="n" id="n-wip"></span></button>
       <button class="chip" data-f="paused">Paused<span class="n" id="n-paused"></span></button>
       <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
@@ -303,10 +303,6 @@ const PROJECTS = [
    img:"fdatrack_mark.png", tags:["AI search", "Web app", "openFDA", "Next.js", "Vercel"],
    blurb:"Type any drug and see every signal FDA publishes about it: shortages, discontinuations and recalls, with sources you can check yourself.",
    story:"Built as an interview take-home project, but I wanted something genuinely useful to come out of it. Originally conceived for my brother, a CRNA, who I thought might find it useful. The tool is simple: type in any drug, and the built-in AI searches FDA's databases through their public APIs for shortages, recalls and providers. Multiple checks keep it accurate, every data source is public record, and the references are cited on each run. In practice, the people who track shortages get that data from their suppliers, so this lives on as a working demo more than a tool anyone relies on."},
-  {y:"2026", act:"XII", name:"Movemnt.ai", url:"https://movemnt.ai", date:"Jul 2026 · relaunch", status:"live",
-   img:"movemnt.png", tags:["AI consulting", "AI enablement", "Next.js", "Stripe", "Resend", "Cal.com", "Vercel"],
-   blurb:"AI enablement, readiness assessments and fractional AI support for small teams. Someone has to own AI. Right now, that's you.",
-   story:"<em>Same name, different business.</em> The 2025 Movemnt was a health-and-fitness consultancy (see the 2025 entry). Recently rebuilt to focus on AI enablement, AI readiness assessments and fractional AI support for mid-sized businesses. I run this in parallel with Lumio Consulting, which is focused on non-profits."},
   {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:"wip",
    img:"abtme.png", tags:["AI agents", "MCP", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Vercel"],
    blurb:"Your life story, built for the AI-age. A private place for everything about you, connected via MCP to Claude, ChatGPT or Gemini so language models understand who you are.",
@@ -325,10 +321,6 @@ const PROJECTS = [
    story:"<em>Three hours, one early morning in South Korea.</em> On a trip with my sister I woke up early and built this in Antigravity, partly because the tool was new and I wanted to test it. A small, lightweight web app that runs in the browser: one place for everything I use when I travel. An AI assistant, a voice translator, a currency converter, a weather report and a home-time clock. Instead of bouncing between four sites, it's one simple interface with everything I need."},
 
   // ---------- 2025 ----------
-  {y:"2025", act:"X", name:"Lumio Consulting", url:"https://lumioconsulting.com", date:"2025 · present", status:"live",
-   img:"lumio.png", tags:["AI consulting", "AI enablement", "AI agents", "Automation", "Training", "Make.com", "n8n", "Airtable", "Next.js"],
-   blurb:"A solo AI consultancy in Denver. AI adoption and enablement, workflow automation and agentic AI readiness for small and mid-sized teams, non-profit and for-profit.",
-   story:"Lumio Consulting is where most of my client work lives today: a solo AI consultancy in Denver. After two years of experimenting with AI and automation, I took what I'd learned and put it to work for small and mid-sized teams. I help them with AI adoption and enablement, workflow automation, and getting ready for agentic AI. Lumio runs on its own advice: AI agents handle research, outreach and follow-ups so I can spend my time with clients. Most of my clients so far have been non-profits, which means I've learned to deliver on lean budgets, and I work with for-profit teams on the same terms. Alongside Lumio I run Movemnt.ai, its for-profit counterpart."},
   {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · present", status:"wip",
    img:"griddown_logo.png", tags:["Mobile app", "Local LLM", "RAG", "Llama", "React Native", "Expo", "MapLibre", "PMTiles", "Claude Code", "iOS · Android"],
    blurb:"An offline emergency-preparedness app: real offline maps plus a local language model that runs with zero connectivity.",
@@ -344,7 +336,7 @@ const PROJECTS = [
   {y:"2025", act:"IX", name:"Movemnt AI Consulting", url:"", date:"Jul 2025", status:"dead",
    img:"movemnt_v1.png", tags:["AI consulting", "Health & fitness", "Cold outreach", "Apollo", "Clay"],
    blurb:"A solo consultancy helping gyms, studios, clinics and trainers adopt AI across their operations.",
-   story:"<em>The health consulting era.</em> I did all the things: built the website, defined services, learned cold outreach, figured out Apollo and Clay, set up sequences, and personally wrote my first ~50 outbound emails. I landed a few client meetings. Then the credibility issue came back. I went to a gym. I tracked everything. I ate healthy. None of that matters when you're sitting across from a clinic explaining their back office. Same lesson as education, and I should have known better. Shut it down. The name got a second life in 2026."},
+   story:"<em>The health consulting era.</em> I did all the things: built the website, defined services, learned cold outreach, figured out Apollo and Clay, set up sequences, and personally wrote my first ~50 outbound emails. I landed a few client meetings. Then the credibility issue came back. I went to a gym. I tracked everything. I ate healthy. None of that matters when you're sitting across from a clinic explaining their back office. Same lesson as education, and I should have known better. Shut it down."},
   {y:"2025", act:"VI", name:"AIEDUExperts.com", url:"", date:"2025", status:"dead",
    img:"aieduexperts_logo.png", tags:["AI consulting", "Education", "K-12"],
    blurb:"A service to help teachers and administrators adopt AI, built with a DPS math teacher and a retired principal.",
@@ -377,8 +369,8 @@ const PROJECTS = [
    story:"Another one-off experiment on the same automated pipeline. I rebranded Peatsy and tried selling colorful, stylish pet bandanas."},
   {y:"2024", act:"II", name:"Taigora Activewear", url:"", page:"/taigora-activewear/", date:"2024", status:"dead",
    img:"taigora_activewear.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
-   blurb:"The Taigora domain, dusted off a third time. Women's leggings and workout shorts.",
-   story:"Another one-off experiment in fully automated, one-person Shopify stores, built on the same pipeline as MTN Drip. I rebranded Taigora a third time, this time selling women's activewear and yoga mats. Same goal as the others: pick a narrow product, spin the store up in a couple of days, see what stuck."},
+   blurb:"The Taigora domain, dusted off again. Women's leggings and workout shorts.",
+   story:"Another one-off experiment in fully automated, one-person Shopify stores, built on the same pipeline as MTN Drip. I rebranded Taigora again, this time selling women's activewear and yoga mats. Same goal as the others: pick a narrow product, spin the store up in a couple of days, see what stuck."},
   {y:"2024", act:"II", name:"MTNDrip.com", url:"", page:"/mtn-drip/", date:"2024", status:"dead",
    img:"mtndrip.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO"],
    blurb:"Mountain Drip: colorful winter gaiters and snowboarding fanny packs.",
@@ -393,10 +385,6 @@ const PROJECTS = [
    story:"Peatsy started as a domain name. The original idea was a subscription service for everyday home goods, a play on \"repeatable,\" right as Amazon launched Subscribe and Save. The concept went nowhere. The domain stuck around. Peatsy Puzzles came out of two things arriving at once: AI image generation, which I couldn't stop playing with, and Printify, which could put any image on a physical product, puzzles included. So I generated the artwork, put it on puzzles, and automated everything in between. A business that ran itself, and an excuse to learn automation. It was also a crash course in art. Prompting hundreds of puzzle designs meant learning the difference between art nouveau and art deco, impressionism and realism, punk and pop art, and what makes each one hold up as a finished image. The concept worked. I sold a decent number of puzzles, and people loved them. But Peatsy Puzzles had a margins problem: a $45 puzzle netted $1.50 to $2.00 after costs, and no amount of automation changes that math. What it left me with was Make.com, the low-code toolbox, and the automation fundamentals I've used on every project since."},
 
   // ---------- 2023 ----------
-  {y:"2023", act:"I", name:"Taigora Lingerie", url:"", date:"2023", status:"dead",
-   img:"taigora_lingerie_logo.png", tags:["E-commerce", "Drop-shipping"],
-   blurb:"For about two weeks I sold lingerie under the Taigora name, because the margins were absurd.",
-   story:"When my brother passed on the drop-shipping store, I decided to see if I could sell something else. I noticed that the margins on women's lingerie were insane. You could purchase underwear sets for anywhere from twenty-five cents to a dollar and sell them for thirty to forty dollars in the US. So for a very brief time, I rebranded Taigora and had a lingerie shop. This is one of the more embarrassing turns in my experimentation phase, but I learned an important lesson: margins aren't everything, and women's lingerie is surprisingly confusing."},
   {y:"2023", act:"I", name:"Taigora.com", url:"", date:"2023", status:"dead",
    img:"taigora_outdoor_logo.png", tags:["E-commerce", "Drop-shipping", "Outdoor gear"],
    blurb:"Outdoor and camping gear, built for my brother, who I thought might get into it.",
@@ -420,7 +408,7 @@ const ERAS = {
   "2023":"Drop-shipping stores. Where the building started.",
   "2016":"The first side project, the one that started it all."
 };
-const STATUS = {live:["Active","live"], paused:["Paused","paused"], wip:["Under construction","wip"], dead:["Retired","dead"]};
+const STATUS = {live:["Live","live"], paused:["Paused","paused"], wip:["Under construction","wip"], dead:["Retired","dead"]};
 
 function tint(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;const hue=h%360;return [`hsl(${hue} 38% 90%)`,`hsl(${(hue+40)%360} 45% 80%)`];}
 
