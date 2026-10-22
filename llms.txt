@@ -1,0 +1,16 @@
+# Thomas Bouwman · tchristiaan.com
+
+> bouw·man, noun, Dutch: to cultivate, farm, or build. This site is everything Thomas Bouwman has built: AI agents, voice agents, automation, web apps and consulting, plus the e-commerce and product experiments that came before. A running list, most recent first.
+
+Thomas Bouwman is based in Denver, Colorado. He builds AI agents, voice agents, automations and web apps, and works as an AI consultant. Each project on the home page carries tags for what it is and the tools it was built with, a short blurb, and "The story" in his own words. Projects are marked Live, Under construction, Paused or Retired.
+
+## Pages
+
+- [Projects](https://tchristiaan.com/): the full list with tags, status and stories
+- [Lessons Learned](https://tchristiaan.com/lessons/): what building these projects taught him, newest first
+- [Acid Daddy](https://tchristiaan.com/acid-daddy/), [Peatsy Puzzles](https://tchristiaan.com/peatsy-puzzles/), [Peatsy Paws](https://tchristiaan.com/peatsy-paws/), [Taigora Activewear](https://tchristiaan.com/taigora-activewear/), [Duffel Pro](https://tchristiaan.com/duffel-pro/), [Vioula](https://tchristiaan.com/vioula/), [MTN Drip](https://tchristiaan.com/mtn-drip/): photo archives of retired print-on-demand stores
+
+## Links
+
+- LinkedIn: https://www.linkedin.com/in/tchristiaan/
+- Instagram: https://www.instagram.com/tchristiaan6/
