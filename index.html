@@ -312,18 +312,18 @@ const PROJECTS = [
    story:"Built as an interview take-home project, but I wanted something genuinely useful to come out of it. Originally conceived for my brother, a CRNA, who I thought might find it useful. The tool is simple: type in any drug, and the built-in AI searches FDA's databases through their public APIs for shortages, recalls and providers. Multiple checks keep it accurate, every data source is public record, and the references are cited on each run. In practice, the people who track shortages get that data from their suppliers, so this lives on as a working demo more than a tool anyone relies on."},
   {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:"wip",
    img:"abtme.png", tags:["AI agents", "MCP", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Vercel"],
-   blurb:"Your life story, built for the AI-age. A private place for everything about you, connected via MCP to Claude, ChatGPT or Gemini so language models understand who you are.",
+   blurb:"Your life story, built for the AI age. A private place for everything about you, connected via MCP to Claude, ChatGPT or Gemini so language models understand who you are.",
    story:"A personal project built to simplify and control what LLMs know about me, and open to anyone who wants the same for themselves. It's a private, tag-based profile of your life history: work, places lived, people, passions, goals. You build it through a guided walkthrough or by just talking to a chat, then connect it through an MCP plug-in built for Claude, OpenAI and Gemini. One place to control your private data, connected to the models you use for personalized life context. Private by default. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
   {y:"2026", act:"XII", name:"RegBrief.ai", url:"https://regbrief.ai", date:"Jul 2026", status:"live",
    img:"regbrief_icon.png", dark:true, tags:["Automation", "AI content", "Claude", "Next.js", "Supabase", "Resend", "Vercel"],
    blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
-   story:"Built to track AI regulation changes. RegBrief watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. Enterprise tools charge $1,000 to $2,000 a month for the same information and make you sit through a sales call. RegBrief is free while it's in early access."},
+   story:"Built to track AI regulation changes. RegBrief watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. The same information sits behind enterprise tools priced for compliance departments, so I built a version a single person could run."},
   {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"live",
    img:"velay.png", tags:["Voice agents", "AI receptionist", "Retell", "Claude", "Vercel"],
    blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
-   story:"<em>Built in a day.</em> I started playing with AI voice agents in 2025, and while the tech is early, I believe they'll be a big part of how we talk to AI day to day. Velay is my demo and test site for AI voice receptionists: a Retell voice agent, built with Claude and shipped on Vercel. It's a real, active business, but the space is crowded, and voice receptionists aren't quite there yet in intelligence or conversation. Still early. As the space evolves, expect to hear a lot more AI agents answering calls and booking appointments."},
+   story:"<em>Built in a day.</em> I started playing with AI voice agents in 2025, and while the tech is early, I believe they'll be a big part of how we talk to AI day to day. Velay is my demo and test site for AI voice receptionists: a Retell voice agent, built with Claude and shipped on Vercel. It's live and takes real calls, but the space is crowded, and voice receptionists aren't quite there yet in intelligence or conversation. Still early. As the space evolves, expect to hear a lot more AI agents answering calls and booking appointments."},
   {y:"2026", act:"XI", name:"TripBud.co", url:"https://tripbud.co", date:"May 2026", status:"live",
-   img:"tripbud_p2.png", tags:["Web app", "AI assistant", "OpenAI", "DeepL", "Open-Meteo", "Astro", "Vercel"],
+   img:"tripbud_p2.png", tags:["Web app", "AI assistant", "OpenAI", "DeepL", "Open-Meteo", "Astro", "Antigravity", "Vercel"],
    blurb:"A quick splash page for travelers: an AI assistant, translator, currency converter, weather report, and home-time clock.",
    story:"<em>Three hours, one early morning in South Korea.</em> On a trip with my sister I woke up early and built this in Antigravity, partly because the tool was new and I wanted to test it. A small, lightweight web app that runs in the browser: one place for everything I use when I travel. An AI assistant, a voice translator, a currency converter, a weather report and a home-time clock. Instead of bouncing between four sites, it's one simple interface with everything I need."},
 
@@ -460,7 +460,7 @@ function render(){
   reveal();
 }
 
-const SKILLS = ["AI agents","Voice agents","Automation","AI consulting","MCP","Claude","Next.js","Supabase","Shopify","E-commerce"];
+const SKILLS = ["AI agents","Voice agents","Automation","MCP","Claude","OpenAI","Next.js","Supabase","Shopify","E-commerce"];
 let curStatus='all', curTag='';
 function filter(f){
   if(f!==undefined) curStatus=f;
