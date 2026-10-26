@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas Bouwman · Hands-on AI builds</title>
+<meta name="description" content="AI tools and agents Thomas Bouwman has built hands-on: voice agents, MCP servers, a local LLM with RAG, AI search and automated regulation tracking. Built with Claude, LangGraph, MCP, Retell, Next.js and Supabase.">
+<meta name="author" content="Thomas Bouwman">
+<link rel="canonical" href="https://tchristiaan.com/ai/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thomas Bouwman · Hands-on AI builds">
+<meta property="og:description" content="AI tools and agents Thomas Bouwman has built hands-on: voice agents, MCP servers, a local LLM with RAG, AI search and automated regulation tracking. Built with Claude, LangGraph, MCP, Retell, Next.js and Supabase.">
+<meta property="og:url" content="https://tchristiaan.com/ai/">
+<meta property="og:image" content="https://tchristiaan.com/og-ai.png">
+<meta property="og:image:secure_url" content="https://tchristiaan.com/og-ai.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hands-on AI builds by Thomas Bouwman">
+<meta property="og:site_name" content="Thomas Bouwman">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thomas Bouwman · Hands-on AI builds">
+<meta name="twitter:description" content="AI tools and agents Thomas Bouwman has built hands-on: voice agents, MCP servers, a local LLM with RAG, AI search and automated regulation tracking. Built with Claude, LangGraph, MCP, Retell, Next.js and Supabase.">
+<meta name="twitter:image" content="https://tchristiaan.com/og-ai.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6;
+    --paper-2:#EAE4D6;
+    --ink:#161412;
+    --ink-2:#4A453D;
+    --muted:#7A7468;
+    --line:#D8D1C2;
+    --accent:#D9532B;
+    --live:#2E8B57;
+    --card:#FBF9F4;
+    --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+    --font-body:"Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .wrap{position:relative;z-index:1}
+  .container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .short{display:none}
+  .brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+  .nav a{text-decoration:none;color:var(--ink-2)}
+  .nav a:hover{color:var(--ink)}
+  .nav a.on{color:var(--ink);box-shadow:0 2px 0 var(--accent)}
+  @media (max-width:640px){.top .container{height:56px}.brand{font-size:16px;gap:7px;white-space:nowrap}.brand .full{display:none}.brand .short{display:inline}.nav{gap:14px;font-size:13px;white-space:nowrap}}
+  @media (max-width:330px){.brand span{display:none}}
+
+  /* hero */
+  .hero{background:var(--card);color:var(--ink);padding:88px 0 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .container{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+  @media (max-width:860px){.hero .container{grid-template-columns:1fr}.hero{padding:64px 0 56px}}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero .kicker{color:var(--muted)}
+  .hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,7.2vw,92px);line-height:.98;letter-spacing:-.025em;margin:18px 0 26px}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+  .hero h1.def{margin:14px 0 6px;font-size:clamp(48px,7.6vw,96px)}
+  .hero h1.def .mid{color:var(--accent);margin:0 .04em}
+  .hero .pron{font-size:15px;color:var(--muted);margin:0 0 14px;max-width:none}
+  .hero .pron .ipa{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:14px;background:var(--paper-2);padding:3px 8px;border-radius:6px;margin-right:6px;color:var(--ink-2)}
+  .hero .pron i{font-style:italic}
+  .hero .senses{margin:0 0 26px;font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);line-height:1.3;color:var(--ink);max-width:none}
+  .hero .senses em{font-style:italic;color:var(--accent)}
+  .hero p{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:600px;margin:0 0 18px;text-wrap:pretty}
+  .hero p:last-of-type{margin-bottom:30px}
+  .hero p strong{color:var(--ink);font-weight:600}
+  .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid var(--line);padding-top:22px;max-width:560px}
+  .stat b{font-family:var(--font-display);font-size:30px;font-weight:500;display:block;line-height:1;letter-spacing:-.02em}
+  .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .portrait{justify-self:end;position:relative;width:min(100%,380px)}
+  .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:32px 32px 32px 160px}
+  .portrait .plinks{display:flex;justify-content:flex-end;gap:18px;margin-top:18px}
+  .portrait .plink{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .portrait .plink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .portrait .plink svg{width:16px;height:16px;fill:currentColor}
+  .portrait .tag{position:absolute;left:-14px;bottom:26px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 10px 30px rgba(22,20,18,.25)}
+  @media (max-width:860px){.portrait{justify-self:start;width:260px}}
+
+  /* toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:34px 0 8px}
+  .toolbar h2{font-family:var(--font-display);font-weight:400;font-size:34px;letter-spacing:-.02em;margin:0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:999px;padding:8px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip .n{opacity:.55;font-weight:500;margin-left:6px}
+  .skills{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 0 14px}
+  .skills .lbl{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+  .skills button,.tags button{font:inherit;font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);border:1px solid transparent;padding:4px 9px;border-radius:6px;cursor:pointer;transition:all .15s}
+  .skills button:hover,.tags button:hover{border-color:var(--ink);color:var(--ink)}
+  .skills button.on,.tags button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .skills button .n{opacity:.55;margin-left:4px}
+  .tagnote{font-size:13px;color:var(--muted);margin:0 0 6px}
+  .tagnote b{color:var(--ink)}
+  .tagnote a{color:var(--accent);font-weight:600;text-decoration:none;margin-left:8px}
+
+  /* timeline groups */
+  .group{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:40px 0 8px;border-top:1px solid var(--line)}
+  @media (max-width:860px){.group{grid-template-columns:1fr;gap:12px}}
+  .rail{position:sticky;top:84px;align-self:start}
+  .rail .year{font-family:var(--font-display);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;margin:0}
+  .rail .era{margin:10px 0 0;font-size:13px;color:var(--muted);line-height:1.5;max-width:180px}
+  @media (max-width:860px){.rail{position:static}.rail .year{font-size:44px}.rail .era{max-width:none}}
+  .list{display:flex;flex-direction:column;gap:14px}
+  .group.hidden{display:none}
+
+  /* card */
+  .card{display:grid;grid-template-columns:240px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+  .card:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 18px 40px -22px rgba(22,20,18,.35)}
+  .card.hidden{display:none}
+  .tile{background:#fff;display:flex;align-items:center;justify-content:center;padding:16px;border-right:1px solid var(--line);min-height:240px;position:relative}
+  .tile img{width:100%;height:100%;max-height:208px;object-fit:contain}
+  .tile.dark{background:#111}
+  .tile.photo{padding:0}
+  .tile.photo img{max-height:none;height:100%;width:100%;object-fit:cover;position:absolute;inset:0}
+  .tile.mono{font-family:var(--font-display);font-size:72px;font-weight:300;letter-spacing:-.04em;color:var(--ink);background:linear-gradient(135deg,var(--t1),var(--t2))}
+  .tile.mono small{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--font-body);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,20,18,.55)}
+  .body{padding:20px 24px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .meta .act{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+  .status.live{color:var(--live);border-color:rgba(46,139,87,.35)}
+  .status.live i{background:var(--live);box-shadow:0 0 0 3px rgba(46,139,87,.18)}
+  .status.paused{color:#9A6A00;border-color:rgba(154,106,0,.35)}
+  .status.paused i{background:#C98A00}
+  .status.wip{color:#1F4FBF;border-color:rgba(31,79,191,.35)}
+  .status.wip i{background:#1F4FBF}
+  .status.dead{color:var(--muted)}
+  .name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .name h3{margin:0;font-family:var(--font-display);font-weight:500;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+  .title-link{color:inherit;font:inherit;text-decoration:none;background-image:linear-gradient(var(--accent),var(--accent));background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s}
+  .card:hover .title-link{background-size:100% 2px}
+  a.tile{text-decoration:none;color:inherit}
+  .name > a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+  .name > a:hover{border-bottom-color:var(--accent)}
+  .name .num{font-family:var(--font-display);font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
+  .blurb{margin:0;color:var(--ink-2);font-size:15.5px;max-width:64ch}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  details{margin-top:4px}
+  summary{cursor:pointer;list-style:none;font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:6px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+  details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+  .story{margin:10px 0 0;padding:14px 16px;border-left:2px solid var(--accent);background:rgba(217,83,43,.05);color:var(--ink-2);font-size:14.5px;max-width:66ch}
+  .story em{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--ink)}
+  @media (max-width:640px){
+    .card{grid-template-columns:1fr}
+    .tile{border-right:0;border-bottom:1px solid var(--line);min-height:240px}
+    .body{padding:16px 18px}
+    .name h3{font-size:24px}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.card{transition:none}}
+
+  /* about + footer */
+  .about{padding:80px 0 40px}
+  .about .container{display:grid;grid-template-columns:200px 1fr 300px;gap:32px;align-items:start}
+  .about .photo{justify-self:end;width:100%;max-width:300px}
+  .about .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:120px 24px 24px 24px}
+  @media (max-width:1000px){.about .container{grid-template-columns:200px 1fr}.about .photo{grid-column:2;justify-self:start;max-width:240px}}
+  @media (max-width:860px){.about .container{grid-template-columns:1fr}.about .photo{grid-column:1}}
+  .about h2{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0 0 18px;line-height:1.05}
+  .about p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 16px}
+  .about p b{color:var(--ink)}
+  .about p a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+  .about p a:hover{border-bottom-color:var(--accent)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);transition:all .2s}
+  .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(22,20,18,.5)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#C2451F;border-color:#C2451F;color:#fff;box-shadow:0 10px 24px -8px rgba(217,83,43,.6)}
+  footer{background:var(--paper-2);color:var(--muted);padding:56px 0;margin-top:40px;border-top:1px solid var(--line)}
+  footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:end}
+  footer .big{font-family:var(--font-display);color:var(--ink);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.1;font-weight:300;max-width:16ch}
+  footer .big em{color:var(--accent);font-style:italic}
+  footer small{font-size:13px}
+
+  /* review banner (preview only) */
+  .review{background:#FFF4D6;border-bottom:1px solid #F0D48A;color:#5A4200;font-size:13px;padding:10px 0}
+  .review .container{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .review b{font-weight:700}
+
+  /* ai page */
+  .hero.slim{padding:72px 0 56px}
+  .hero.slim .container{grid-template-columns:1fr}
+  .hero.slim h1{font-size:clamp(40px,6.4vw,80px)}
+  .hero.slim p{max-width:640px}
+  .builds{display:flex;flex-direction:column;gap:16px;padding:40px 0 8px}
+  .build .body{gap:10px}
+  .build dl{margin:2px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;max-width:68ch}
+  .build dt{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+  .build dd{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.55}
+  .build .tags span{font-size:11.5px;font-weight:500;color:var(--ink-2);background:var(--paper-2);padding:4px 9px;border-radius:6px}
+  @media (max-width:640px){.build dl{grid-template-columns:1fr;gap:2px}.build dt{padding-top:8px}}
+  .contact{padding:56px 24px 24px}
+  .contact p{max-width:62ch;color:var(--ink-2);font-size:17px;margin:0 0 18px}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://tchristiaan.com/ai/","url":"https://tchristiaan.com/ai/","name":"Hands-on AI builds by Thomas Bouwman","description":"AI tools and agents Thomas Bouwman has built hands-on: voice agents, MCP servers, a local LLM with RAG, AI search and automated regulation tracking. Built with Claude, LangGraph, MCP, Retell, Next.js and Supabase.","author":{"@type":"Person","name":"Thomas Bouwman","url":"https://tchristiaan.com/","sameAs":["https://www.linkedin.com/in/tchristiaan/"]},"isPartOf":{"@id":"https://tchristiaan.com/#website"}}
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="container">
+    <a class="brand" href="/"><i></i><span class="full">Thomas Bouwman</span><span class="short">T. Bouwman</span></a>
+    <nav class="nav">
+      <a href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero slim" id="top">
+  <div class="container">
+    <div>
+      <p class="kicker">AI builds · Denver</p>
+      <h1>Hands-on<br><em>AI builds.</em></h1>
+      <p>AI tools and agents I've built hands-on to stay close to what the technology can do. <strong>The same practice behind my consulting work.</strong></p>
+      <p>Each one below is a working build: the problem it solves, what I built, and the tools I used.</p>
+    </div>
+  </div>
+</section>
+
+<main class="container" id="builds">
+  <div class="builds">
+<article class="card build reveal">
+    <a class="tile" href="https://diyagent.co" target="_blank" rel="noopener" aria-label="Open DIYAgent.co"><img src="/assets/diyagent_logo.png" alt="DIYAgent.co" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2026</span><span class="status wip"><i></i>Under construction</span></div>
+      <div class="name"><h3><a class="title-link" href="https://diyagent.co" target="_blank" rel="noopener">DIYAgent.co</a></h3><a href="https://diyagent.co" target="_blank" rel="noopener">diyagent.co ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>Every voice agent starts from the same plumbing: telephony, speech, tools, memory, and a way to hand control back to a person.</dd>
+        <dt>Built</dt><dd>An agent builder where an agent is written as text instructions plus reusable tagged components, with agent-to-agent communication and baseline capabilities included by default. Agents run over the phone and call me when they need a decision.</dd>
+      </dl>
+      <div class="tags"><span>Voice agents</span><span>LangGraph</span><span>MCP</span><span>LiveKit</span><span>Twilio</span><span>Claude</span><span>OpenAI</span><span>Gemini</span><span>Next.js</span><span>Supabase</span><span>Railway</span></div>
+    </div></article>
+<article class="card build reveal">
+    <a class="tile" href="https://abtme.co" target="_blank" rel="noopener" aria-label="Open Abtme.co"><img src="/assets/abtme.png" alt="Abtme.co" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2026</span><span class="status wip"><i></i>Under construction</span></div>
+      <div class="name"><h3><a class="title-link" href="https://abtme.co" target="_blank" rel="noopener">Abtme.co</a></h3><a href="https://abtme.co" target="_blank" rel="noopener">abtme.co ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>Language models know nothing about the person typing, and the context people paste in is scattered and out of their control.</dd>
+        <dt>Built</dt><dd>A private, tag-based profile of a person's history, work, places, people and goals, built through a guided walkthrough or a chat, and exposed to Claude, ChatGPT and Gemini through an MCP server. Private by default, one place to control it.</dd>
+      </dl>
+      <div class="tags"><span>MCP server</span><span>Claude</span><span>OpenAI</span><span>Gemini</span><span>Next.js</span><span>Supabase</span><span>Vercel</span></div>
+    </div></article>
+<article class="card build reveal">
+    <a class="tile" href="https://velay.io" target="_blank" rel="noopener" aria-label="Open Velay.io"><img src="/assets/velay.png" alt="Velay.io" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2026</span><span class="status live"><i></i>Live</span></div>
+      <div class="name"><h3><a class="title-link" href="https://velay.io" target="_blank" rel="noopener">Velay.io</a></h3><a href="https://velay.io" target="_blank" rel="noopener">velay.io ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>Small businesses miss calls, and the calls they catch still need qualifying and booking.</dd>
+        <dt>Built</dt><dd>An AI voice receptionist that answers around the clock, qualifies the caller and books the appointment. A Retell voice agent with Claude behind it, deployed on Vercel. Built in a day as a test bed for where voice agents are and aren't ready yet.</dd>
+      </dl>
+      <div class="tags"><span>Voice agents</span><span>Retell</span><span>Claude</span><span>Vercel</span></div>
+    </div></article>
+<article class="card build reveal">
+    <a class="tile" href="https://griddown.us" target="_blank" rel="noopener" aria-label="Open GridDown"><img src="/assets/griddown_logo.png" alt="GridDown" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2025 · present</span><span class="status wip"><i></i>Under construction</span></div>
+      <div class="name"><h3><a class="title-link" href="https://griddown.us" target="_blank" rel="noopener">GridDown</a></h3><a href="https://griddown.us" target="_blank" rel="noopener">griddown.us ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>In a long power outage there is no connectivity, so no maps and no way to ask a question.</dd>
+        <dt>Built</dt><dd>A React Native app with downloadable offline vector maps and a small Llama model that runs on the device. A retrieval layer sits over 40-plus field guides sourced from CDC, EPA, FEMA, USGS and military manuals, and every answer cites its source. Four months on the app, six on the trusted knowledge base.</dd>
+      </dl>
+      <div class="tags"><span>Local LLM</span><span>RAG</span><span>Llama</span><span>React Native</span><span>Expo</span><span>MapLibre</span><span>PMTiles</span><span>Claude Code</span><span>Cursor</span><span>Cloudflare</span></div>
+    </div></article>
+<article class="card build reveal">
+    <a class="tile" href="https://fdatrack.com" target="_blank" rel="noopener" aria-label="Open FDATrack.com"><img src="/assets/fdatrack_mark.png" alt="FDATrack.com" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2026</span><span class="status live"><i></i>Live</span></div>
+      <div class="name"><h3><a class="title-link" href="https://fdatrack.com" target="_blank" rel="noopener">FDATrack.com</a></h3><a href="https://fdatrack.com" target="_blank" rel="noopener">fdatrack.com ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>FDA shortage, recall and discontinuation data lives in separate databases and is tedious to cross-check by hand.</dd>
+        <dt>Built</dt><dd>Type a drug name and an AI search runs it against FDA's public APIs for shortages, recalls and providers, with multiple checks for accuracy and every source cited on each run.</dd>
+      </dl>
+      <div class="tags"><span>AI search</span><span>openFDA</span><span>Next.js</span><span>Vercel</span></div>
+    </div></article>
+<article class="card build reveal">
+    <a class="tile dark" href="https://regbrief.ai" target="_blank" rel="noopener" aria-label="Open RegBrief.ai"><img src="/assets/regbrief_icon.png" alt="RegBrief.ai" loading="lazy"></a>
+    <div class="body">
+      <div class="meta"><span class="act">2026</span><span class="status live"><i></i>Live</span></div>
+      <div class="name"><h3><a class="title-link" href="https://regbrief.ai" target="_blank" rel="noopener">RegBrief.ai</a></h3><a href="https://regbrief.ai" target="_blank" rel="noopener">regbrief.ai ↗</a></div>
+      <dl>
+        <dt>Problem</dt><dd>Keeping up with state AI laws, EU AI Act deadlines and FTC enforcement is a full-time job that the person who owns AI governance usually doesn't have.</dd>
+        <dt>Built</dt><dd>An automated tracker that watches those sources and sends a weekly brief in plain English with compliance action items and deadline alerts. Scheduled jobs collect the changes and Claude writes the summaries.</dd>
+      </dl>
+      <div class="tags"><span>Automation</span><span>Claude</span><span>Next.js</span><span>Supabase</span><span>Resend</span><span>Vercel</span></div>
+    </div></article>
+  </div>
+</main>
+
+<section class="contact container" id="contact">
+  <p>Questions about any of these, or want to see one running? The easiest way to reach me is LinkedIn.</p>
+  <div class="links"><a class="btn solid" href="https://www.linkedin.com/in/tchristiaan/" target="_blank" rel="noopener">Connect on LinkedIn</a></div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="big">There will always be <em>problems to solve</em>, improvements to be made, and work to be done.</div>
+    <small>© 2026 Thomas Bouwman · tchristiaan.com</small>
+  </div>
+</footer>
+
+</div>
+<script>
+(function(){
+  const els=[...document.querySelectorAll('.reveal')];
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>{ if(e.getBoundingClientRect().top<innerHeight) e.classList.add('in'); else io.observe(e); });
+})();
+</script>
+</body>
+</html>
