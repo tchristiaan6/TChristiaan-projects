@@ -186,9 +186,6 @@
   .review b{font-weight:700}
 
   /* lessons page */
-  .hero.slim{padding:72px 0 56px}
-  .hero.slim .container{grid-template-columns:1fr}
-  .hero.slim h1{font-size:clamp(40px,6.4vw,80px)}
   .hero .jump{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--ink);border-radius:999px;padding:11px 18px;margin-bottom:30px;transition:all .2s}
   .hero .jump:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
   .lesson{padding:26px 0 30px;border-bottom:1px solid var(--line);max-width:68ch;scroll-margin-top:84px}
@@ -199,6 +196,8 @@
   .lesson .text{margin:0;color:var(--ink-2);font-size:16.5px;line-height:1.65;text-wrap:pretty}
   .lesson .from{margin:10px 0 0;font-size:12.5px;color:var(--muted)}
   .lesson .from::before{content:"From ";}
+  .lesson .from a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transition:color .15s,border-color .15s}
+  .lesson .from a:hover{color:var(--accent);border-bottom-color:var(--accent)}
   @media (max-width:640px){.lesson{padding:20px 0 24px}.lesson h3{font-size:23px}.lesson .text{font-size:16px}}
   .endnote{padding:48px 0 8px;text-align:center;color:var(--muted);font-size:14px}
   .endnote a{color:var(--ink);font-weight:600}
@@ -221,12 +220,12 @@
   </div>
 </header>
 
-<section class="hero slim" id="top">
+<section class="hero" id="top">
   <div class="container">
     <div>
       <p class="kicker">Lessons learned</p>
       <h1>What building<br><em>taught me.</em></h1>
-      <p>Every project on this site taught me something, usually the hard way. This is the running list, <strong>newest lesson at the top, first lesson at the bottom.</strong> I add to it as I go.</p>
+      <p>Every project on this site taught me something, usually the hard way. This is the running list, <strong>newest lesson at the top, first lesson at the bottom.</strong> I add to it as I go. Most of them come from the sabbatical, where I pointed AI tooling at real businesses to see what it could actually do.</p>
       <p>If you'd rather read them in the order I learned them, start at the bottom and work your way up.</p>
       <a class="jump" href="#lesson-01">Start with lesson one ↓</a>
       <div class="stats">
@@ -234,6 +233,10 @@
         <div class="stat"><b id="s-years">–</b><span>years</span></div>
         <div class="stat"><b id="s-first">–</b><span>first lesson</span></div>
       </div>
+    </div>
+    <div class="portrait">
+      <img src="/assets/tom-mountain.jpg" alt="Thomas Bouwman in the mountains">
+      <div class="tag">Still learning</div>
     </div>
   </div>
 </section>
@@ -266,10 +269,10 @@ const LESSONS = [
    text:"GridDown pairs real offline maps with a local LLM that runs with zero connectivity. The maps worked great. But when lives depend on an AI's answers, you have to be very, very careful: you need a carefully curated, trustworthy knowledge base, with the model constrained to answer only from what it finds. The knowledge base is the hard part. That's where the next six months went: 40-plus field guides researched from CDC, EPA, FEMA, USGS and military manuals, with sources cited. I'm not going to ship something people can't trust.",
    from:["GridDown"]},
   {y:"2025", when:"2025", title:"Some categories run entirely on trust.",
-   text:"On the surface, creatine is creatine and protein is protein, right? In reality, sourcing and purity are everything, and with white-label supplements I couldn't prove quality or earn the trust the whole category runs on.",
+   text:"GuysGoals and MushroomKick were the automated-store pipeline pointed at supplements. The pipeline did its job: site, listings, and content in days. But on the surface, creatine is creatine and protein is protein, right? In reality, sourcing and purity are everything, and with white-label supplements I couldn't prove quality or earn the trust the whole category runs on. Automation can launch a brand. It can't vouch for one.",
    from:["GuysGoals.com","MushroomKick.com"]},
   {y:"2025", when:"2025", title:"If you're not using the tool, you can't judge it.",
-   text:"I wrote an AI newsletter for teachers: about 42 drafts, 23 published, a few organic followers. AI helped source the content, but I did the writing. Without real classroom or institutional experience, what could I add to the headlines? I couldn't judge a tool I wasn't using, so I didn't.",
+   text:"I wrote an AI newsletter for teachers: about 42 drafts, 23 published, a few organic followers. An automated pipeline sourced and summarized the week's AI-in-education news; I wrote the takes. Without real classroom or institutional experience, what could I add to the headlines? I couldn't judge a tool I wasn't using, so I didn't.",
    from:["AiforEDU.co"]},
   {y:"2025", when:"2025", title:"Passion is not the same as credibility.",
    text:"I teamed up with a Denver Public Schools math teacher and a retired principal to help teachers and administrators adopt AI. It was all real and live, for about two months. But I had no background in education, no connections, and no idea how schools funded projects or bought from vendors. Why would a school district trust me on education? The same thing happened later with health consulting: I went to a gym and ate healthy food, but none of that matters when you're sitting across from a clinic. Passion doesn't equate to experience or credibility.",
@@ -277,13 +280,13 @@ const LESSONS = [
 
   // ---------- 2024 ----------
   {y:"2024", when:"Looking back on year one", title:"Motivation requires meaning.",
-   text:"I once read Simon Sinek's Start With Why. I believed it then and still do, wholeheartedly, but during my year of exploration I ignored it. I got caught up in the novelty of the building process. Who are you helping? Why is it important? If you don't know the why of your business, you'll struggle and likely fail.",
-   from:["The first year"]},
+   text:"I once read Simon Sinek's Start With Why. I believed it then and still do, wholeheartedly, but during the first year of the sabbatical I ignored it. I got caught up in the novelty of the building process. Who are you helping? Why is it important? If you don't know the why of your business, you'll struggle.",
+   from:["The sabbatical's first year"]},
   {y:"2024", when:"Looking back on year one", title:"Focus wins.",
-   text:"If you truly want something to work, you have to dedicate yourself to a single project, sometimes for years, before the results show up. My throw-spaghetti-at-the-wall approach was fun and engaging, but because my heart and mind weren't committed to one path, every project suffered. Scattering effort creates noise. Sustained focus builds value.",
-   from:["The first year"]},
+   text:"The sabbatical was deliberately broad. I wanted to test the tooling against as many kinds of business as I could, and that was great for learning and terrible for results. If you truly want something to work, you have to dedicate yourself to a single project, sometimes for years, before the results show up. Scattering effort creates noise. Sustained focus builds value.",
+   from:["The sabbatical's first year"]},
   {y:"2024", when:"2024", title:"AI can't mimic the human experience.",
-   text:"RioHarbor was a travel blog that wrote itself: pick a random place in the world, research the top locations, generate images, write a post. I loved the randomness. But travel writing, all writing really, needs to be beautiful, personal and real, and AI couldn't do any of that. The automated blogs were my first exposure to AI slop, two years before it had a name.",
+   text:"RioHarbor was a travel blog that wrote itself: a pipeline that picked a random place in the world, researched the top spots, generated the images, wrote the post, and published it, with no human in the loop. I loved the randomness. The test was whether a fully automated pipeline could produce something people wanted to read, and the answer was no. Travel writing, all writing really, needs to be beautiful, personal and real, and AI couldn't do any of that. The automated blogs were my first exposure to AI slop, two years before it had a name.",
    from:["RioHarbor.com","The automated blogs"]},
   {y:"2024", when:"2024", title:"In person beats remote.",
    text:"I worked with designers in the Midwest, product developers in Atlanta and San Jose, marketers in Indonesia, manufacturers in China, website builders in Turkey and automation engineers in Germany. What took months of back-and-forth remotely could have been done in four hours in person. I'm a fan of remote work, but when it comes to getting things done quickly and correctly, nothing beats sitting down together.",
@@ -295,10 +298,10 @@ const LESSONS = [
    text:"What used to take hundreds of hours or a full team can now be built in days. But language models don't change the fundamentals of business: you still need to deliver real value, at a price people will pay. If you aren't already selling what people want, no amount of automation or AI magic will change the fortunes of a bad business.",
    from:["The print-on-demand stores"]},
   {y:"2024", when:"2024", title:"Community matters.",
-   text:"Sure, I could sell pet products, jigsaw puzzles, or even (hilariously) women's workout clothes. But could I really be the face of those brands? No. I picked them to see if I could do it, and I couldn't, because at the end of the day, you are your brand. If you don't belong in the community, your brand won't stick.",
+   text:"Sure, I could sell pet products, jigsaw puzzles, or even (hilariously) women's workout clothes. The pipeline could spin up a store in any category in a couple of days, and I picked those to prove it. But could I really be the face of those brands? No. At the end of the day, you are your brand. If you don't belong in the community, your brand won't stick.",
    from:["Peatsy Paws","Peatsy Puzzles","Taigora Activewear"]},
   {y:"2024", when:"2024", title:"Set it and forget it is a pipe dream.",
-   text:"Supplier pricing changes. Winning products stop winning. Automations break and need updating. Every automation I built required continuous updates, sometimes because the underlying LLM changed, sometimes because my needs changed, sometimes because I learned something new that needed to be applied. Autopilot businesses still require a pilot.",
+   text:"Supplier pricing changes. Winning products stop winning. Automations break and need updating. Every automation I built required continuous updates, sometimes because the underlying model changed behavior between versions, sometimes because my needs changed, sometimes because I learned something new that needed to be applied. Autopilot businesses still require a pilot.",
    from:["The print-on-demand stores"]},
   {y:"2024", when:"2024", title:"Don't automate what doesn't matter.",
    text:"At one point, automation made it so easy that I could create 100 designs across 25+ products, 2,500 SKUs, in 10 minutes. It created analysis paralysis for customers, diluted my brand, and filled my stores with products nobody wanted. What I should have been automating were the things that generate traffic and visibility: marketing content, SEO and social media. Automation only matters if you're applying it to the right things.",
@@ -325,13 +328,33 @@ const ERAS = {
   "2024":"Print-on-demand, automation, travel gear, and a look back on year one.",
   "2023":"Drop-shipping stores. Where the building started."
 };
+// Where each "from" tag points. External sites open in a new tab; pages on this site don't.
+const LINKS = {
+  "GridDown":"https://griddown.us",
+  "GuysGoals.com":"https://guysgoals.com",
+  "MushroomKick.com":"https://mushroomkick.com",
+  "AiforEDU.co":"https://aiforedu.beehiiv.com/",
+  "ULTGear.co":"https://ultgear.co",
+  "Peatsy Paws":"/peatsy-paws/",
+  "Peatsy Puzzles":"/peatsy-puzzles/",
+  "Taigora Activewear":"/taigora-activewear/",
+  "MTNDrip.com":"/mtn-drip/",
+  "Acid Daddy":"/acid-daddy/",
+  "The print-on-demand stores":"/#projects",
+  "Everything on this site":"/#projects",
+};
+function fromLink(name){
+  const href=LINKS[name]; if(!href) return name;
+  const ext=/^https?:/.test(href);
+  return `<a href="${href}"${ext?' target="_blank" rel="noopener"':''}>${name}</a>`;
+}
 function lesson(l, n){
   const num=String(n).padStart(2,'0');
   return `<article class="lesson reveal" id="lesson-${num}">
     <p class="kicker">Lesson ${num} · ${l.when}</p>
     <h3>${l.title}</h3>
     <p class="text">${l.text}</p>
-    <p class="from">${l.from.join(' · ')}</p>
+    <p class="from">${l.from.map(fromLink).join(' · ')}</p>
   </article>`;
 }
 function render(){
