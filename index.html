@@ -458,7 +458,7 @@ function render(){
   document.getElementById('n-all').textContent=total;
   for(const st of ['live','demo','paused','dead','wip']) document.getElementById('n-'+st).textContent=count(st);
   document.getElementById('s-all').textContent=total;
-  document.getElementById('s-live').textContent=count('live');
+  document.getElementById('s-live').textContent=count('live')+count('demo');
   document.getElementById('s-dead').textContent=count('dead');
   document.getElementById('s-years').textContent=YEARS_ACTIVE;
   reveal();
