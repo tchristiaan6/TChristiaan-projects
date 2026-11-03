@@ -146,6 +146,8 @@
   .status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
   .status.live{color:var(--live);border-color:rgba(46,139,87,.35)}
   .status.live i{background:var(--live);box-shadow:0 0 0 3px rgba(46,139,87,.18)}
+  .status.demo{color:#0F766E;border-color:rgba(15,118,110,.35)}
+  .status.demo i{background:#0F766E}
   .status.paused{color:#9A6A00;border-color:rgba(154,106,0,.35)}
   .status.paused i{background:#C98A00}
   .status.wip{color:#1F4FBF;border-color:rgba(31,79,191,.35)}
@@ -264,6 +266,7 @@
     <div class="filters" id="filters">
       <button class="chip on" data-f="all">All<span class="n" id="n-all"></span></button>
       <button class="chip" data-f="live">Live<span class="n" id="n-live"></span></button>
+      <button class="chip" data-f="demo">Demo<span class="n" id="n-demo"></span></button>
       <button class="chip" data-f="wip">Under Construction<span class="n" id="n-wip"></span></button>
       <button class="chip" data-f="paused">Paused<span class="n" id="n-paused"></span></button>
       <button class="chip" data-f="dead">Retired<span class="n" id="n-dead"></span></button>
@@ -307,7 +310,7 @@ const PROJECTS = [
    img:"diyagent_logo.png", tags:["AI agents", "Voice agents", "Agent builder", "LangGraph", "MCP", "LiveKit", "Twilio", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Railway"],
    blurb:"Build voice agents that act on your instructions and call you when they need input.",
    story:"A personal project that's open to anyone who wants to try it. A simplified interface for building AI agents: text-based instructions, with a tag-based approach for reusable components and agent-to-agent communication. Every agent starts with built-in baseline functionality, so you aren't wiring the same pieces by hand each time. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
-  {y:"2026", act:"XII", name:"FDATrack.com", url:"https://fdatrack.com", date:"Aug 2026", status:"live",
+  {y:"2026", act:"XII", name:"FDATrack.com", url:"https://fdatrack.com", date:"Aug 2026", status:"demo",
    img:"fdatrack_mark.png", tags:["AI search", "Web app", "openFDA", "Next.js", "Vercel"],
    blurb:"Type any drug and see every signal FDA publishes about it: shortages, discontinuations and recalls, with sources you can check yourself.",
    story:"Built as an interview take-home project, but I wanted something genuinely useful to come out of it. Originally conceived for my brother, a CRNA, who I thought might find it useful. The tool is simple: type in any drug, and the built-in AI searches FDA's databases through their public APIs for shortages, recalls and providers. Multiple checks keep it accurate, every data source is public record, and the references are cited on each run. In practice, the people who track shortages get that data from their suppliers, so this lives on as a working demo more than a tool anyone relies on."},
@@ -319,7 +322,7 @@ const PROJECTS = [
    img:"regbrief_icon.png", dark:true, tags:["Automation", "AI content", "Claude", "Next.js", "Supabase", "Resend", "Vercel"],
    blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
    story:"Built to track AI regulation changes. RegBrief watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. The same information sits behind enterprise tools priced for compliance departments, so I built a version a single person could run."},
-  {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"live",
+  {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"demo",
    img:"velay.png", tags:["Voice agents", "AI receptionist", "Retell", "Claude", "Vercel"],
    blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
    story:"<em>Built in a day.</em> I started playing with AI voice agents in 2025, and while the tech is early, I believe they'll be a big part of how we talk to AI day to day. Velay is my demo and test site for AI voice receptionists: a Retell voice agent, built with Claude and shipped on Vercel. It's live and takes real calls, but the space is crowded, and voice receptionists aren't quite there yet in intelligence or conversation. Still early. As the space evolves, expect to hear a lot more AI agents answering calls and booking appointments."},
@@ -329,10 +332,10 @@ const PROJECTS = [
    story:"<em>Three hours, one early morning in South Korea.</em> On a trip with my sister I woke up early and built this in Antigravity, partly because the tool was new and I wanted to test it. A small, lightweight web app that runs in the browser: one place for everything I use when I travel. An AI assistant, a voice translator, a currency converter, a weather report and a home-time clock. Instead of bouncing between four sites, it's one simple interface with everything I need."},
 
   // ---------- 2025 ----------
-  {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · present", status:"wip",
+  {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · 2026", status:"paused",
    img:"griddown_logo.png", tags:["Mobile app", "Local LLM", "RAG", "Llama", "React Native", "Expo", "MapLibre", "PMTiles", "Claude Code", "Cursor", "Cloudflare", "iOS · Android"],
    blurb:"An offline emergency-preparedness app: real offline maps plus a local language model that runs with zero connectivity.",
-   story:"<em>A monster of a project.</em> I go through phases of worrying about long-term power outages, so when I had some time I built the app I'd always wanted as a safety net: an offline language model for basic survival and safety questions, plus downloadable offline maps for the parts of the US that matter to me. I spent four months on it in Claude Code and Cursor, building a React Native app for iOS and Android, with PMTiles and vector tiles for the maps and a small local Llama model for the intelligence layer. The maps worked, and still work, great. The intelligence layer is where I hit the wall. When lives might depend on an AI's answers, the model has to draw only from vetted, trustworthy sources, and sourcing that material is neither cheap nor easy. A RAG pipeline is the easy part. The trusted knowledge base is the hard part. So that's where the next six months went: 40-plus field guides researched from CDC, EPA, FEMA, USGS and military manuals, baked into the on-device model with sources cited. GridDown.us is live with a waitlist, and the app launches on iOS and Android next."},
+   story:"<em>A monster of a project.</em> I go through phases of worrying about long-term power outages, so when I had some time I built the app I'd always wanted as a safety net: an offline language model for basic survival and safety questions, plus downloadable offline maps for the parts of the US that matter to me. I spent four months on it in Claude Code and Cursor, building a React Native app for iOS and Android, with PMTiles and vector tiles for the maps and a small local Llama model for the intelligence layer. The maps worked, and still work, great. The intelligence layer is where I hit the wall. When lives might depend on an AI's answers, the model has to draw only from vetted, trustworthy sources, and sourcing that material is neither cheap nor easy. A RAG pipeline is the easy part. The trusted knowledge base is the hard part. So that's where the next six months went: 40-plus field guides researched from CDC, EPA, FEMA, USGS and military manuals, baked into the on-device model with sources cited. GridDown.us is live with a waitlist; the iOS and Android launch is on hold."},
   {y:"2025", act:"VII", name:"GuysGoals.com", url:"https://guysgoals.com", date:"Nov 2025", status:"dead",
    img:"guysgoals_logo.png", tags:["E-commerce", "White-label", "Supplements", "Shopify", "Astro"],
    blurb:"A men's supplement brand for me and my friends: protein, creatine, pre-workout and a greens mix.",
@@ -412,7 +415,7 @@ const ERAS = {
   "2023":"Drop-shipping stores. Where the sabbatical started.",
   "2016":"The first side project, the one that started it all."
 };
-const STATUS = {live:["Live","live"], paused:["Paused","paused"], wip:["Under construction","wip"], dead:["Retired","dead"]};
+const STATUS = {live:["Live","live"], demo:["Demo","demo"], paused:["Paused","paused"], wip:["Under construction","wip"], dead:["Retired","dead"]};
 
 function tint(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;const hue=h%360;return [`hsl(${hue} 38% 90%)`,`hsl(${(hue+40)%360} 45% 80%)`];}
 
@@ -453,7 +456,7 @@ function render(){
     <div class="list">${g.items.join('')}</div></section>`).join('');
   const count=st=>PROJECTS.filter(p=>p.status===st).length;
   document.getElementById('n-all').textContent=total;
-  for(const st of ['live','paused','dead','wip']) document.getElementById('n-'+st).textContent=count(st);
+  for(const st of ['live','demo','paused','dead','wip']) document.getElementById('n-'+st).textContent=count(st);
   document.getElementById('s-all').textContent=total;
   document.getElementById('s-live').textContent=count('live');
   document.getElementById('s-dead').textContent=count('dead');
