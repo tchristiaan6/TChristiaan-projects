@@ -91,6 +91,7 @@
   .stats{display:flex;flex-wrap:wrap;gap:10px 28px;border-top:1px solid var(--line);padding-top:22px;max-width:560px}
   .stat b{font-family:var(--font-display);font-size:30px;font-weight:500;display:block;line-height:1;letter-spacing:-.02em}
   .stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  @media (max-width:480px){.stats{gap:10px 14px}.stat span{font-size:11px;letter-spacing:.08em}}
   .portrait{justify-self:end;position:relative;width:min(100%,380px)}
   .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:32px 32px 32px 160px}
   .portrait .plinks{display:flex;justify-content:flex-end;gap:18px;margin-top:18px}
@@ -143,6 +144,7 @@
   .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .meta .act{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .statuses{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
   .status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
   .status.live{color:var(--live);border-color:rgba(46,139,87,.35)}
   .status.live i{background:var(--live);box-shadow:0 0 0 3px rgba(46,139,87,.18)}
@@ -158,6 +160,21 @@
   .title-link{color:inherit;font:inherit;text-decoration:none;background-image:linear-gradient(var(--accent),var(--accent));background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s}
   .card:hover .title-link{background-size:100% 2px}
   a.tile{text-decoration:none;color:inherit}
+  .tile.logos{padding:0;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;gap:1px;background:var(--line);align-items:stretch;justify-items:stretch}
+  .tile.logos.stack{grid-template-columns:1fr}
+  .tile.logos > *{background:#fff;display:flex;align-items:center;justify-content:center;padding:10px 12px;min-height:0;min-width:0;transition:background .2s}
+  .tile.logos a:hover{background:#FBF7F1}
+  .tile.logos img{width:100%;height:100%;max-height:82px;object-fit:contain}
+  .tile.logos.stack img{max-height:112px}
+  .members{margin:0;font-size:13px;color:var(--muted)}
+  .members span{color:var(--ink-2);font-weight:600}
+  .members a{color:var(--ink-2);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+  .members a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  @media (max-width:640px){
+    .tile.logos{grid-template-columns:repeat(3,1fr);min-height:0}
+    .tile.logos.stack{grid-template-columns:repeat(2,1fr)}
+    .tile.logos > *{padding:14px 10px}
+  }
   .name > a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
   .name > a:hover{border-bottom-color:var(--accent)}
   .name .num{font-family:var(--font-display);font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
@@ -248,6 +265,7 @@
       <div class="stats">
         <div class="stat"><b id="s-all">–</b><span>projects</span></div>
         <div class="stat"><b id="s-live">–</b><span>live</span></div>
+        <div class="stat"><b id="s-demo">–</b><span>demos</span></div>
         <div class="stat"><b id="s-dead">–</b><span>retired</span></div>
         <div class="stat"><b id="s-years">–</b><span>years</span></div>
       </div>
@@ -282,8 +300,8 @@
     <div><p class="kicker">About</p></div>
     <div>
       <h2>To build or not to build.</h2>
-      <p>In 2023 I stumbled across ChatGPT and knew it would change how people work. I took a planned sabbatical and dove into AI and automation, applying the tools to real projects, some of them small businesses, to learn what they could do and <b>separate hype from reality.</b> I built fully automated content pipelines, automated Shopify stores, AI-assisted newsletters, mobile apps and agents.</p>
-      <p>Most of these projects are retired, some I keep around as demos, but each one taught me something new: about technology, about business, and maybe most importantly, about myself. The <a href="/lessons/">lessons learned</a> are on their own page.</p>
+      <p>In 2023 I stumbled across ChatGPT and knew it would change how people work. I took a planned sabbatical and dove into AI and automation. I wanted to apply what I learned to real businesses, with real customers and real costs, to see what the tools could do and <b>separate hype from reality.</b> So I built fully automated content pipelines, automated Shopify stores, AI-assisted newsletters, mobile apps and agents.</p>
+      <p>Most of those projects are retired, and a few stay up as demos. Each one taught me something new: about technology, about business, and maybe most importantly, about myself. The <a href="/lessons/">lessons learned</a> are on their own page.</p>
       <p>Those lessons feed directly into my two consulting practices: <a href="https://lumioconsulting.com/" target="_blank" rel="noopener">Lumio Consulting</a>, for non-profits and small teams, and <a href="https://movemnt.ai/" target="_blank" rel="noopener">Movemnt.AI</a>, for mid-sized organizations looking for someone to own AI.</p>
       <p>If something here looks interesting or useful, or if you want to talk about building, don't hesitate to reach out!</p>
       <div class="links">
@@ -307,25 +325,25 @@
 const YEARS_ACTIVE = "3+";
 const PROJECTS = [
   // ---------- 2026 ----------
-  {y:"2026", act:"XII", name:"DIYAgent.co", url:"https://diyagent.co", date:"2026", status:"wip",
+  {y:"2026", act:"XII", name:"DIYAgent.co", url:"https://diyagent.co", date:"2026", status:["demo","wip"],
    img:"diyagent_logo.png", tags:["AI agents", "Voice agents", "Agent builder", "LangGraph", "MCP", "LiveKit", "Twilio", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Railway"],
    blurb:"A simple platform for building and testing voice agents with video avatars. These always-on agents run a number of back-office tasks, <b>call me</b> when they need my input, and communicate with each other like real coworkers.",
-   story:"A personal project that's open to anyone who wants to try it. A simplified interface for building AI agents: text-based instructions, with a tag-based approach for reusable components and agent-to-agent communication. Every agent starts with built-in baseline functionality, so you aren't wiring the same pieces by hand each time. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
+   story:"A personal project that's open to anyone who wants to try it. A simplified interface for building AI agents: text-based instructions, with a tag-based approach for reusable components and agent-to-agent communication. Every agent starts with built-in baseline functionality, so you aren't wiring the same pieces by hand each time. A working demo that's still under construction. If you'd like access, reach out and I'll set you up."},
   {y:"2026", act:"XII", name:"FDATrack.com", url:"https://fdatrack.com", date:"Aug 2026", status:"demo",
    img:"fdatrack_mark.png", tags:["AI search", "Web app", "openFDA", "Next.js", "Vercel"],
    blurb:"Originally built to test a custom MCP server, this tool pulls published, verified FDA data through the agency's public APIs and lets you search shortages, discontinuations, and recalls. Built for my brother, a CRNA.",
    story:"Built as an interview take-home project, but I wanted something genuinely useful to come out of it. The first version was a custom MCP server running locally. When I moved it onto a public website, the app could call FDA's APIs directly, so that build dropped the MCP layer. Originally conceived for my brother, a CRNA, who I thought might find it useful. The tool is simple: type in any drug, and the built-in AI searches FDA's databases through their public APIs for shortages, recalls and providers. Multiple checks keep it accurate, every data source is public record, and the references are cited on each run. In practice, the people who track shortages get that data from their suppliers, so this lives on as a working demo more than a tool anyone relies on."},
-  {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:"wip",
+  {y:"2026", act:"XII", name:"Abtme.co", url:"https://abtme.co", date:"Aug 2026", status:["demo","wip"],
    img:"abtme.png", tags:["AI agents", "MCP", "Claude", "OpenAI", "Gemini", "Next.js", "Supabase", "Vercel"],
    blurb:"Your life story, built for the AI age. A private place for everything about you, connected via MCP to Claude, ChatGPT or Gemini so language models understand who you are.",
-   story:"A personal project built to simplify and control what LLMs know about me, and open to anyone who wants the same for themselves. It's a private, tag-based profile of your life history: work, places lived, people, passions, goals. You build it through a guided walkthrough or by just talking to a chat, then connect it through an MCP plug-in built for Claude, OpenAI and Gemini. One place to control your private data, connected to the models you use for personalized life context. Private by default. Under construction, but usable. If you'd like access, reach out and I'll set you up."},
+   story:"A personal project built to simplify and control what LLMs know about me, and open to anyone who wants the same for themselves. It's a private, tag-based profile of your life history: work, places lived, people, passions, goals. You build it through a guided walkthrough or by just talking to a chat, then connect it through an MCP plug-in built for Claude, OpenAI and Gemini. One place to control your private data, connected to the models you use for personalized life context. Private by default. A working demo that's still under construction. If you'd like access, reach out and I'll set you up."},
   {y:"2026", act:"XII", name:"RegBrief.ai", url:"https://regbrief.ai", date:"Jul 2026", status:"live",
    img:"regbrief_icon.png", dark:true, tags:["Automation", "AI content", "Claude", "Next.js", "Supabase", "Resend", "Vercel"],
-   blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English.",
-   story:"Built to track AI regulation changes. RegBrief watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. The same information sits behind enterprise tools priced for compliance departments, so I built a version a single person could run."},
+   blurb:"AI regulation tracking for the person who owns AI governance without an enterprise budget. State AI laws, EU AI Act deadlines and FTC enforcement, in plain English. Free and open to everyone.",
+   story:"I built RegBrief to track AI regulation changes for myself, and I use it every week. It watches state AI laws, EU AI Act deadlines and FTC enforcement, and sends weekly status updates on proposed and published regulations, with compliance action items and deadline alerts. The same information sits behind enterprise tools priced for compliance departments, so I built a version a single person could run. It's free, with no paid tier, and open to everyone."},
   {y:"2026", act:"XI", name:"Velay.io", url:"https://velay.io", date:"Mar 2026", status:"demo",
    img:"velay.png", tags:["Voice agents", "AI receptionist", "Retell", "Claude", "Vercel"],
-   blurb:"AI voice receptionists that answer calls 24/7, qualify leads and book appointments.",
+   blurb:"A working demo of an AI voice receptionist: it answers calls 24/7, qualifies leads and books appointments.",
    story:"<em>Built in a day.</em> I started playing with AI voice agents in 2025, and while the tech is early, I believe they'll be a big part of how we talk to AI day to day. Velay is my demo and test site for AI voice receptionists: a Retell voice agent, built with Claude and shipped on Vercel. It's live and takes real calls, but the space is crowded, and voice receptionists aren't quite there yet in intelligence or conversation. Still early. As the space evolves, expect to hear a lot more AI agents answering calls and booking appointments."},
   {y:"2026", act:"XI", name:"TripBud.co", url:"https://tripbud.co", date:"May 2026", status:"demo",
    img:"tripbud_p2.png", tags:["Web app", "AI assistant", "OpenAI", "DeepL", "Open-Meteo", "Astro", "Antigravity", "Vercel"],
@@ -336,57 +354,42 @@ const PROJECTS = [
   {y:"2025", act:"VIII", name:"GridDown", url:"https://griddown.us", date:"Dec 2025 · 2026", status:"paused",
    img:"griddown_logo.png", tags:["Mobile app", "Local LLM", "RAG", "Llama", "React Native", "Expo", "MapLibre", "PMTiles", "Claude Code", "Cursor", "Cloudflare", "iOS · Android"],
    blurb:"An offline emergency-preparedness app: real offline maps plus a local language model that runs with zero connectivity.",
-   story:"<em>A monster of a project.</em> I go through phases of worrying about long-term power outages, so when I had some time I built the app I'd always wanted as a safety net: an offline language model for basic survival and safety questions, plus downloadable offline maps for the parts of the US that matter to me. I spent four months on it in Claude Code and Cursor, building a React Native app for iOS and Android, with PMTiles and vector tiles for the maps and a small local Llama model for the intelligence layer. The maps worked, and still work, great. The intelligence layer is where I hit the wall. When lives might depend on an AI's answers, the model has to draw only from vetted, trustworthy sources, and sourcing that material is neither cheap nor easy. A RAG pipeline is the easy part. The trusted knowledge base is the hard part. So that's where the next six months went: 40-plus field guides researched from CDC, EPA, FEMA, USGS and military manuals, baked into the on-device model with sources cited. GridDown.us is live with a waitlist; the iOS and Android launch is on hold."},
-  {y:"2025", act:"VII", name:"GuysGoals.com", url:"https://guysgoals.com", date:"Nov 2025", status:"dead",
-   img:"guysgoals_logo.png", tags:["E-commerce", "White-label", "Supplements", "Shopify", "Astro"],
-   blurb:"A men's supplement brand for me and my friends: protein, creatine, pre-workout and a greens mix.",
-   story:"Built in parallel with MushroomKick: a site selling white-labeled men's supplements, mostly because supplements are wildly overpriced and I was already buying all of them from different brands. Protein, creatine, pre-workout and a greens mix. It looked like a near break-even hobby that would fund itself. I shut it down because the space is brutally competitive, breaking through would have taken serious marketing spend, and sourcing options were limited."},
-  {y:"2025", act:"VII", name:"MushroomKick.com", url:"https://mushroomkick.com", date:"2025", status:"dead",
-   img:"mushroomkick.png", tags:["E-commerce", "White-label", "Functional coffee", "Shopify", "Astro"],
-   blurb:"Functional mushroom coffee, Lion's Mane and Chaga, plus a couple of supplements. All white-labeled.",
-   story:"My first foray into white-labeled supplements. I wanted to test the concept, and functional mushroom coffee seemed like a good place to start: Lion's Mane and Chaga blends, plus a couple of supplements. The ultimate goal was to develop my own coffee and green-tea mushroom blends. A Colorado Springs manufacturer was ready to run a taste test and set up for about $1,000, right as the sabbatical's runway ran out. Sometimes a project doesn't die from a bad idea. It dies because you run out of runway."},
-  {y:"2025", act:"VI", name:"AIEDUExperts.com", url:"", date:"2025", status:"dead",
-   img:"aieduexperts_logo.png", tags:["AI consulting", "Education", "K-12"],
-   blurb:"A service to help teachers and administrators adopt AI, built with a DPS math teacher and a retired principal.",
-   story:"I'm passionate about education, adult education and continuous learning especially, so why not use what I'd learned about AI to help teachers? I teamed up with a friend who teaches math at Denver Public Schools and a family friend who'd retired as a principal after 20-plus years, and we built AIEDUExperts.com, a service to help teachers and administrators adopt AI tools. Website, services, positioning, pricing. It was all real and live, for about two months. Then reality set in. I had no background in education: no connections, no idea how schools funded projects or bought from vendors (turns out getting on an approved-vendor list can take months to years). And underneath it all sat a question I couldn't answer: why would a school district trust me on education? Passion, it turns out, is not the same as credibility."},
-  {y:"2025", act:"VI", name:"AiforEDU.co", url:"https://aiforedu.beehiiv.com/", date:"2025", status:"dead",
-   img:"aiforedu_logo.png", tags:["Newsletter", "AI content", "Education", "Beehiiv"],
-   blurb:"A newsletter helping teachers understand AI in the classroom. 42 drafts, 23 published, a few organic followers.",
-   story:"AI helped source the content but I did the writing. The same gap showed up: without real classroom experience, what could I add to the headlines? How could I judge a tool I wasn't using? I couldn't, so I shut it down."},
+   story:"<em>A monster of a project.</em> I wanted a safety net for a long power outage: something that still works with no grid and no signal. So I built it: an offline language model for basic survival and safety questions, plus downloadable offline maps for the parts of the US that matter to me. I spent four months on it in Claude Code and Cursor, building a React Native app for iOS and Android, with PMTiles and vector tiles for the maps and a small local Llama model for the intelligence layer. The maps worked, and still work, great. The intelligence layer is where the real work turned out to be. When lives might depend on an AI's answers, the model has to draw only from vetted, trustworthy sources, and sourcing that material is neither cheap nor easy. A RAG pipeline is the easy part. The trusted knowledge base is the hard part. I gathered 30-plus existing guides from CDC, EPA, FEMA, USGS and military manuals, then used them with the deep research tools in ChatGPT, Perplexity and Gemini to draft 40-plus field guides for the knowledge base. The drafts exist. What I can't say yet is that every one is accurate and well organized, and for an app like this, that's the part that matters most. So I paused it there. GridDown.us is live with a waitlist; the iOS and Android launch is on hold until the knowledge base is one I'd trust."},
+  {y:"2025", act:"VI", name:"AIEDUExperts and AIforEDU", url:"", date:"2025", status:"dead",
+   series:[
+     {name:"AIEDUExperts.com", img:"aieduexperts_logo.png", href:""},
+     {name:"AIforEDU.co", img:"aiforedu_logo.png", href:"https://aiforedu.beehiiv.com/"}],
+   tags:["AI consulting", "Education", "K-12", "Newsletter", "AI content", "Automation", "Beehiiv"],
+   blurb:"An AI adoption service for teachers and school administrators, built with a Denver Public Schools math teacher and a retired principal, plus the newsletter meant to bring it an audience.",
+   story:"I'm passionate about education, adult education and continuous learning especially, so why not use what I'd learned about AI to help teachers? I teamed up with a friend who teaches math at Denver Public Schools and a family friend who'd retired as a principal after 20-plus years, and we built AIEDUExperts.com, a service to help teachers and administrators adopt AI tools. Website, services, positioning, pricing. It was all real and live, for about two months. In parallel I ran AIforEDU.co, a newsletter on AI in the classroom that was meant to eventually drive visibility to the service. An automated pipeline sourced and summarized the week's AI-in-education news, and I did the writing. 23 issues went out. Then reality set in. I had no background in education, and no idea how schools funded projects or bought from vendors (turns out getting on an approved-vendor list can take months to years). The newsletter hit the same wall: without real classroom experience, what could I add to the headlines? How could I judge a tool I wasn't using? And underneath it all sat a question I couldn't answer: why would a school district trust me on education? Passion, it turns out, is not the same as credibility."},
+  {y:"2025", act:"VII", name:"MushroomKick and GuysGoals", url:"", date:"2025", status:"dead",
+   series:[
+     {name:"MushroomKick", img:"mushroomkick.png", href:"https://mushroomkick.com"},
+     {name:"GuysGoals", img:"guysgoals_logo.png", href:"https://guysgoals.com"}],
+   tags:["E-commerce", "White-label", "Supplements", "Functional coffee", "Shopify", "Astro"],
+   blurb:"Two white-label supplement brands, started because I was spending a lot on supplements: functional mushroom coffee, plus protein, creatine and pre-workout for my friends and me.",
+   story:"A couple of one-off projects, unrelated to automation. By 2025 I could put a beautiful website up in days, and I was spending a lot on supplements, so I decided to try white-labeling my own brands: MushroomKick for functional mushroom coffee, and GuysGoals for protein, creatine and pre-workout powders. They were intended to supply inexpensive supplements to my friends and me, and I figured they would be a break-even hobby. Fun fact: we have a group of guys that meets monthly to discuss our goals and progress, called \"Guys Goals\" - so the name was fitting. In any case, I found the sourcing options to be limited, and it was difficult to vouch for the quality of white-label products, so I shut them down."},
 
   // ---------- 2024 ----------
   {y:"2024", act:"V", name:"RioHarbor.com", url:"", date:"2024", status:"dead",
    img:"rioharbor.png", tags:["Automation", "AI content", "AI image generation", "Travel blog"],
-   blurb:"A travel blog that wrote itself. Pick a random place in the world, research it, generate images, write the post.",
-   story:"<em>One of my favorites.</em> Everyone writes about Paris and Bali. Who's writing a gorgeous piece about some random spot in Africa nobody's heard of? It was meant to be inspirational, and it was. But travel writing, actually all writing, needs to be beautiful, personal and real. AI couldn't do any of that."},
+   blurb:"An experiment in AI content generation: have AI pick a random place in the world, research it, find or generate the images, and write the post, with no human in the loop.",
+   story:"<em>One of my favorites.</em> RioHarbor was an experiment in AI writing, at a time when AI writing wasn't very good. The idea was to have AI pick a random place in the world and write a beautiful article about it, with realistic generated images and royalty-free photos it sourced on its own. It had a real purpose, too: inspiring travel to places people don't generally write about. Everyone writes about Paris and Bali. Who's writing a gorgeous piece about some random spot in Africa nobody's heard of? The pipeline ran end to end, and I loved the randomness. But travel writing, actually all writing, needs to be beautiful, personal and real. AI couldn't compete with the human experience then, and it still can't."},
   {y:"2024", act:"IV", name:"ULTGear.co", url:"https://ultgear.co", date:"2024", status:"dead",
    img:"ultgear_logo.png", tags:["Product design", "Apparel design", "Tech packs", "Prototypes", "Manufacturing", "Showcase site", "Astro"],
    blurb:"Ultralight travel gear for remote workers and digital nomads. Think Sea to Summit, for one-bag travelers.",
-   story:"I've always had ideas for travel products, things I wished existed to make one-bag, minimalist travel easier. So for about a year I went deep on product design, apparel design and manufacturing: tech packs, factory samples, prototypes, patent searches. Around thirty concepts, from packable clothing to a modular shoe system. All of it is chronicled on the old domain, which now lives on as a showcase of the work."},
-  {y:"2024", act:"II", name:"Vioula.com", url:"", page:"/vioula/", date:"Aug 2024", status:"dead",
-   img:"vioula.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
-   blurb:"The last of the one-off store experiments on the automated pipeline: women's totes and canvas bags.",
-   story:"The last of the one-off store experiments. Vioula sold women's handbags and travel bags. Five stores in, the lesson was the same: the pipeline made building easy, and building was never the hard part."},
-  {y:"2024", act:"II", name:"DuffelPro.com", url:"", page:"/duffel-pro/", date:"Aug 2024", status:"dead",
-   img:"duffelpro.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
-   blurb:"A single-product store, to test whether focus drove more organic traffic than a wide catalog. I loved the duffel bags.",
-   story:"Another one-off experiment in fully automated Shopify stores. DuffelPro sold cool, colorful duffel bags, and nothing else."},
-  {y:"2024", act:"II", name:"Peatsy Paws", url:"", page:"/peatsy-paws/", date:"2024", status:"dead",
-   img:"peatsy_paws_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
-   blurb:"Same automated pipeline, new niche: pet bandanas on the Peatsy domain, dusted off a second time.",
-   story:"Another one-off experiment on the same automated pipeline. I rebranded Peatsy and tried selling colorful, stylish pet bandanas."},
-  {y:"2024", act:"II", name:"Taigora Activewear", url:"", page:"/taigora-activewear/", date:"2024", status:"dead",
-   img:"taigora_activewear.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify"],
-   blurb:"Same automated pipeline, new niche: women's leggings and workout shorts on the Taigora domain, dusted off again.",
-   story:"Another one-off experiment in fully automated, one-person Shopify stores, built on the same pipeline as MTN Drip. I rebranded Taigora again, this time selling women's activewear and yoga mats. Same goal as the others: pick a narrow product, spin the store up in a couple of days, see what stuck."},
-  {y:"2024", act:"II", name:"MTNDrip.com", url:"", page:"/mtn-drip/", date:"2024", status:"dead",
-   img:"mtndrip.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO"],
-   blurb:"Could one person spin up a focused store in days with the pipeline? Mountain Drip: winter gaiters and snowboarding fanny packs.",
-   story:"MTN Drip kicked off a run of one-off experiments around the same concept as Acid Daddy and Peatsy Puzzles: could I build a store dedicated to one product, or one to three, with a very focused goal for each? By this point I had the website design down and the fully automated AI image-generation pipelines already built, so it wasn't crazy to spin up a store. I could build a site in a couple of days and publish hundreds or even thousands of products at the push of a button, which was super cool. MTN Drip, short for Mountain Drip, sold Colorado snowboarding accessories. Along the way I learned a ton about web design, design in general, SEO, and product-market fit. But all in all, these were one-off tests of what the pipeline could do, not businesses I planned to run."},
-  {y:"2024", act:"II", name:"Acid Daddy", url:"", page:"/acid-daddy/", date:"Dec 2023 · 2024", status:"dead",
-   img:"aciddaddy_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO", "Photo dump"],
-   blurb:"A test of how far an AI image pipeline could run a store on its own: psychedelic designs on hats and clothes for festival lovers. Stay weird.",
-   story:"Acid Daddy was my next attempt at a fully automated one-person business, using Printify, Shopify, and AI-generated designs. I spent a good eight months on this project, and I built some incredible things. I got to the point where I could generate images, automatically pump them through a pipeline, put the designs on various products, and publish them to my website. It was an incredibly fun project. I learned a lot about product design, automation, website design, SEO, GEO, all the things that go into a successful e-commerce store. It was one of the few projects that actually made money. But I eventually shut it down because, while it was fun, psychedelic festival gear isn't exactly a passion of mine."},
+   story:"ULT Gear was always a side project, and it ran in parallel with the store experiments. I've had ideas for travel products for years, things I wished existed to make one-bag, minimalist travel easier, going back to Mr. Minimalist. The sabbatical finally gave me the time, so over about a year I worked through around thirty concepts, from packable clothing to a modular shoe system: tech packs, factory samples, prototypes, patent searches. I learned product design, apparel design and manufacturing by doing them. The plan was to bring in generative AI once a product was ready to launch, for order processing, customer follow-ups and marketing. None of the products launched, so that part never happened. All of it is chronicled on the old domain, which lives on as a showcase of the work."},
+  {y:"2024", act:"II", name:"Pipeline Experiments", url:"", date:"Dec 2023 · 2024", status:"dead",
+   series:[
+     {name:"Acid Daddy", img:"aciddaddy_logo.png", href:"/acid-daddy/"},
+     {name:"MTN Drip", img:"mtndrip.png", href:"/mtn-drip/"},
+     {name:"Taigora Activewear", img:"taigora_activewear.png", href:"/taigora-activewear/"},
+     {name:"Peatsy Paws", img:"peatsy_paws_logo.png", href:"/peatsy-paws/"},
+     {name:"DuffelPro", img:"duffelpro.png", href:"/duffel-pro/"},
+     {name:"Vioula", img:"vioula.png", href:"/vioula/"}],
+   tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Shopify", "Printify", "SEO", "Photo dump"],
+   blurb:"After everything I learned running Peatsy Puzzles, I decided to take that automated AI image pipeline and run some experiments. I built six storefronts, ranging from festival clothing to pet bandanas to tote bags, each one testing a different theory.",
+   story:"I built six stores in under a year, each testing a different idea on the same automated pipeline: AI-generated designs, placed on products through Printify and published to Shopify automatically. Acid Daddy tested a wide US audience of festival lovers. MTN Drip tested a highly localized niche, Colorado snowboarders. Taigora Activewear and Peatsy Paws tested theme-based stores, one for activewear and one for pet owners. DuffelPro tested whether a single-product store could pull organic traffic, and Vioula tested the same with just a few products. By the end I could put a store up in a couple of days and publish hundreds of products at the push of a button. The lesson was the same every time: the pipeline made building easy, and building was never the hard part. Along the way I learned a ton about product design, web design, SEO and product-market fit. These were tests of what generative AI and automated pipelines could handle when applied to real businesses. I retired them once I had my answers."},
   {y:"2024", act:"II", name:"Peatsy Puzzles", url:"", page:"/peatsy-puzzles/", date:"2023 · 2024", status:"dead",
    img:"peatsy_puzzles_logo.png", tags:["E-commerce", "Print-on-demand", "AI image generation", "Automation", "Make.com", "Printify"],
    blurb:"The first fully automated, one-person store: AI-generated images on jigsaw puzzles, with everything in between automated.",
@@ -411,7 +414,7 @@ const PROJECTS = [
 
 const ERAS = {
   "2026":"AI tools, web apps and voice agents. Mostly shipped on Vercel, mostly still running.",
-  "2025":"A mobile app, white-label supplements, newsletters and consulting.",
+  "2025":"A mobile app, an AI adoption service for schools, and a supplements side project.",
   "2024":"AI content pipelines, travel gear prototypes, and print-on-demand stores run by automation.",
   "2023":"Drop-shipping stores. Where the sabbatical started.",
   "2016":"The first side project, the one that started it all."
@@ -420,8 +423,8 @@ const STATUS = {live:["Live","live"], demo:["Demo","demo"], paused:["Paused","pa
 
 function tint(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;const hue=h%360;return [`hsl(${hue} 38% 90%)`,`hsl(${(hue+40)%360} 45% 80%)`];}
 
-function card(p, i){
-  const st=STATUS[p.status];
+function card(p, num){
+  const sts=[].concat(p.status);
   const tileInner = p.img
     ? `<img src="assets/${p.img}" alt="${p.name}">`
     : `${p.mono}<small>${p.label||''}</small>`;
@@ -435,13 +438,19 @@ function card(p, i){
   const title = href ? `<a class="title-link" href="${href}"${ext}>${p.name}</a>` : p.name;
   const link = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')} ↗</a>`
     : p.page ? `<a href="${p.page}">See the project →</a>` : '';
+  const sx=x=>/^https?:/.test(x.href)?' target="_blank" rel="noopener"':'';
+  const sTile = p.series ? `<div class="tile logos${p.series.length<3?' stack':''}">${p.series.map(x=>x.href
+      ? `<a href="${x.href}"${sx(x)} title="${x.name}" aria-label="Open ${x.name}"><img src="assets/${x.img}" alt="${x.name}"></a>`
+      : `<span title="${x.name}"><img src="assets/${x.img}" alt="${x.name}"></span>`).join('')}</div>` : '';
+  const members = p.series ? `<p class="members">${p.series.map(x=>x.href?`<a href="${x.href}"${sx(x)}>${x.name}</a>`:`<span>${x.name}</span>`).join(' · ')}</p>` : '';
   const story = p.story ? `<details><summary>The story</summary><p class="story">${p.story}</p></details>` : '';
-  return `<article class="card reveal" data-status="${p.status}" data-tags="${(p.tags||[]).join('|')}">
-    ${tile}
+  return `<article class="card reveal" data-status="${sts.join(' ')}" data-tags="${(p.tags||[]).join('|')}">
+    ${sTile||tile}
     <div class="body">
-      <div class="meta"><span class="act">${p.date||''}</span><span class="status ${st[1]}"><i></i>${st[0]}</span></div>
-      <div class="name"><h3>${title}</h3>${link}<span class="num">No. ${String(i).padStart(2,'0')}</span></div>
+      <div class="meta"><span class="act">${p.date||''}</span><span class="statuses">${sts.map(k=>`<span class="status ${STATUS[k][1]}"><i></i>${STATUS[k][0]}</span>`).join('')}</span></div>
+      <div class="name"><h3>${title}</h3>${link}<span class="num">${num}</span></div>
       <p class="blurb">${p.blurb}</p>
+      ${members}
       <div class="tags">${(p.tags||[]).map(t=>`<button type="button" data-tag="${t}">${t}</button>`).join('')}</div>
       ${story}
     </div></article>`;
@@ -449,17 +458,20 @@ function card(p, i){
 
 function render(){
   const el=document.getElementById('timeline');
-  const total=PROJECTS.length;
+  const w=p=>p.series?p.series.length:1, pad=n=>String(n).padStart(2,'0');
+  const total=PROJECTS.reduce((a,p)=>a+w(p),0);
   const groups=[];
-  PROJECTS.forEach((p,idx)=>{const n=total-idx; let g=groups.find(g=>g.y===p.y); if(!g){g={y:p.y,items:[]};groups.push(g);} g.items.push(card(p,n));});
+  let hi=total;
+  PROJECTS.forEach(p=>{const lo=hi-w(p)+1; const num=w(p)>1?`Nos. ${pad(lo)}-${pad(hi)}`:`No. ${pad(hi)}`; hi=lo-1; let g=groups.find(g=>g.y===p.y); if(!g){g={y:p.y,items:[]};groups.push(g);} g.items.push(card(p,num));});
   el.innerHTML=groups.map(g=>`<section class="group" data-year="${g.y}">
     <div class="rail"><p class="year">${g.y}</p><p class="era">${ERAS[g.y]||''}</p></div>
     <div class="list">${g.items.join('')}</div></section>`).join('');
-  const count=st=>PROJECTS.filter(p=>p.status===st).length;
+  const count=(...st)=>PROJECTS.filter(p=>[].concat(p.status).some(k=>st.includes(k))).reduce((a,p)=>a+w(p),0);
   document.getElementById('n-all').textContent=total;
   for(const st of ['live','demo','paused','dead','wip']) document.getElementById('n-'+st).textContent=count(st);
   document.getElementById('s-all').textContent=total;
-  document.getElementById('s-live').textContent=count('live')+count('demo');
+  document.getElementById('s-live').textContent=count('live');
+  document.getElementById('s-demo').textContent=count('demo');
   document.getElementById('s-dead').textContent=count('dead');
   document.getElementById('s-years').textContent=YEARS_ACTIVE;
   reveal();
@@ -470,7 +482,7 @@ let curStatus='all', curTag='';
 function filter(f){
   if(f!==undefined) curStatus=f;
   document.querySelectorAll('.card').forEach(c=>{
-    const okS = curStatus==='all' || c.dataset.status===curStatus;
+    const okS = curStatus==='all' || c.dataset.status.split(' ').includes(curStatus);
     const okT = !curTag || c.dataset.tags.split('|').includes(curTag);
     c.classList.toggle('hidden', !(okS && okT));
   });
